@@ -21,7 +21,7 @@ namespace SavegameAutoBackupAgent
         public void CloneRepoTest()
         {
             string s;
-            s = this.CloneRepo("test", @"");
+            s = this.CloneRepo("test", );
 
             Assert.IsTrue(Directory.Exists(s));
         }

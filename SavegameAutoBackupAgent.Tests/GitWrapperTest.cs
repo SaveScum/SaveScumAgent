@@ -17,7 +17,7 @@ namespace SavegameAutoBackupAgent
         [PexMethod]
         public string CloneRepo(string localRepo, string remoteRepo)
         {
-            string result = GitWrapper.CloneRepo(localRepo, remoteRepo);
+            string result = GitWrapper.CloneProfilesRepo();
             return result;
             // TODO: add assertions to method GitWrapperTest.CloneRepo(String, String)
         }
@@ -31,7 +31,7 @@ namespace SavegameAutoBackupAgent
         [PexMethod]
         public string GetGitFolder(string localRepoName)
         {
-            string result = GitWrapper.GetGitFolder(localRepoName);
+            string result = GitWrapper.GetProfilesFolder(localRepoName);
             return result;
             // TODO: add assertions to method GitWrapperTest.GetGitFolder(String)
         }

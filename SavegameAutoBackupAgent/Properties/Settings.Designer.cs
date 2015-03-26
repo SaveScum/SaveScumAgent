@@ -25,10 +25,19 @@ namespace SavegameAutoBackupAgent.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/SaveScum/SaveScumAgent.git")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/SaveScum/SaveScumAgent-profiles.git")]
         public string ProfilesRepo {
             get {
                 return ((string)(this["ProfilesRepo"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("profiles")]
+        public string ProfilesRepoName {
+            get {
+                return ((string)(this["ProfilesRepoName"]));
             }
         }
     }
