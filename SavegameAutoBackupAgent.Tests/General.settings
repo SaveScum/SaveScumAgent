@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SavegameAutoBackupAgent.Tests" GeneratedClassName="General">
+  <Profiles />
+  <Settings>
+    <Setting Name="GameProfilesGitRepo" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://github.com/DrSpaceMonkey/SavegameAutoBackupProfiles.git</Value>
+    </Setting>
+    <Setting Name="MasterProfilesFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">MasterProfiles</Value>
+    </Setting>
+    <Setting Name="LocalProfilesFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">MyProfiles</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
