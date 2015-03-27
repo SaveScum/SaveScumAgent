@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
 namespace AutoBackup.DatabaseTools
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class Archive
     {
         public Archive()
@@ -20,7 +20,7 @@ namespace AutoBackup.DatabaseTools
         }
     
         public int Id { get; set; }
-        public System.DateTime CreatedOn { get; set; }
+        public DateTime CreatedOn { get; set; }
         public string Filename { get; set; }
         public int Size { get; set; }
         public string Comment { get; set; }

@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
 namespace AutoBackup.DatabaseTools
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class Game
     {
         public Game()

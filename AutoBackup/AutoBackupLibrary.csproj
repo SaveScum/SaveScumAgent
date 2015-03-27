@@ -83,6 +83,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArchiveTools\Archiver.cs" />
+    <Compile Include="ArchiveTools\IArchiver.cs" />
+    <Compile Include="ArchiveTools\ZipArchiver.cs" />
     <Compile Include="FilesystemWatcher\FilesystemWatcherEvent.cs" />
     <Compile Include="CommandLineOptions.cs" />
     <Compile Include="ArchiveTools\ArchivingEventArgs.cs" />

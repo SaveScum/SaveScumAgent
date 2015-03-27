@@ -34,10 +34,7 @@ namespace AutoBackup
                 return possibleParentDir.FullName.Equals(possibleSubDir.FullName) ||
                        IsFolderSubfolderOf(possibleSubDir.Parent, possibleParentDir);
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         public static bool IsFolderSubfolderOf(string possibleSubDir, string possibleParentDir)

@@ -9,8 +9,6 @@
 
 namespace AutoBackup.DatabaseTools
 {
-    using System;
-    
     public enum CullType : int
     {
         SevenZip = 0,

@@ -1,18 +1,16 @@
+using System.Data.Entity.Migrations;
+using AutoBackup.DatabaseTools;
+
 namespace AutoBackup.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<AutoBackup.DatabaseTools.ModelsContainer>
+    internal sealed class Configuration : DbMigrationsConfiguration<ModelsContainer>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(AutoBackup.DatabaseTools.ModelsContainer context)
+        protected override void Seed(ModelsContainer context)
         {
             //  This method will be called after migrating to the latest version.
 

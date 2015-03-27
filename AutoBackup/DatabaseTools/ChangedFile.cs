@@ -9,9 +9,6 @@
 
 namespace AutoBackup.DatabaseTools
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class ChangedFile
     {
         public int Id { get; set; }
