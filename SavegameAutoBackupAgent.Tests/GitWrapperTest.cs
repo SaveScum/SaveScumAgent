@@ -1,6 +1,7 @@
 // <copyright file="GitWrapperTest.cs">Copyright ©  2015</copyright>
 
 using System;
+using LibGit2Sharp;
 using Microsoft.Pex.Framework;
 using Microsoft.Pex.Framework.Validation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -15,25 +16,25 @@ namespace SavegameAutoBackupAgent
     public partial class GitWrapperTest
     {
         [PexMethod]
-        public string CloneRepo(string localRepo, string remoteRepo)
+        public string CloneRepo(string localRepo, string remoteRepo, bool overwrite)
         {
-            string result = GitWrapper.CloneProfilesRepo();
+            string result = GitWrapper.CloneRepo(localRepo, remoteRepo, overwrite);
             return result;
             // TODO: add assertions to method GitWrapperTest.CloneRepo(String, String)
         }
         [PexMethod]
-        public object CheckRepoStatusAgainstRemote(string localRepo)
-        {
-            object result = GitWrapper.CheckRepoStatus(localRepo);
-            return result;
-            // TODO: add assertions to method GitWrapperTest.CheckRepoStatus(String)
-        }
-        [PexMethod]
         public string GetGitFolder(string localRepoName)
         {
-            string result = GitWrapper.GetProfilesFolder(localRepoName);
+            string result = GitWrapper.ProfilesFolder;
             return result;
             // TODO: add assertions to method GitWrapperTest.GetGitFolder(String)
+        }
+        [PexMethod(MaxBranches = 20000)]
+        public string CloneProfilesRepo()
+        {
+            string result = GitWrapper.CloneProfilesRepo();
+            return result;
+            // TODO: add assertions to method GitWrapperTest.CloneProfilesRepo()
         }
     }
 }

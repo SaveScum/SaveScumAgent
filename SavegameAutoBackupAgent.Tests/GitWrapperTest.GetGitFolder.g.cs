@@ -14,13 +14,6 @@ namespace SavegameAutoBackupAgent
 {
     public partial class GitWrapperTest
     {
-[TestMethod]
-[PexGeneratedBy(typeof(GitWrapperTest))]
-[ExpectedException(typeof(ArgumentNullException))]
-public void GetGitFolderThrowsArgumentNullException454()
-{
-    string s;
-    s = this.GetGitFolder((string)null);
-}
+
     }
 }

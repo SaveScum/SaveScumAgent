@@ -40,5 +40,14 @@ namespace SavegameAutoBackupAgent.Properties {
                 return ((string)(this["ProfilesRepoName"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SaveScumAgent")]
+        public string ApplicationName {
+            get {
+                return ((string)(this["ApplicationName"]));
+            }
+        }
     }
 }

@@ -8,5 +8,8 @@
     <Setting Name="ProfilesRepoName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">profiles</Value>
     </Setting>
+    <Setting Name="ApplicationName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SaveScumAgent</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -11,27 +11,30 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 // </auto-generated>
 using System;
 using System.IO;
+using LibGit2Sharp;
 
 namespace SavegameAutoBackupAgent
 {
     public partial class GitWrapperTest
     {
+/*        [TestMethod]
+        [PexGeneratedBy(typeof (GitWrapperTest))]
+        public void CheckoutRepoTest()
+        {
+            var profilesFolder = GitWrapper.ProfilesFolder;
+
+            var s = this.CloneRepo(profilesFolder, Properties.Settings.Default.ProfilesRepo, true);
+
+            Assert.IsTrue(s);
+        }*/
+
+
         [TestMethod]
         [PexGeneratedBy(typeof (GitWrapperTest))]
-        public void CloneRepoTest()
+        [ExpectedException(typeof (ArgumentNullException))]
+        public void CloneRepoThrowsArgumentNullException477()
         {
-            string s;
-            s = this.CloneRepo("test", );
-
-            Assert.IsTrue(Directory.Exists(s));
+            var s = this.CloneRepo((string) null, (string) null, false);
         }
-[TestMethod]
-[PexGeneratedBy(typeof(GitWrapperTest))]
-[ExpectedException(typeof(ArgumentNullException))]
-public void CloneRepoThrowsArgumentNullException477()
-{
-    string s;
-    s = this.CloneRepo((string)null, (string)null);
-}
     }
 }

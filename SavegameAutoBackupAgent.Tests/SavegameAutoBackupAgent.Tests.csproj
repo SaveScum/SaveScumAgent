@@ -62,6 +62,9 @@
     <Compile Include="GitWrapperTest.CheckRepoStatusAgainstRemote.g.cs">
       <DependentUpon>GitWrapperTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="GitWrapperTest.CloneProfilesRepo.g.cs">
+      <DependentUpon>GitWrapperTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="GitWrapperTest.CloneRepo.g.cs">
       <DependentUpon>GitWrapperTest.cs</DependentUpon>
     </Compile>

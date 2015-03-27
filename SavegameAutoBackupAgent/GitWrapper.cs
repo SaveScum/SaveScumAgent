@@ -11,45 +11,85 @@ namespace SavegameAutoBackupAgent
 {
     public class GitWrapper
     {
-        public static string CloneRepo(string localRepo, string remoteRepo)
+        private static readonly Identity Identity = new Identity("AgentProfile", "agent@example.com");
+        private static readonly Signature Sig = new Signature(Identity, new DateTimeOffset());
+
+        public static string CloneRepo(string localRepo, string remoteRepo, bool overwrite = false)
         {
-            var fullRepoName = GetProfilesFolder(localRepo);
-            var val = Repository.Clone(remoteRepo, fullRepoName);
-            return val;
+            if (Directory.Exists(localRepo) && overwrite)
+                ForceDeleteDirectory(localRepo);
+
+            var val = Repository.Clone(remoteRepo, localRepo);
+            return (val);
         }
 
-        public static void CloneProfilesRepo()
+        public static void ForceDeleteDirectory(string path)
         {
-            GitWrapper.CloneRepo(Properties.Settings.Default.ProfilesRepoName, Properties.Settings.Default.ProfilesRepo);
-        }
+            if (!Directory.Exists(path))
+                return;
 
-        public static string GetProfilesFolder(string localRepoName)
-        {
-            var appDataPath = GetFolderPath(SpecialFolder.ApplicationData);
+            var directory = new DirectoryInfo(path) { Attributes = FileAttributes.Normal };
 
-            var specificFolder = Path.Combine(appDataPath, System.AppDomain.CurrentDomain.FriendlyName);
-
-            var localRepoFolder = Path.Combine(specificFolder, localRepoName);
-
-            return localRepoFolder;
-        }
-
-        public static object CheckRepoStatus(string localRepo)
-        {
-            var retval = new List<object>();
-            var fullRepoName = GetProfilesFolder(localRepo);
-
-            using (var repo = new Repository(fullRepoName))
+            foreach (var info in directory.GetFileSystemInfos("*", SearchOption.AllDirectories))
             {
-                //repo.Fetch("origin");
-                var remote = repo.Network.Remotes["origin"];
-                repo.Network.Fetch(remote);
-                repo.Fetch("origin");
-
-                var status = repo.RetrieveStatus();
-                retval.AddRange(status);
+                info.Attributes = FileAttributes.Normal;
             }
-            return retval;
+
+            directory.Delete(true);
         }
+
+        public static string CloneProfilesRepo()
+        {
+            try
+            {
+                using (var repo = new Repository(ProfilesFolder))
+                {
+                    return ForcePull(ProfilesFolder);
+                }
+            }
+            catch (LibGit2Sharp.RepositoryNotFoundException)
+            {
+                return GitWrapper.CloneRepo(ProfilesFolder, Properties.Settings.Default.ProfilesRepo);
+            }
+
+
+        }
+
+
+        public static string ProfilesFolder
+        {
+            get
+            {
+                var appDataPath = GetFolderPath(SpecialFolder.ApplicationData);
+
+                var specificFolder = Path.Combine(appDataPath, Properties.Settings.Default.ApplicationName);
+
+                var localRepoFolder = Path.Combine(specificFolder, Properties.Settings.Default.ProfilesRepoName);
+
+                return localRepoFolder;
+            }
+        }
+
+        public static string ForcePull(string localRepo)
+        {
+            MergeResult retval;
+
+            using (var repo = new Repository(localRepo))
+            {
+                repo.Network.Fetch(repo.Head.Remote);
+                retval = repo.Network.Pull(Sig, ForcedPullOptions);
+            }
+            return localRepo;
+        }
+
+        private static readonly PullOptions ForcedPullOptions = new PullOptions()
+        {
+            MergeOptions = new MergeOptions()
+            {
+                FastForwardStrategy = FastForwardStrategy.FastForwardOnly,
+                FileConflictStrategy = CheckoutFileConflictStrategy.Theirs
+            }
+        };
+
     }
 }
