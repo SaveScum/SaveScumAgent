@@ -5,11 +5,9 @@ VisualStudioVersion = 14.0.22310.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoBackupLibrary", "AutoBackup\AutoBackupLibrary.csproj", "{F0E89A05-2FD4-404D-B814-A74C1E00C45B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoBackup.Tests", "AutoBackup.Tests\AutoBackup.Tests.csproj", "{285A3DE2-E19B-4B68-AA91-F0690C09ECED}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveScumAgent", "SavegameAutoBackupAgent\SaveScumAgent.csproj", "{A5442C57-BE04-475A-A552-AA9D9E029F52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SavegameAutoBackupAgent.Tests", "SavegameAutoBackupAgent.Tests\SavegameAutoBackupAgent.Tests.csproj", "{5C5787ED-2141-4AB0-8A95-6551AEF23218}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveScumTests", "SaveScumTests\SaveScumTests.csproj", "{330F8875-D722-466F-9E8F-5FFF29675018}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,18 +19,14 @@ Global
 		{F0E89A05-2FD4-404D-B814-A74C1E00C45B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0E89A05-2FD4-404D-B814-A74C1E00C45B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0E89A05-2FD4-404D-B814-A74C1E00C45B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{285A3DE2-E19B-4B68-AA91-F0690C09ECED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{285A3DE2-E19B-4B68-AA91-F0690C09ECED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{285A3DE2-E19B-4B68-AA91-F0690C09ECED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{285A3DE2-E19B-4B68-AA91-F0690C09ECED}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A5442C57-BE04-475A-A552-AA9D9E029F52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A5442C57-BE04-475A-A552-AA9D9E029F52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5442C57-BE04-475A-A552-AA9D9E029F52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5442C57-BE04-475A-A552-AA9D9E029F52}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5C5787ED-2141-4AB0-8A95-6551AEF23218}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5C5787ED-2141-4AB0-8A95-6551AEF23218}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5C5787ED-2141-4AB0-8A95-6551AEF23218}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5C5787ED-2141-4AB0-8A95-6551AEF23218}.Release|Any CPU.Build.0 = Release|Any CPU
+		{330F8875-D722-466F-9E8F-5FFF29675018}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{330F8875-D722-466F-9E8F-5FFF29675018}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{330F8875-D722-466F-9E8F-5FFF29675018}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{330F8875-D722-466F-9E8F-5FFF29675018}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
