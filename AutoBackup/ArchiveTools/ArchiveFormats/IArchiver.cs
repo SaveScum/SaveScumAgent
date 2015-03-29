@@ -1,20 +1,20 @@
 ﻿using System;
 
-namespace AutoBackup.ArchiveTools
+namespace AutoBackup.ArchiveTools.ArchiveFormats
 {
-    interface IArchiver
+    public interface IArchiver
     {
         void Abort();
 
-        void Archive();
+        void StartArchiving();
+
+        string ArchiveIdentifier { get; }
 
         event EventHandler<ArchivingEventArgs> ArchiveProgress;
         event EventHandler<ArchivingEventArgs> ArchivingDone;
 
-        void Initialize(string targetDirectory, string gameTitle);
 
         bool Archiving { get; }
 
-        bool Initialized { get; }
     }
 }

@@ -18,7 +18,7 @@ namespace AutoBackup.ArchiveTools
         public void Archive([PexAssumeUnderTest] Archiver target)
         {
             target.Archive();
-            // TODO: add assertions to method ArchiverTest.Archive(Archiver, String, String)
+            // TODO: add assertions to method ArchiverTest.StartArchiving(Archiver, String, String)
         }
     }
 }

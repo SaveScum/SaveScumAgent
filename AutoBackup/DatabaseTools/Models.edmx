@@ -14,15 +14,15 @@
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Models" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="ModelsContainer" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Game" EntityType="Models.Game" />
-          <EntitySet Name="Archives" EntityType="Models.Archive" />
-          <AssociationSet Name="ArchiveGame" Association="Models.ArchiveGame">
-            <End Role="Archive" EntitySet="Archives" />
+          <EntitySet Name="StartArchivings" EntityType="Models.StartArchiving" />
+          <AssociationSet Name="StartArchivingGame" Association="Models.StartArchivingGame">
+            <End Role="StartArchiving" EntitySet="StartArchivings" />
             <End Role="Game" EntitySet="Game" />
           </AssociationSet>
           <EntitySet Name="ChangedFiles" EntityType="Models.ChangedFile" />
-          <AssociationSet Name="ChangedFileArchive" Association="Models.ChangedFileArchive">
+          <AssociationSet Name="ChangedFileStartArchiving" Association="Models.ChangedFileStartArchiving">
             <End Role="ChangedFile" EntitySet="ChangedFiles" />
-            <End Role="Archive" EntitySet="Archives" />
+            <End Role="StartArchiving" EntitySet="StartArchivings" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Game">
@@ -34,27 +34,27 @@
           <Property Name="FilesafeTitle" Type="String" Nullable="false" MaxLength="260" />
           <Property Name="MaxKept" Type="Int32" Nullable="true" />
           <Property Name="WatchFolder" Type="String" Nullable="false" MaxLength="260" />
-          <Property Name="ArchiveFolder" Type="String" Nullable="false" MaxLength="260" />
-          <NavigationProperty Name="Archives" Relationship="Models.ArchiveGame" FromRole="Game" ToRole="Archive" />
+          <Property Name="StartArchivingFolder" Type="String" Nullable="false" MaxLength="260" />
+          <NavigationProperty Name="StartArchivings" Relationship="Models.StartArchivingGame" FromRole="Game" ToRole="StartArchiving" />
           <Property Name="CullType" Type="Models.CullType" Nullable="false" />
           <Property Name="CalculateChecksums" Type="Boolean" Nullable="true" />
           <Property Name="IsDefault" Type="Boolean" Nullable="false" DefaultValue="False" cg:SetterAccess="Private" />
           <Property Name="Enabled" Type="Boolean" Nullable="true" />
         </EntityType>
-        <EntityType Name="Archive">
+        <EntityType Name="StartArchiving">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Game" Relationship="Models.ArchiveGame" FromRole="Archive" ToRole="Game" />
+          <NavigationProperty Name="Game" Relationship="Models.StartArchivingGame" FromRole="StartArchiving" ToRole="Game" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" />
           <Property Name="Filename" Type="String" Nullable="false" />
           <Property Name="Size" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ChangedFiles" Relationship="Models.ChangedFileArchive" FromRole="Archive" ToRole="ChangedFile" />
+          <NavigationProperty Name="ChangedFiles" Relationship="Models.ChangedFileStartArchiving" FromRole="StartArchiving" ToRole="ChangedFile" />
           <Property Name="Comment" Type="String" Nullable="false" />
         </EntityType>
-        <Association Name="ArchiveGame">
-          <End Type="Models.Archive" Role="Archive" Multiplicity="*" />
+        <Association Name="StartArchivingGame">
+          <End Type="Models.StartArchiving" Role="StartArchiving" Multiplicity="*" />
           <End Type="Models.Game" Role="Game" Multiplicity="1" />
         </Association>
         <EntityType Name="ChangedFile">
@@ -62,14 +62,14 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Archive" Relationship="Models.ChangedFileArchive" FromRole="ChangedFile" ToRole="Archive" />
+          <NavigationProperty Name="StartArchiving" Relationship="Models.ChangedFileStartArchiving" FromRole="ChangedFile" ToRole="StartArchiving" />
           <Property Name="Filename" Type="String" Nullable="false" />
           <Property Name="MD5" Type="String" Nullable="true" />
           <Property Name="Size" Type="Int32" Nullable="false" />
         </EntityType>
-        <Association Name="ChangedFileArchive">
+        <Association Name="ChangedFileStartArchiving">
           <End Type="Models.ChangedFile" Role="ChangedFile" Multiplicity="*" />
-          <End Type="Models.Archive" Role="Archive" Multiplicity="1" />
+          <End Type="Models.StartArchiving" Role="StartArchiving" Multiplicity="1" />
         </Association>
         <EnumType Name="CullType" >
           <Member Name="SevenZip" />

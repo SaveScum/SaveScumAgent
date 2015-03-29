@@ -22,7 +22,7 @@ namespace AutoBackup
         [Option('k', DefaultValue = 5, HelpText = "Number of old backups to keep")]
         public int ToKeep { get; set; }
 
-        [Option('a', DefaultValue = OutArchiveFormat.SevenZip, HelpText = "Archive format.")]
+        [Option('a', DefaultValue = OutArchiveFormat.SevenZip, HelpText = "StartArchiving format.")]
         public OutArchiveFormat Format { get; set; }
 
         [ParserState]
