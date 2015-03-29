@@ -11,8 +11,7 @@ namespace SavegameAutoBackupAgent
 {
     public class GitWrapper
     {
-        private static readonly Identity Identity = new Identity("AgentProfile", "agent@example.com");
-        private static readonly Signature Sig = new Signature(Identity, new DateTimeOffset());
+
 
         public static string CloneRepo(string localRepo, string remoteRepo, bool overwrite = false)
         {
@@ -77,7 +76,7 @@ namespace SavegameAutoBackupAgent
             using (var repo = new Repository(localRepo))
             {
                 repo.Network.Fetch(repo.Head.Remote);
-                retval = repo.Network.Pull(Sig, ForcedPullOptions);
+                //retval = repo.Network.Pull(Sig, ForcedPullOptions);
             }
             return localRepo;
         }

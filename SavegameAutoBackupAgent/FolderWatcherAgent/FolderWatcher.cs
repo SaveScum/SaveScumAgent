@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Timers;
 
-namespace AutoBackup.FilesystemWatcher
+namespace SavegameAutoBackupAgent.FolderWatcherAgent
 {
-    internal class FolderWatcher :IDisposable
+    public class FolderWatcher :IDisposable
     {
-        private Timer _backupTimer;
-        private FileSystemWatcher _fsWatcher;
+        private readonly ITimer _backupTimer;
+        private readonly FileSystemWatcher _fsWatcher;
         private readonly List<string> _changedFilesList = new List<string>();
-        private int _timerDelay;
 
         public bool Enabled
         {
@@ -19,31 +18,29 @@ namespace AutoBackup.FilesystemWatcher
             set { _fsWatcher.EnableRaisingEvents = value; }
         }
 
-        public int TimerDelay
+        public double TimerDelay
         {
-            get { return _timerDelay; }
+            get { return _backupTimer.Interval; }
             set
             {
-                _timerDelay = value;
-                InitializeTimer(value);
+                _backupTimer.Interval = value;
             }
         }
-
-        //private Archiver _arch;
-
-        public FolderWatcher(string folderToWatch, int delayInSeconds)
+        
+        public FolderWatcher(FileSystemWatcher watcher, ITimer timer)
         {
-            InitializeTimer(delayInSeconds);
-            InitializeFilesystemWatcher(folderToWatch);
+            if (timer == null) throw new ArgumentNullException("timer");
+            if (watcher == null) throw new ArgumentNullException("watcher");
+
+            _fsWatcher = watcher;
+            _backupTimer = timer;
+            InitializeTimer();
+            InitializeFilesystemWatcher();
         }
 
-        private void InitializeFilesystemWatcher(string folderToWatch)
+        private void InitializeFilesystemWatcher()
         {
-            _fsWatcher = new FileSystemWatcher(folderToWatch)
-            {
-                IncludeSubdirectories = true,
-                EnableRaisingEvents = true
-            };
+            _fsWatcher.IncludeSubdirectories = true;
             _fsWatcher.Created += _fsWatcher_Changed;
             _fsWatcher.Renamed += _fsWatcher_Changed;
             _fsWatcher.Changed += _fsWatcher_Changed;
@@ -51,13 +48,11 @@ namespace AutoBackup.FilesystemWatcher
             _fsWatcher.Error += _fsWatcher_Error;
         }
 
-        private void InitializeTimer(int delayInSeconds)
+        private void InitializeTimer()
         {
-            _backupTimer?.Dispose();
-            _timerDelay = delayInSeconds;
-            _backupTimer = new Timer {AutoReset = false, Interval = _timerDelay * 1000};
             _backupTimer.Elapsed += backupTimer_Elapsed;
         }
+
 
         private void _fsWatcher_Error(object sender, ErrorEventArgs e)
         {

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AutoBackup.FilesystemWatcher
+namespace SavegameAutoBackupAgent.FolderWatcherAgent
 {
-    internal class FilesystemWatcherEventArgs : EventArgs
+    public class FilesystemWatcherEventArgs : EventArgs
     {
 
         public List<string> ChangedFiles { get; private set; }
