@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveScumAgent.DirectoryWatc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveScumAgent.Archiver", "SaveScumAgent.Archiver\SaveScumAgent.Archiver.csproj", "{6521F35B-DEA2-4B2E-BEE4-E51CEEB0CBD7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveScumAgent.Archiver.Tests", "SaveScumAgent.Archiver.Tests\SaveScumAgent.Archiver.Tests.csproj", "{CA2149A7-57C1-45AD-AB46-07AF482E8693}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{6521F35B-DEA2-4B2E-BEE4-E51CEEB0CBD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6521F35B-DEA2-4B2E-BEE4-E51CEEB0CBD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6521F35B-DEA2-4B2E-BEE4-E51CEEB0CBD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA2149A7-57C1-45AD-AB46-07AF482E8693}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA2149A7-57C1-45AD-AB46-07AF482E8693}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA2149A7-57C1-45AD-AB46-07AF482E8693}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA2149A7-57C1-45AD-AB46-07AF482E8693}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

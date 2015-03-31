@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace SaveScumAgent.Archiver
 {
@@ -10,5 +11,18 @@ namespace SaveScumAgent.Archiver
         void StartArchiving();
         event EventHandler<ArchivingEventArgs> ArchiveProgress;
         event EventHandler<ArchivingEventArgs> ArchivingDone;
+    }
+
+    public enum ArchiveFormats
+    {
+        [ArchiveFormat(typeof(ZipArchiver))]
+        [Description("Zip")]
+        Zip,
+        [ArchiveFormat(typeof(SevenZipArchiver))]
+        [Description("7zip")]
+        SevenZip,
+        [ArchiveFormat(typeof(GitArchiver))]
+        [Description("Git")]
+        Git
     }
 }

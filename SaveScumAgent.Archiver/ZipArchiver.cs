@@ -5,11 +5,11 @@ namespace SaveScumAgent.Archiver
 {
     public class ZipArchiver : IArchiver
     {
-        private const string Extension = ".zip";
+        private readonly string _extension = ".zip";
         private readonly string _archivesDirectory;
         private readonly string _directory;
         private bool _abortArchiving;
-        private SevenZipCompressor _compressor;
+        private ISevenZipCompressor _compressor;
 
         public ZipArchiver(string directory, string archivesDirectory,
             CompressionLevel compressionLevel = CompressionLevel.Normal)
@@ -19,6 +19,11 @@ namespace SaveScumAgent.Archiver
             InitializeCompressor(compressionLevel, OutArchiveFormat.Zip);
         }
 
+        public ZipArchiver()
+        {
+            
+        }
+
         public void Abort()
         {
             _abortArchiving = true;
@@ -26,7 +31,7 @@ namespace SaveScumAgent.Archiver
 
         public void StartArchiving()
         {
-            ArchiveIdentifier = Utils.GenerateBackupFilename(_archivesDirectory, Extension);
+            ArchiveIdentifier = Utils.GenerateBackupFilename(_archivesDirectory, _extension);
             _abortArchiving = false;
             _compressor.Compressing += (sender, args) =>
             {
@@ -56,7 +61,7 @@ namespace SaveScumAgent.Archiver
 
         private void InitializeCompressor(CompressionLevel compressionLevel, OutArchiveFormat format)
         {
-            _compressor = new SevenZipCompressor
+            _compressor = new SevenZipCompressorWrapper
             {
                 ArchiveFormat = format,
                 CompressionLevel = compressionLevel,

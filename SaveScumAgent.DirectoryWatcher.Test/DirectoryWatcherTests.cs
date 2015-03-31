@@ -165,7 +165,9 @@ namespace SaveScumAgent.DirectoryWatcher.Test
         {
             var fired = false;
             _directoryWatcher.DirectoryWatchError += (sender, args) => fired = true;
-            _mockedFileSystemWatcher.RaiseChangeEvent(ThrowawayFileSystemEventArgs());
+            _directoryWatcher.Enabled = true;
+            _mockedFileSystemWatcher.RaiseErrorEvent(null);
+            Assert.IsTrue(fired);
         }
 
         [TestMethod]

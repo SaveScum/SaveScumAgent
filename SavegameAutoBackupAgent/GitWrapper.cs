@@ -71,8 +71,6 @@ namespace SaveScumAgent
 
         public static string ForcePull(string localRepo)
         {
-            MergeResult retval;
-
             using (var repo = new Repository(localRepo))
             {
                 repo.Network.Fetch(repo.Head.Remote);
