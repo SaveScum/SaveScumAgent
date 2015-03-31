@@ -1,47 +1,25 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SevenZip;
 
 namespace SaveScumAgent.Archiver.Tests
 {
     /// <summary>
-    /// Summary description for ZipArchiverTest
+    ///     Summary description for ZipArchiverTest
     /// </summary>
     [TestClass]
     public class ZipArchiverTest
     {
-
         private MockSevenZipCompressor _compressor;
         private ZipArchiver _subject;
 
-        public ZipArchiverTest()
-        {
-            //
-            // TODO: Add constructor logic here
-            //
-        }
-
-        private TestContext _testContextInstance;
-
         /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return _testContextInstance;
-            }
-            set
-            {
-                _testContextInstance = value;
-            }
-        }
+        ///     Gets or sets the test context which provides
+        ///     information about and functionality for the current test run.
+        /// </summary>
+        public TestContext TestContext { get; set; }
 
         #region Additional test attributes
+
         //
         // You can use the following additional attributes as you write your tests:
         //
@@ -54,7 +32,7 @@ namespace SaveScumAgent.Archiver.Tests
         // public static void MyClassCleanup() { }
         //
         // Use TestInitialize to run code before running each test 
-        [TestInitialize()]
+        [TestInitialize]
         public void MyTestInitialize()
         {
             _compressor = new MockSevenZipCompressor();
@@ -64,11 +42,13 @@ namespace SaveScumAgent.Archiver.Tests
                 Directory = @"c:\savegames"
             };
         }
+
         //
         // Use TestCleanup to run code after each test has run
         // [TestCleanup()]
         // public void MyTestCleanup() { }
         //
+
         #endregion
 
         [TestMethod]
@@ -93,7 +73,7 @@ namespace SaveScumAgent.Archiver.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
+        [ExpectedException(typeof (InvalidOperationException))]
         public void ZipArchiver_FailsWhenArchiveIsSavedToDirectoryToBeArchived()
         {
             _subject = new ZipArchiver(_compressor)
