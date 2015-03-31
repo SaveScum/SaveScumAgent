@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SaveScumAgent.ArchiveTools.ArchiveFormats
+namespace SaveScumAgent.Archiver
 {
     public interface IArchiver
     {

@@ -7,6 +7,12 @@ namespace SaveScumAgent.DirectoryWatcher.Test
 {
     internal class MockFileSystemWatcher : FileSystemWatcherBase
     {
+        public MockFileSystemWatcher(string baseDir)
+        {
+            Path = baseDir;
+            EnableRaisingEvents = false;
+        }
+
         public override bool IncludeSubdirectories { get; set; }
 
         public override bool EnableRaisingEvents { get; set; }
@@ -64,9 +70,14 @@ namespace SaveScumAgent.DirectoryWatcher.Test
             throw new NotImplementedException();
         }
 
+        public void RaiseErrorEvent(ErrorEventArgs e)
+        {
+            if (EnableRaisingEvents) OnError(this, e);
+        }
+
         public void RaiseChangeEvent(FileSystemEventArgs fileSystemEventArgs)
         {
-            OnChanged(this, fileSystemEventArgs);
+            if (EnableRaisingEvents) OnChanged(this, fileSystemEventArgs);
         }
     }
 }

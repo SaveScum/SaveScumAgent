@@ -17,12 +17,12 @@ namespace SaveScumAgent.DirectoryWatcher.Test
 
         public void Start()
         {
-            
+            IsWaiting = true;
         }
 
         public void Stop()
         {
-            
+            IsWaiting = false;
         }
 
         public bool ReStart()
@@ -39,6 +39,7 @@ namespace SaveScumAgent.DirectoryWatcher.Test
 
         public void OnElapsed()
         {
+            IsWaiting = false;
             Elapsed?.Invoke(this, EventArgs.Empty);
         }
     }

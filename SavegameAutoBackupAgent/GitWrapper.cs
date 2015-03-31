@@ -1,6 +1,7 @@
 ﻿using System.Environment;
 using System.IO;
 using LibGit2Sharp;
+using SaveScumAgent.Properties;
 
 namespace SaveScumAgent
 {

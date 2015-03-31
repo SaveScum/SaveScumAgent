@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SaveScumAgent.ArchiveTools
+namespace SaveScumAgent.Archiver
 {
     public class ArchivingEventArgs :
         EventArgs

@@ -35,7 +35,7 @@ namespace SaveScumAgent
             var fullUri = new Uri(this, UriKind.Absolute);
             var slashedPath = basePath.WithTrailingSlash();
             var baseUri = new Uri(slashedPath, UriKind.Absolute);
-            return baseUri.MakeRelativeUri(fullUri).ToString();
+            return baseUri.MakeRelativeUri(fullUri).ToString().Replace("/", Path.DirectorySeparatorChar.ToString());
         }
 
         public string WithTrailingSlash()
