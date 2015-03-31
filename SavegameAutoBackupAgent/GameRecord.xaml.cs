@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SavegameAutoBackupAgent
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for GameRecord.xaml
     /// </summary>
-    public partial class MainWindow
+    public partial class GameRecord : UserControl
     {
-        public MainWindow()
+        public GameRecord()
         {
             InitializeComponent();
         }

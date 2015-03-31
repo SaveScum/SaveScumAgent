@@ -5,10 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="784b8053ba8a431cafba2619e8a9a22a" Name="Diagram1" DisplayType="true" >
-        <EntityTypeShape EntityType="Models.Game" Width="2.375" PointX="0.75" PointY="4.125" />
+        <EntityTypeShape EntityType="Models.Game" Width="2.375" PointX="4.25" PointY="1.625" />
         <EntityTypeShape EntityType="Models.Archive" Width="1.875" PointX="0.5" PointY="1.125" />
         <AssociationConnector Association="Models.ArchiveGame" />
-        <EntityTypeShape EntityType="Models.ChangedFile" Width="1.5" PointX="3.25" PointY="0.875" />
+        <EntityTypeShape EntityType="Models.ChangedFile" Width="1.5" PointX="1.5" PointY="1.25" />
         <AssociationConnector Association="Models.ChangedFileArchive" />
       </Diagram>
     </edmx:Diagrams>

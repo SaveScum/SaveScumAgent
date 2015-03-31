@@ -18,6 +18,19 @@ namespace SaveScumTests.Fakes
 
         public event EventHandler<ElapsedEventArgs> Elapsed;
 
+        event ElapsedEventHandler ITimer.Elapsed
+        {
+            add
+            {
+                throw new NotImplementedException();
+            }
+
+            remove
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public void BeginInit()
         {
             //throw new System.NotImplementedException();
