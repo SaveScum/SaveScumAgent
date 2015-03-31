@@ -150,14 +150,6 @@ namespace SaveScumAgent.Tests
 
         [TestMethod]
         [PexGeneratedBy(typeof (PathStringTest))]
-        public void IsAbsoluteUrl_ReturnsFalseForNullString()
-        {
-            var s0 = new PathString(null);
-            Assert.IsFalse(IsAbsoluteUrl(s0));
-        }
-
-        [TestMethod]
-        [PexGeneratedBy(typeof (PathStringTest))]
         public void IsAbsoluteUrl_ReturnsFalseForRelativePath()
         {
             var s0 = new PathString(@".\stuff.txt");
