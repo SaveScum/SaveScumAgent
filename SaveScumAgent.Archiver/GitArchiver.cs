@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SaveScumAgent.Archiver
 {
-    class GitArchiver :IArchiver
+    internal class GitArchiver : IArchiver
     {
         public string ArchiveIdentifier
         {

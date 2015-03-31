@@ -11,6 +11,8 @@ namespace SaveScumAgent.Archiver.Tests
     [TestClass]
     public class ZipArchiverTest
     {
+
+        private MockSevenZipCompressor _compressor;
         public ZipArchiverTest()
         {
             //
@@ -49,8 +51,11 @@ namespace SaveScumAgent.Archiver.Tests
         // public static void MyClassCleanup() { }
         //
         // Use TestInitialize to run code before running each test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
+        [TestInitialize()]
+        public void MyTestInitialize()
+        {
+            _compressor = new MockSevenZipCompressor();
+        }
         //
         // Use TestCleanup to run code after each test has run
         // [TestCleanup()]
@@ -61,9 +66,7 @@ namespace SaveScumAgent.Archiver.Tests
         [TestMethod]
         public void TestMethod1()
         {
-            //
-            // TODO: Add test logic here
-            //
+
         }
     }
 }

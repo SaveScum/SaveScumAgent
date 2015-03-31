@@ -15,14 +15,8 @@ namespace SaveScumAgent.Archiver
 
     public enum ArchiveFormats
     {
-        [ArchiveFormat(typeof(ZipArchiver))]
-        [Description("Zip")]
-        Zip,
-        [ArchiveFormat(typeof(SevenZipArchiver))]
-        [Description("7zip")]
-        SevenZip,
-        [ArchiveFormat(typeof(GitArchiver))]
-        [Description("Git")]
-        Git
+        [ArchiveFormat(typeof (ZipArchiver))] [Description("Zip")] Zip,
+        [ArchiveFormat(typeof (SevenZipArchiver))] [Description("7zip")] SevenZip,
+        [ArchiveFormat(typeof (GitArchiver))] [Description("Git")] Git
     }
 }

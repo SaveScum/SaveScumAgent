@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SaveScumAgent.Archiver
 {
     [AttributeUsage(AttributeTargets.Field)]
-    class ArchiveFormatAttribute : Attribute
+    internal class ArchiveFormatAttribute : Attribute
     {
-        public Type FormatType { get; set; }
-
         public ArchiveFormatAttribute(Type formatType)
         {
-            if (formatType is IArchiver)
+            var archiver = formatType as IArchiver;
+            if (archiver != null)
             {
                 FormatType = formatType;
             }
@@ -21,7 +16,8 @@ namespace SaveScumAgent.Archiver
             {
                 throw new ArgumentException("Must implement IArchiver", "formatType");
             }
-
         }
+
+        public Type FormatType { get; set; }
     }
 }

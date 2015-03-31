@@ -5,47 +5,55 @@ namespace SaveScumAgent.Archiver
 {
     public class SevenZipCompressorWrapper : ISevenZipCompressor
     {
-        private SevenZipCompressor _compressor;
+        private readonly SevenZipCompressor _compressor;
 
         public SevenZipCompressorWrapper()
         {
-            _compressor = new SevenZipCompressor();
+            _compressor = new SevenZipCompressor
+            {
+                CompressionMethod = CompressionMethod.Default,
+                CompressionMode = CompressionMode.Create,
+                DirectoryStructure = false,
+                PreserveDirectoryRoot = true
+            };
+            _compressor.Compressing += OnCompressing;
+            _compressor.CompressionFinished += OnCompressionFinished;
         }
 
         public CompressionLevel CompressionLevel
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return _compressor.CompressionLevel; }
+            set { _compressor.CompressionLevel = value; }
         }
 
         public OutArchiveFormat ArchiveFormat
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return _compressor.ArchiveFormat; }
+            set { _compressor.ArchiveFormat = value; }
         }
 
         public CompressionMode CompressionMode
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return _compressor.CompressionMode; }
+            set { _compressor.CompressionMode = value; }
         }
 
         public bool DirectoryStructure
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return _compressor.DirectoryStructure; }
+            set { _compressor.DirectoryStructure = value; }
         }
 
         public bool PreserveDirectoryRoot
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return _compressor.PreserveDirectoryRoot; }
+            set { _compressor.PreserveDirectoryRoot = value; }
         }
 
         public CompressionMethod CompressionMethod
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return _compressor.CompressionMethod; }
+            set { _compressor.CompressionMethod = value; }
         }
 
         public event EventHandler<ProgressEventArgs> Compressing;
@@ -53,18 +61,17 @@ namespace SaveScumAgent.Archiver
 
         public void BeginCompressDirectory(string directory, string archiveName)
         {
-            throw new NotImplementedException();
+            _compressor.BeginCompressDirectory(directory, archiveName);
         }
 
-        protected virtual void OnCompressing(ProgressEventArgs e)
+        protected virtual void OnCompressing(object sender, ProgressEventArgs progressEventArgs)
         {
-            Compressing?.Invoke(this, e);
+            Compressing?.Invoke(this, progressEventArgs);
         }
 
-        protected virtual void OnCompressionFinished()
+        protected virtual void OnCompressionFinished(object sender, EventArgs eventArgs)
         {
-            CompressionFinished?.Invoke(this, EventArgs.Empty);
-
+            CompressionFinished?.Invoke(this, eventArgs);
         }
     }
 }

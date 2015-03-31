@@ -3,7 +3,7 @@ using SevenZip;
 
 namespace SaveScumAgent.Archiver
 {
-    internal interface ISevenZipCompressor
+    public interface ISevenZipCompressor
     {
         CompressionLevel CompressionLevel { get; set; }
         OutArchiveFormat ArchiveFormat { get; set; }

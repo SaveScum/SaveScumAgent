@@ -2,14 +2,18 @@
 
 namespace SaveScumAgent.Archiver
 {
-    internal class SevenZipArchiver : ZipArchiver
+    public class SevenZipArchiver : ZipArchiver
     {
-        public SevenZipArchiver(
-            string directory,
-            string archivesDirectory,
-            CompressionLevel compressionLevel = CompressionLevel.Normal) :
-                base(directory, archivesDirectory, compressionLevel)
+        public SevenZipArchiver() : base(new SevenZipCompressorWrapper())
         {
         }
+
+        public SevenZipArchiver(ISevenZipCompressor compressor)
+        {
+            Compressor = compressor;
+        }
+
+        protected override string Extension => ".7z";
+        protected override OutArchiveFormat ArchiveFormat => OutArchiveFormat.Zip;
     }
 }
