@@ -58,6 +58,10 @@
     <Compile Include="ZipArchiverTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SavegameAutoBackupAgent\SaveScumAgent.csproj">
+      <Project>{A5442C57-BE04-475A-A552-AA9D9E029F52}</Project>
+      <Name>SaveScumAgent</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SaveScumAgent.Archiver\SaveScumAgent.Archiver.csproj">
       <Project>{6521F35B-DEA2-4B2E-BEE4-E51CEEB0CBD7}</Project>
       <Name>SaveScumAgent.Archiver</Name>

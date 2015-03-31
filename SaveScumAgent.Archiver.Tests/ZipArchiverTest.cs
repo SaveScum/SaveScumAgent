@@ -2,6 +2,7 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SevenZip;
 
 namespace SaveScumAgent.Archiver.Tests
 {
@@ -13,6 +14,8 @@ namespace SaveScumAgent.Archiver.Tests
     {
 
         private MockSevenZipCompressor _compressor;
+        private ZipArchiver _subject;
+
         public ZipArchiverTest()
         {
             //
@@ -20,7 +23,7 @@ namespace SaveScumAgent.Archiver.Tests
             //
         }
 
-        private TestContext testContextInstance;
+        private TestContext _testContextInstance;
 
         /// <summary>
         ///Gets or sets the test context which provides
@@ -30,11 +33,11 @@ namespace SaveScumAgent.Archiver.Tests
         {
             get
             {
-                return testContextInstance;
+                return _testContextInstance;
             }
             set
             {
-                testContextInstance = value;
+                _testContextInstance = value;
             }
         }
 
@@ -55,6 +58,11 @@ namespace SaveScumAgent.Archiver.Tests
         public void MyTestInitialize()
         {
             _compressor = new MockSevenZipCompressor();
+            _subject = new ZipArchiver(_compressor)
+            {
+                ArchivesDirectory = @"c:\archives",
+                Directory = @"c:\savegames"
+            };
         }
         //
         // Use TestCleanup to run code after each test has run
@@ -64,9 +72,36 @@ namespace SaveScumAgent.Archiver.Tests
         #endregion
 
         [TestMethod]
-        public void TestMethod1()
+        public void TestContructorWorks()
         {
+            Assert.IsNotNull(_subject);
+        }
 
+        [TestMethod]
+        public void DefaultConstructorWorks()
+        {
+            _subject = new ZipArchiver();
+            Assert.IsNotNull(_subject);
+        }
+
+        [TestMethod]
+        public void ZipArchiver_CreatesZipFilename()
+        {
+            _subject.StartArchiving();
+            Assert.IsTrue(_subject.ArchiveIdentifier.EndsWith(".zip"));
+            TestContext.WriteLine(_subject.ArchiveIdentifier);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void ZipArchiver_FailsWhenArchiveIsSavedToDirectoryToBeArchived()
+        {
+            _subject = new ZipArchiver(_compressor)
+            {
+                ArchivesDirectory = @"c:\savegames\archives",
+                Directory = @"c:\savegames"
+            };
+            _subject.StartArchiving();
         }
     }
 }
