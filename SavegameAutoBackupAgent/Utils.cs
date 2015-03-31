@@ -7,7 +7,7 @@ namespace SaveScumAgent
     public static class Utils
     {
         /// <summary>
-        /// Syntactic sugar for "String.IsNullOrEmpty(x)"
+        ///     Syntactic sugar for "String.IsNullOrEmpty(x)"
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -17,7 +17,7 @@ namespace SaveScumAgent
         }
 
         /// <summary>
-        /// Get the list of all emdedded resources in the assembly.
+        ///     Get the list of all emdedded resources in the assembly.
         /// </summary>
         /// <returns>An array of fully qualified resource names</returns>
         public static string[] GetEmbeddedResourceNames()
@@ -32,6 +32,5 @@ namespace SaveScumAgent
             var outputFilename = Path.Combine(foldername, dateString);
             return outputFilename;
         }
-
     }
 }

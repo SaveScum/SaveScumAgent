@@ -5,12 +5,19 @@ namespace SaveScumAgent.Archiver
 {
     public class ZipArchiver : IArchiver
     {
-        private readonly string _directory;
-        private readonly string _archivesDirectory;
-        private SevenZipCompressor _compressor;
-        private bool _abortArchiving;
-        private string _archiveFilename;
         private const string Extension = ".zip";
+        private readonly string _archivesDirectory;
+        private readonly string _directory;
+        private bool _abortArchiving;
+        private SevenZipCompressor _compressor;
+
+        public ZipArchiver(string directory, string archivesDirectory,
+            CompressionLevel compressionLevel = CompressionLevel.Normal)
+        {
+            _directory = directory;
+            _archivesDirectory = archivesDirectory;
+            InitializeCompressor(compressionLevel, OutArchiveFormat.Zip);
+        }
 
         public void Abort()
         {
@@ -19,13 +26,12 @@ namespace SaveScumAgent.Archiver
 
         public void StartArchiving()
         {
-            
-            _archiveFilename = Utils.GenerateBackupFilename(_archivesDirectory, Extension);
+            ArchiveIdentifier = Utils.GenerateBackupFilename(_archivesDirectory, Extension);
             _abortArchiving = false;
             _compressor.Compressing += (sender, args) =>
             {
                 var handler = ArchiveProgress;
-                handler?.Invoke(this, new ArchivingEventArgs(_directory, _archiveFilename, args.PercentDone));
+                handler?.Invoke(this, new ArchivingEventArgs(_directory, ArchiveIdentifier, args.PercentDone));
                 if (_abortArchiving)
                 {
                     args.Cancel = true;
@@ -36,27 +42,17 @@ namespace SaveScumAgent.Archiver
             {
                 Archiving = false;
                 var handler = ArchivingDone;
-                handler?.Invoke(this, new ArchivingEventArgs(_directory, _archiveFilename, 100));
+                handler?.Invoke(this, new ArchivingEventArgs(_directory, ArchiveIdentifier, 100));
             };
 
-            _compressor.BeginCompressDirectory(_directory, _archiveFilename);
+            _compressor.BeginCompressDirectory(_directory, ArchiveIdentifier);
             Archiving = true;
         }
 
-        public string ArchiveIdentifier => _archiveFilename;
-
+        public string ArchiveIdentifier { get; private set; }
         public event EventHandler<ArchivingEventArgs> ArchiveProgress;
         public event EventHandler<ArchivingEventArgs> ArchivingDone;
-
         public bool Archiving { get; private set; }
-
-
-        public ZipArchiver(string directory, string archivesDirectory, CompressionLevel compressionLevel = CompressionLevel.Normal)
-        {
-            _directory = directory;
-            _archivesDirectory = archivesDirectory;
-            InitializeCompressor(compressionLevel, OutArchiveFormat.Zip);
-        }
 
         private void InitializeCompressor(CompressionLevel compressionLevel, OutArchiveFormat format)
         {

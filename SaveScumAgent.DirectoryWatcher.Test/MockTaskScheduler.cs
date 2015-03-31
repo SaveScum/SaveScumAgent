@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using SaveScumAgent.TaskScheduler;
 
 namespace SaveScumAgent.DirectoryWatcher.Test
 {
-    class MockTaskScheduler : ITaskScheduler
+    internal class MockTaskScheduler : ITaskScheduler
     {
         public double Interval { get; set; }
-
         public double MinimumInterval => 100;
-
         public bool IsWaiting { get; set; }
 
         public void Start()

@@ -5,7 +5,6 @@ namespace SaveScumAgent
 {
     public class PathString
     {
-
         private readonly string _value;
 
         public PathString(string value)
@@ -45,7 +44,6 @@ namespace SaveScumAgent
             return !_value.EndsWith(slash) ? _value + slash : _value;
         }
 
-
         public string WithoutTrailingSlash()
         {
             var slash = Path.DirectorySeparatorChar.ToString();
@@ -53,14 +51,14 @@ namespace SaveScumAgent
             return _value.EndsWith(slash) ? (_value.TrimEnd(slash.ToCharArray())) : _value;
         }
 
-
         public bool IsFolderSubfolderOf(PathString possibleParentDir)
         {
             if (!Path.IsPathRooted(possibleParentDir))
                 throw new ArgumentException("Must be an absolute path", "possibleParentDir");
 
             return !Path.IsPathRooted(this) ||
-                   IsFolderSubfolderOf(new DirectoryInfo(this).Parent, new DirectoryInfo(possibleParentDir.WithoutTrailingSlash()));
+                   IsFolderSubfolderOf(new DirectoryInfo(this).Parent,
+                       new DirectoryInfo(possibleParentDir.WithoutTrailingSlash()));
         }
 
         public bool IsAbsoluteUrl()
@@ -68,7 +66,6 @@ namespace SaveScumAgent
             Uri result;
             return Uri.TryCreate(this, UriKind.Absolute, out result);
         }
-
 
         public static implicit operator string(PathString d)
         {
@@ -79,6 +76,5 @@ namespace SaveScumAgent
         {
             return new PathString(d);
         }
-
     }
 }

@@ -3,7 +3,7 @@
 namespace SaveScumAgent
 {
     /// <summary>
-    /// Interaction logic for GameRecord.xaml
+    ///     Interaction logic for GameRecord.xaml
     /// </summary>
     public partial class GameRecord : UserControl
     {

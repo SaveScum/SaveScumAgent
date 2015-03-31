@@ -4,29 +4,23 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace SaveScumAgent.TaskScheduler.Tests
 {
     /// <summary>
-    /// Summary description for TaskSchedulerTests
+    ///     Summary description for TaskSchedulerTests
     /// </summary>
     [TestClass]
     public class TaskSchedulerTests
     {
-        public TaskSchedulerTests()
-        {
-            //
-            // TODO: Add constructor logic here
-            //
-        }
-
+        private const double DefaultInterval = 1000;
         private ITaskScheduler _scheduler;
         private MockTimer _timer;
-        private const double DefaultInterval = 1000;
 
         /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
+        ///     Gets or sets the test context which provides
+        ///     information about and functionality for the current test run.
+        /// </summary>
         public TestContext TestContext { get; set; }
 
         #region Additional test attributes
+
         //
         // You can use the following additional attributes as you write your tests:
         //
@@ -42,22 +36,25 @@ namespace SaveScumAgent.TaskScheduler.Tests
         // public static void MyClassCleanup() { }
         //
         // Use TestInitialize to run code before running each test 
-        [TestInitialize()]
+        [TestInitialize]
         public void MyTestInitialize()
         {
             _timer = new MockTimer();
             _scheduler = new TaskScheduler(DefaultInterval, _timer);
         }
+
         //
         // Use TestCleanup to run code after each test has run
         // [TestCleanup()]
         // public void MyTestCleanup() { }
         //
+
         #endregion
 
         [TestMethod]
         public void IsWaiting_ReturnsTrueWhileTimerIsRunning()
-        {;
+        {
+            ;
             _scheduler.Start();
             Assert.IsTrue(_scheduler.IsWaiting);
         }
@@ -68,10 +65,7 @@ namespace SaveScumAgent.TaskScheduler.Tests
             var mre = new ManualResetEvent(false);
             _scheduler = new TaskScheduler(100);
             Assert.AreEqual(100, _scheduler.Interval);
-            _scheduler.Elapsed += (sender, args) =>
-            {
-                mre.Set();
-            };
+            _scheduler.Elapsed += (sender, args) => { mre.Set(); };
             _scheduler.Start();
             Assert.IsFalse(mre.WaitOne(10));
             Assert.IsTrue(mre.WaitOne(200));
@@ -90,7 +84,6 @@ namespace SaveScumAgent.TaskScheduler.Tests
             _scheduler.Start();
             Assert.IsTrue(_scheduler.ReStart());
         }
-
 
         [TestMethod]
         public void TaskScheduler_FiresOffEventWhenTimerElapses()
@@ -131,7 +124,7 @@ namespace SaveScumAgent.TaskScheduler.Tests
             _scheduler.Interval = 99999;
             Assert.AreEqual(99999, _scheduler.Interval);
         }
-        
+
         [TestMethod]
         public void TaskScheduler_UpdatesIntervalWithBottomOfMinimumInterval()
         {

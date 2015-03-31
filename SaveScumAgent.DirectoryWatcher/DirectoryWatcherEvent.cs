@@ -7,9 +7,6 @@ namespace SaveScumAgent.DirectoryWatcher
 {
     public class DirectoryWatcherEventArgs : EventArgs
     {
-
-        public List<FilesystemChangeRecord> ChangedFiles { get; private set; }
-
         public bool WatchTimerInterrupted;
 
         public DirectoryWatcherEventArgs(IEnumerable<FilesystemChangeRecord> changedFileList, bool interrupted = false)
@@ -18,6 +15,7 @@ namespace SaveScumAgent.DirectoryWatcher
             ChangedFiles = changedFileList.ToList();
         }
 
+        public List<FilesystemChangeRecord> ChangedFiles { get; private set; }
     }
 
     public struct FilesystemChangeRecord
@@ -29,7 +27,6 @@ namespace SaveScumAgent.DirectoryWatcher
         }
 
         public WatcherChangeTypes ChangeType { get; }
-
         public string Filename { get; }
 
         public override string ToString()
@@ -37,6 +34,4 @@ namespace SaveScumAgent.DirectoryWatcher
             return string.Format("{0}:{1}", ChangeType, Filename);
         }
     }
-
-
 }

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Timers;
 
 namespace SaveScumAgent.TaskScheduler
 {
-    class TimerWrapper : System.Timers.Timer, ITimer
+    internal class TimerWrapper : Timer, ITimer
     {
-
     }
 }

@@ -195,7 +195,6 @@ namespace SaveScumAgent.Tests
             // TODO: add assertions to method PathStringTest.GetRelativePathFromAbsolute(PathString, String)
         }
 
-
         [PexMethod]
         public bool IsFolderSubfolderOf01([PexAssumeUnderTest] PathString target, string possibleParentDir)
         {

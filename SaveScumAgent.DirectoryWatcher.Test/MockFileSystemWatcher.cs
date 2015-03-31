@@ -14,9 +14,7 @@ namespace SaveScumAgent.DirectoryWatcher.Test
         }
 
         public override bool IncludeSubdirectories { get; set; }
-
         public override bool EnableRaisingEvents { get; set; }
-
         public override string Filter { get; set; }
 
         public override int InternalBufferSize

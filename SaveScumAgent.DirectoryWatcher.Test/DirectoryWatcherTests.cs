@@ -114,8 +114,9 @@ namespace SaveScumAgent.DirectoryWatcher.Test
             _mockedFileSystemWatcher.RaiseChangeEvent(ThrowawayFileSystemEventArgs());
             Assert.IsFalse(_scheduler.IsWaiting);
         }
+
         /// <summary>
-        /// This is required in case the game makes one final save on exit
+        ///     This is required in case the game makes one final save on exit
         /// </summary>
         [TestMethod]
         public void FolderWatcherAgent_RaisesEventIfRunningWhenDisabled()
@@ -194,6 +195,7 @@ namespace SaveScumAgent.DirectoryWatcher.Test
             _mockedFileSystemWatcher.RaiseChangeEvent(ThrowawayFileSystemEventArgs());
             Assert.IsTrue(_scheduler.IsWaiting);
         }
+
         [TestMethod]
         public void MockedScheduledTask_ResetsIsWaiting()
         {

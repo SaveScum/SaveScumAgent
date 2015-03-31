@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
+﻿using System.Timers;
 
 namespace SaveScumAgent.TaskScheduler
 {
     public interface ITimer
     {
-        event ElapsedEventHandler Elapsed;
         double Interval { get; set; }
         bool Enabled { get; set; }
         bool AutoReset { get; set; }
+        event ElapsedEventHandler Elapsed;
         void Start();
         void Stop();
     }

@@ -7,7 +7,28 @@ namespace SaveScumAgent
 {
     public class GitWrapper
     {
+        private static readonly PullOptions ForcedPullOptions = new PullOptions
+        {
+            MergeOptions = new MergeOptions
+            {
+                FastForwardStrategy = FastForwardStrategy.FastForwardOnly,
+                FileConflictStrategy = CheckoutFileConflictStrategy.Theirs
+            }
+        };
 
+        public static string ProfilesFolder
+        {
+            get
+            {
+                var appDataPath = GetFolderPath(SpecialFolder.ApplicationData);
+
+                var specificFolder = Path.Combine(appDataPath, Settings.Default.ApplicationName);
+
+                var localRepoFolder = Path.Combine(specificFolder, Settings.Default.ProfilesRepoName);
+
+                return localRepoFolder;
+            }
+        }
 
         public static string CloneRepo(string localRepo, string remoteRepo, bool overwrite = false)
         {
@@ -23,7 +44,7 @@ namespace SaveScumAgent
             if (!Directory.Exists(path))
                 return;
 
-            var directory = new DirectoryInfo(path) { Attributes = FileAttributes.Normal };
+            var directory = new DirectoryInfo(path) {Attributes = FileAttributes.Normal};
 
             foreach (var info in directory.GetFileSystemInfos("*", SearchOption.AllDirectories))
             {
@@ -46,23 +67,6 @@ namespace SaveScumAgent
             {
                 return CloneRepo(ProfilesFolder, Settings.Default.ProfilesRepo);
             }
-
-
-        }
-
-
-        public static string ProfilesFolder
-        {
-            get
-            {
-                var appDataPath = GetFolderPath(SpecialFolder.ApplicationData);
-
-                var specificFolder = Path.Combine(appDataPath, Settings.Default.ApplicationName);
-
-                var localRepoFolder = Path.Combine(specificFolder, Settings.Default.ProfilesRepoName);
-
-                return localRepoFolder;
-            }
         }
 
         public static string ForcePull(string localRepo)
@@ -76,15 +80,5 @@ namespace SaveScumAgent
             }
             return localRepo;
         }
-
-        private static readonly PullOptions ForcedPullOptions = new PullOptions
-        {
-            MergeOptions = new MergeOptions
-            {
-                FastForwardStrategy = FastForwardStrategy.FastForwardOnly,
-                FileConflictStrategy = CheckoutFileConflictStrategy.Theirs
-            }
-        };
-
     }
 }
