@@ -1,4 +1,4 @@
-﻿<Application x:Class="SavegameAutoBackupAgent.App"
+﻿<Application x:Class="SaveScumAgent.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"

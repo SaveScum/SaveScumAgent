@@ -1,27 +1,37 @@
 ﻿using System;
+using System.Text;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Abstractions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SavegameAutoBackupAgent.DirectoryWatcherAgent;
-using SaveScumTests.Fakes;
+using Moq;
+using SaveScumAgent.TaskScheduler;
 
-namespace SaveScumTests
+namespace SaveScumAgent.DirectoryWatcher.Test
 {
     /// <summary>
-    /// Summary description for FolderWatcherAgent
+    /// Summary description for DirectoryWatcherTests
     /// </summary>
     [TestClass]
-    public class FolderWatcherAgent
+    public class DirectoryWatcherTests
     {
 
-        private FakeDelayTimer _stubDelayTimer;
-        private EventedStubFileSystemWatcher _stubFileSystemWatcher;
+        private DirectoryWatcher _directoryWatcher;
+        private MockTaskScheduler _scheduler;
+        private MockFileSystemWatcher _mockedFileSystemWatcher;
         private const string BaseDir = @"C:\temp";
         private int _fileIndex;
         private const string FilenameFormat = "fakefile{0}.fake";
         private readonly Random _random = new Random();
 
-        private TestContext _testContextInstance;
+        public DirectoryWatcherTests()
+        {
+            //
+            // TODO: Add constructor logic here
+            //
+        }
+
+        private TestContext testContextInstance;
 
         /// <summary>
         ///Gets or sets the test context which provides
@@ -29,12 +39,17 @@ namespace SaveScumTests
         ///</summary>
         public TestContext TestContext
         {
-            get { return _testContextInstance; }
-            set { _testContextInstance = value; }
+            get
+            {
+                return testContextInstance;
+            }
+            set
+            {
+                testContextInstance = value;
+            }
         }
 
         #region Additional test attributes
-
         //
         // You can use the following additional attributes as you write your tests:
         //
@@ -47,34 +62,33 @@ namespace SaveScumTests
         // public static void MyClassCleanup() { }
         //
         // Use TestInitialize to run code before running each test 
-        [TestInitialize]
+        [TestInitialize()]
         public void MyTestInitialize()
         {
-            _stubDelayTimer = new FakeDelayTimer();
-            _stubFileSystemWatcher = new EventedStubFileSystemWatcher(BaseDir);
+            _scheduler = new MockTaskScheduler();
+            _mockedFileSystemWatcher = new MockFileSystemWatcher();
+            _directoryWatcher = new DirectoryWatcher(_mockedFileSystemWatcher, _scheduler);
         }
-
         //
         // Use TestCleanup to run code after each test has run
         // [TestCleanup()]
         // public void MyTestCleanup() { }
         //
-
         #endregion
-
+        
         [TestMethod]
-        [ExpectedException(typeof (ArgumentNullException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void NullWatcherThrowsArgNullException()
         {
-            var agent = new DirectoryWatcher(null, _stubDelayTimer);
+            var agent = new DirectoryWatcher(null, _scheduler);
         }
 
         [TestMethod]
-        [ExpectedException(typeof (ArgumentNullException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void NullTimerThrowsArgNullException()
         {
             // ReSharper disable once UnusedVariable
-            var agent = new DirectoryWatcher(_stubFileSystemWatcher, null);
+            var agent = new DirectoryWatcher(_mockedFileSystemWatcher, null);
 
         }
 
@@ -82,17 +96,17 @@ namespace SaveScumTests
         public void FolderWatcherAgentWaitsForTimerToElapseBeforeFiring()
         {
             var fired = false;
-            var agent = new DirectoryWatcher(_stubFileSystemWatcher, _stubDelayTimer);
+            var agent = new DirectoryWatcher(_mockedFileSystemWatcher, _scheduler);
             agent.DirectoryChangeDetected += (sender, args) =>
             {
                 fired = true;
             };
-            
-            _stubFileSystemWatcher.RaiseChangeEvent(new FileSystemEventArgs(GetRandomChangeType(), BaseDir,
+
+            _mockedFileSystemWatcher.RaiseChangeEvent(new FileSystemEventArgs(GetRandomChangeType(), BaseDir,
                 GetFakeFilename()));
-            
+
             Assert.IsFalse(fired);
-            _stubDelayTimer.OnElapsed();
+            _scheduler.OnElapsed();
             Assert.IsTrue(fired);
 
         }
@@ -101,7 +115,7 @@ namespace SaveScumTests
         public void FolderWatcherReturnsListOfChangedFiles()
         {
             var fileList = new List<FilesystemChangeRecord>();
-            var agent = new DirectoryWatcher(_stubFileSystemWatcher, _stubDelayTimer);
+            var agent = new DirectoryWatcher(_mockedFileSystemWatcher, _scheduler);
             agent.DirectoryChangeDetected += (sender, args) =>
             {
                 CollectionAssert.AreEquivalent(args.ChangedFiles, fileList);
@@ -112,7 +126,7 @@ namespace SaveScumTests
                 var f = GetFakeFilename();
                 var w = GetRandomChangeType();
                 fileList.Add(new FilesystemChangeRecord(f, w));
-                _stubFileSystemWatcher.RaiseChangeEvent(new FileSystemEventArgs(w, BaseDir, f));
+                _mockedFileSystemWatcher.RaiseChangeEvent(new FileSystemEventArgs(w, BaseDir, f));
             }
 
             for (int i = 0; i < 5; i++)
@@ -120,17 +134,17 @@ namespace SaveScumTests
                 var f = GetFakeFilenameWithRandomSubdir();
                 var w = GetRandomChangeType();
                 fileList.Add(new FilesystemChangeRecord(f, w));
-                _stubFileSystemWatcher.RaiseChangeEvent(new FileSystemEventArgs(w, BaseDir, f));
+                _mockedFileSystemWatcher.RaiseChangeEvent(new FileSystemEventArgs(w, BaseDir, f));
             }
 
-            _stubDelayTimer.OnElapsed();
+            _scheduler.OnElapsed();
 
         }
 
         private WatcherChangeTypes GetRandomChangeType()
         {
-            var values = Enum.GetValues(typeof (WatcherChangeTypes));
-            return (WatcherChangeTypes) values.GetValue(_random.Next(values.Length));
+            var values = Enum.GetValues(typeof(WatcherChangeTypes));
+            return (WatcherChangeTypes)values.GetValue(_random.Next(values.Length));
         }
 
         private string GetFakeFilenameWithRandomSubdir()
@@ -142,6 +156,5 @@ namespace SaveScumTests
         {
             return Path.Combine(subdir, string.Format(FilenameFormat, _fileIndex++));
         }
-
     }
 }

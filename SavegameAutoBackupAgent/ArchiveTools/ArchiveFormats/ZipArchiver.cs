@@ -1,7 +1,7 @@
 ﻿using System;
 using SevenZip;
 
-namespace AutoBackup.ArchiveTools.ArchiveFormats
+namespace SaveScumAgent.ArchiveTools.ArchiveFormats
 {
     public class ZipArchiver : IArchiver
     {

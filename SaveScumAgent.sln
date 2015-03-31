@@ -5,7 +5,15 @@ VisualStudioVersion = 14.0.22310.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveScumAgent", "SavegameAutoBackupAgent\SaveScumAgent.csproj", "{A5442C57-BE04-475A-A552-AA9D9E029F52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveScumTests", "SaveScumTests\SaveScumTests.csproj", "{330F8875-D722-466F-9E8F-5FFF29675018}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveScumAgent.Tests", "SaveScumAgent.Tests\SaveScumAgent.Tests.csproj", "{31F9054E-6F2B-4156-9C03-7F18D2D7D640}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveScumAgent.DirectoryWatcher", "SaveScumAgent.DirectoryWatcher\SaveScumAgent.DirectoryWatcher.csproj", "{926E9A82-B9AD-4966-8325-BE6B0F3A44DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveScumAgent.TaskScheduler", "SaveScumAgent.TaskScheduler\SaveScumAgent.TaskScheduler.csproj", "{EC4F1F56-AFA0-4024-97CE-F625CA723F9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveScumAgent.TaskScheduler.Tests", "SaveScumAgent.TaskScheduler.Tests\SaveScumAgent.TaskScheduler.Tests.csproj", "{800BA179-2F2B-4E41-B9CA-DA55AC19C224}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveScumAgent.DirectoryWatcher.Test", "SaveScumAgent.DirectoryWatcher.Test\SaveScumAgent.DirectoryWatcher.Test.csproj", "{0840386B-E46F-484B-AC49-A1ABF7DB4A84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +25,26 @@ Global
 		{A5442C57-BE04-475A-A552-AA9D9E029F52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5442C57-BE04-475A-A552-AA9D9E029F52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5442C57-BE04-475A-A552-AA9D9E029F52}.Release|Any CPU.Build.0 = Release|Any CPU
-		{330F8875-D722-466F-9E8F-5FFF29675018}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{330F8875-D722-466F-9E8F-5FFF29675018}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{330F8875-D722-466F-9E8F-5FFF29675018}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{330F8875-D722-466F-9E8F-5FFF29675018}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31F9054E-6F2B-4156-9C03-7F18D2D7D640}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31F9054E-6F2B-4156-9C03-7F18D2D7D640}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31F9054E-6F2B-4156-9C03-7F18D2D7D640}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31F9054E-6F2B-4156-9C03-7F18D2D7D640}.Release|Any CPU.Build.0 = Release|Any CPU
+		{926E9A82-B9AD-4966-8325-BE6B0F3A44DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{926E9A82-B9AD-4966-8325-BE6B0F3A44DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{926E9A82-B9AD-4966-8325-BE6B0F3A44DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{926E9A82-B9AD-4966-8325-BE6B0F3A44DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC4F1F56-AFA0-4024-97CE-F625CA723F9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC4F1F56-AFA0-4024-97CE-F625CA723F9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC4F1F56-AFA0-4024-97CE-F625CA723F9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC4F1F56-AFA0-4024-97CE-F625CA723F9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{800BA179-2F2B-4E41-B9CA-DA55AC19C224}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{800BA179-2F2B-4E41-B9CA-DA55AC19C224}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{800BA179-2F2B-4E41-B9CA-DA55AC19C224}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{800BA179-2F2B-4E41-B9CA-DA55AC19C224}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0840386B-E46F-484B-AC49-A1ABF7DB4A84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0840386B-E46F-484B-AC49-A1ABF7DB4A84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0840386B-E46F-484B-AC49-A1ABF7DB4A84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0840386B-E46F-484B-AC49-A1ABF7DB4A84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

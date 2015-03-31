@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AutoBackup.ArchiveTools.ArchiveFormats
+namespace SaveScumAgent.ArchiveTools.ArchiveFormats
 {
     public interface IArchiver
     {

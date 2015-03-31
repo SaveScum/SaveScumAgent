@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SavegameAutoBackupAgent.Properties {
+namespace SaveScumAgent.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

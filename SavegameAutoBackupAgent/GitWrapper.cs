@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Environment;
+﻿using System.Environment;
 using System.IO;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Runtime.InteropServices;
 using LibGit2Sharp;
 
-namespace SavegameAutoBackupAgent
+namespace SaveScumAgent
 {
     public class GitWrapper
     {
@@ -46,9 +41,9 @@ namespace SavegameAutoBackupAgent
                     return ForcePull(ProfilesFolder);
                 }
             }
-            catch (LibGit2Sharp.RepositoryNotFoundException)
+            catch (RepositoryNotFoundException)
             {
-                return GitWrapper.CloneRepo(ProfilesFolder, Properties.Settings.Default.ProfilesRepo);
+                return CloneRepo(ProfilesFolder, Settings.Default.ProfilesRepo);
             }
 
 
@@ -61,9 +56,9 @@ namespace SavegameAutoBackupAgent
             {
                 var appDataPath = GetFolderPath(SpecialFolder.ApplicationData);
 
-                var specificFolder = Path.Combine(appDataPath, Properties.Settings.Default.ApplicationName);
+                var specificFolder = Path.Combine(appDataPath, Settings.Default.ApplicationName);
 
-                var localRepoFolder = Path.Combine(specificFolder, Properties.Settings.Default.ProfilesRepoName);
+                var localRepoFolder = Path.Combine(specificFolder, Settings.Default.ProfilesRepoName);
 
                 return localRepoFolder;
             }
@@ -81,9 +76,9 @@ namespace SavegameAutoBackupAgent
             return localRepo;
         }
 
-        private static readonly PullOptions ForcedPullOptions = new PullOptions()
+        private static readonly PullOptions ForcedPullOptions = new PullOptions
         {
-            MergeOptions = new MergeOptions()
+            MergeOptions = new MergeOptions
             {
                 FastForwardStrategy = FastForwardStrategy.FastForwardOnly,
                 FileConflictStrategy = CheckoutFileConflictStrategy.Theirs
