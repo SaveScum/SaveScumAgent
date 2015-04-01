@@ -1,6 +1,6 @@
 ﻿using SevenZip;
 
-namespace SaveScumAgent.Archiver
+namespace SaveScumAgent.Archiver.Formats
 {
     public class SevenZipArchiver : ZipArchiver
     {

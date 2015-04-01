@@ -1,4 +1,5 @@
 ﻿using System;
+using SaveScumAgent.Archiver.Formats;
 
 namespace SaveScumAgent.Archiver
 {

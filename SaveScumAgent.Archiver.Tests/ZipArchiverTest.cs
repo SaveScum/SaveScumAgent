@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SaveScumAgent.Archiver.Formats;
 
 namespace SaveScumAgent.Archiver.Tests
 {
@@ -33,7 +35,7 @@ namespace SaveScumAgent.Archiver.Tests
         //
         // Use TestInitialize to run code before running each test 
         [TestInitialize]
-        public void MyTestInitialize()
+        public void Initialize()
         {
             _compressor = new MockSevenZipCompressor();
             _subject = new ZipArchiver(_compressor)
@@ -70,6 +72,26 @@ namespace SaveScumAgent.Archiver.Tests
             _subject.StartArchiving();
             Assert.IsTrue(_subject.ArchiveIdentifier.EndsWith(".zip"));
             TestContext.WriteLine(_subject.ArchiveIdentifier);
+        }
+
+        [TestMethod]
+        public void ZipArchiver_HandlesErrorsGracefully()
+        {
+            var fired = false;
+            var mre = new ManualResetEvent(false);
+            _subject = new ZipArchiver {ArchivesDirectory = "C:\\temp", Directory = "C:\\Temporary"};
+            _subject.ArchiveProgress += (sender, args) =>
+            {
+                TestContext.WriteLine(args.ArchiveFile);
+            };
+
+            _subject.ArchivingDone += (sender, args) =>
+            {
+                TestContext.WriteLine(args.ArchiveFile);
+                mre.Set();
+            };
+            _subject.StartArchiving();
+            Assert.IsFalse(mre.WaitOne());
         }
 
         [TestMethod]

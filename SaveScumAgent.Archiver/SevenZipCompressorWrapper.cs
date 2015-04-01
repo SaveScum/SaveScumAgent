@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using SevenZip;
 
 namespace SaveScumAgent.Archiver
@@ -61,7 +62,10 @@ namespace SaveScumAgent.Archiver
 
         public void BeginCompressDirectory(string directory, string archiveName)
         {
-            _compressor.BeginCompressDirectory(directory, archiveName);
+            if (!Directory.Exists(directory))
+                throw new ArgumentException(String.Format("{0} must exist", directory), "directory");
+           _compressor.BeginCompressDirectory(directory, archiveName);
+
         }
 
         protected virtual void OnCompressing(object sender, ProgressEventArgs progressEventArgs)

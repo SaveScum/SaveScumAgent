@@ -135,6 +135,9 @@
   <ItemGroup>
     <Folder Include="DatabaseTools\" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="7z.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace SaveScumAgent.Archiver
+namespace SaveScumAgent.Archiver.Formats
 {
     public interface IArchiver
     {
