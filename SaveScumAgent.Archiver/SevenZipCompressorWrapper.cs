@@ -2,7 +2,6 @@
 using System.IO;
 using System.Reflection;
 using SevenZip;
-using System.IO.Compression;
 
 namespace SaveScumAgent.Archiver
 {

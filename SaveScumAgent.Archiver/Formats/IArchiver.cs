@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using SaveScumAgent.UtilityClasses;
 
 namespace SaveScumAgent.Archiver.Formats
 {
@@ -11,6 +12,9 @@ namespace SaveScumAgent.Archiver.Formats
         void StartArchiving();
         event EventHandler<ArchivingEventArgs> ArchiveProgress;
         event EventHandler<ArchivingEventArgs> ArchivingDone;
+        PathString DirectoryToArchive { get; set; }
+        PathString ArchivesLocation { get; set; }
+        string GameTitle { get; set; }
     }
 
     public enum ArchiveFormats

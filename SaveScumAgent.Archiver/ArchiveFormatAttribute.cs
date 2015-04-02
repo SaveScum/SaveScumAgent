@@ -4,7 +4,7 @@ using SaveScumAgent.Archiver.Formats;
 namespace SaveScumAgent.Archiver
 {
     [AttributeUsage(AttributeTargets.Field)]
-    internal class ArchiveFormatAttribute : Attribute
+    public class ArchiveFormatAttribute : Attribute
     {
         public ArchiveFormatAttribute(Type formatType)
         {

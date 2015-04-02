@@ -2,6 +2,7 @@
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SaveScumAgent.Archiver.Formats;
+using SaveScumAgent.UtilityClasses;
 using SevenZip;
 
 namespace SaveScumAgent.Archiver.Tests
@@ -39,10 +40,11 @@ namespace SaveScumAgent.Archiver.Tests
         public void Initialize()
         {
             _compressor = new MockSevenZipCompressor();
-            _subject = new ZipArchiver(_compressor)
+            _subject = new ZipArchiver()
             {
-                ArchivesDirectory = @"c:\archives",
-                Directory = @"c:\savegames"
+                ArchivesLocation = @"c:\archives",
+                DirectoryToArchive = @"c:\savegames",
+                GameTitle = "A terrible game"
             };
         }
 
@@ -63,6 +65,10 @@ namespace SaveScumAgent.Archiver.Tests
         [TestMethod]
         public void DefaultConstructorWorks()
         {
+            var t = ArchiveFormats.Zip.GetAttributeOfType<ArchiveFormatAttribute>();
+            var instance = (IArchiver)Activator.CreateInstance(t.FormatType);
+            TestContext.WriteLine(instance.ArchiveIdentifier);
+
             _subject = new ZipArchiver();
             Assert.IsNotNull(_subject);
         }
@@ -100,7 +106,7 @@ namespace SaveScumAgent.Archiver.Tests
         {
             var fired = false;
             var mre = new ManualResetEvent(false);
-            _subject = new ZipArchiver {ArchivesDirectory = "C:\\temp", Directory = "C:\\Temporary"};
+            _subject = new ZipArchiver { ArchivesLocation = "C:\\temp", DirectoryToArchive = "C:\\Temporary"};
             _subject.ArchiveProgress += (sender, args) =>
             {
                 TestContext.WriteLine(args.ArchiveFile);
@@ -114,10 +120,10 @@ namespace SaveScumAgent.Archiver.Tests
         [ExpectedException(typeof (InvalidOperationException))]
         public void ZipArchiver_FailsWhenArchiveIsSavedToDirectoryToBeArchived()
         {
-            _subject = new ZipArchiver(_compressor)
+            _subject = new ZipArchiver()
             {
-                ArchivesDirectory = @"c:\savegames\archives",
-                Directory = @"c:\savegames"
+                ArchivesLocation = @"c:\savegames\archives",
+                DirectoryToArchive = @"c:\savegames"
             };
             _subject.StartArchiving();
         }

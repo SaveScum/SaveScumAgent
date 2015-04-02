@@ -98,6 +98,10 @@
       <Project>{6521F35B-DEA2-4B2E-BEE4-E51CEEB0CBD7}</Project>
       <Name>SaveScumAgent.Archiver</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SaveScumAgent.Data\SaveScumAgent.Data.csproj">
+      <Project>{168deabd-82a7-4ffd-9db9-4c0f1a423fdc}</Project>
+      <Name>SaveScumAgent.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SaveScumAgent.UtilityClasses\SaveScumAgent.UtilityClasses.csproj">
       <Project>{d7fb382a-2e38-42e6-ac35-58234071fa7f}</Project>
       <Name>SaveScumAgent.UtilityClasses</Name>

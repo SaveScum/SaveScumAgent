@@ -28,7 +28,7 @@ namespace SaveScumAgent.UtilityClasses
             return Assembly.GetExecutingAssembly().GetManifestResourceNames();
         }
 
-        public static string GenerateBackupFilename(string foldername = "", string extension = ".7z")
+        public static string GenerateBackupFilename(string foldername = "", string extension = ".zip")
         {
             extension = "{0}" + extension;
             var dateString = String.Format(extension, DateTime.Now.ToFileTimeUtc());

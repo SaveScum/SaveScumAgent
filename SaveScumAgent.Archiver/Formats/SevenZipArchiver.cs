@@ -6,9 +6,7 @@ namespace SaveScumAgent.Archiver.Formats
 {
     public class SevenZipArchiver : IArchiver
     {
-
-
-        protected string Extension => ".7z";
+        private const string Extension = ".7z";
         protected OutArchiveFormat ArchiveFormat => OutArchiveFormat.Zip;
 
 
@@ -27,8 +25,16 @@ namespace SaveScumAgent.Archiver.Formats
             Compressor.CompressionFinished += OnCompressionFinished;
         }
 
-        public PathString ArchivesDirectory { get; set; }
-        public PathString Directory { get; set; }
+        public PathString ArchivesLocation { get; set; }
+        public PathString DirectoryToArchive { get; set; }
+
+
+        public string GameTitle
+        {
+            get { throw new NotImplementedException(); }
+            set { throw new NotImplementedException(); }
+        }
+
         public CompressionMethod CompressionMethod { get; set; } = CompressionMethod.Default;
         public CompressionLevel CompressionLevel { get; set; } = CompressionLevel.Normal;
 
@@ -39,12 +45,12 @@ namespace SaveScumAgent.Archiver.Formats
 
         public void StartArchiving()
         {
-            if (ArchivesDirectory.IsFolderSubfolderOf(Directory))
+            if (ArchivesLocation.IsFolderSubfolderOf(DirectoryToArchive))
                 throw new InvalidOperationException("Archive cannot be saved to directory to be archived");
 
-            ArchiveIdentifier = Utils.GenerateBackupFilename(ArchivesDirectory, Extension);
+            ArchiveIdentifier = Utils.GenerateBackupFilename(ArchivesLocation, Extension);
             _abortArchiving = false;
-            Compressor.BeginCompressDirectory(Directory, ArchiveIdentifier);
+            Compressor.BeginCompressDirectory(DirectoryToArchive, ArchiveIdentifier);
             Archiving = true;
         }
 
@@ -57,13 +63,13 @@ namespace SaveScumAgent.Archiver.Formats
         {
             Archiving = false;
             var handler = ArchivingDone;
-            handler?.Invoke(this, new ArchivingEventArgs(Directory, ArchiveIdentifier, 100));
+            handler?.Invoke(this, new ArchivingEventArgs(DirectoryToArchive, ArchiveIdentifier, 100));
         }
 
         private void OnCompressing(object sender, ProgressEventArgs args)
         {
             var handler = ArchiveProgress;
-            handler?.Invoke(this, new ArchivingEventArgs(Directory, ArchiveIdentifier, args.PercentDone));
+            handler?.Invoke(this, new ArchivingEventArgs(DirectoryToArchive, ArchiveIdentifier, args.PercentDone));
             if (_abortArchiving)
             {
                 args.Cancel = true;
