@@ -2,12 +2,13 @@
 using System.IO;
 using System.Reflection;
 using SevenZip;
+using System.IO.Compression;
 
 namespace SaveScumAgent.Archiver
 {
     public class SevenZipCompressorWrapper : ISevenZipCompressor
     {
-        private readonly SevenZipCompressor _compressor;
+        private SevenZipCompressor _compressor;
 
 
 
@@ -16,7 +17,7 @@ namespace SaveScumAgent.Archiver
             SevenZipDllAssemblyLoader.Instance.Load();
             _compressor = new SevenZipCompressor
             {
-                CompressionMethod = CompressionMethod.Default,
+                CompressionMethod = CompressionMethod.Lzma,
                 CompressionMode = CompressionMode.Create,
                 DirectoryStructure = false,
                 PreserveDirectoryRoot = true,
