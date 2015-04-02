@@ -100,17 +100,10 @@
     <Reference Include="MahApps.Metro">
       <HintPath>..\packages\MahApps.Metro.1.1.2.0\lib\net45\MahApps.Metro.dll</HintPath>
     </Reference>
-    <Reference Include="MaterialDesignColors">
-      <HintPath>..\packages\MaterialDesignColors.0.0.0.0\lib\net45\MaterialDesignColors.dll</HintPath>
-    </Reference>
     <Reference Include="MaterialDesignThemes.Wpf">
       <HintPath>..\packages\MaterialDesignThemes.0.0.0.42\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="SevenZipSharp">
-      <HintPath>..\packages\SevenZipSharp.0.64\lib\SevenZipSharp.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml">
@@ -214,18 +207,9 @@
       <Project>{6521f35b-dea2-4b2e-bee4-e51ceeb0cbd7}</Project>
       <Name>SaveScumAgent.Archiver</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SaveScumAgent.DirectoryWatcher\SaveScumAgent.DirectoryWatcher.csproj">
-      <Project>{926e9a82-b9ad-4966-8325-be6b0f3a44df}</Project>
-      <Name>SaveScumAgent.DirectoryWatcher</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SaveScumAgent.TaskScheduler\SaveScumAgent.TaskScheduler.csproj">
-      <Project>{ec4f1f56-afa0-4024-97ce-f625ca723f9e}</Project>
-      <Name>SaveScumAgent.TaskScheduler</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SaveScumAgent.UtilityClasses\SaveScumAgent.UtilityClasses.csproj">
-      <Project>{d7fb382a-2e38-42e6-ac35-58234071fa7f}</Project>
-      <Name>SaveScumAgent.UtilityClasses</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="License.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
