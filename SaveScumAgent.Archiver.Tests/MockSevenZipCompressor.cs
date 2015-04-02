@@ -1,4 +1,5 @@
 ﻿using System;
+using SaveScumAgent.Archiver.Formats;
 using SevenZip;
 
 namespace SaveScumAgent.Archiver.Tests
@@ -27,6 +28,11 @@ namespace SaveScumAgent.Archiver.Tests
         public virtual void OnCompressionFinished()
         {
             CompressionFinished?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -3,7 +3,7 @@ using System.IO;
 
 namespace SaveScumAgent.DirectoryWatcher
 {
-    public interface IDirectoryWatcher
+    public interface IDirectoryWatcher : IDisposable
     {
         bool Enabled { get; set; }
         event EventHandler<DirectoryWatcherEventArgs> DirectoryChangeDetected;

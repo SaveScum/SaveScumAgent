@@ -6,10 +6,8 @@ namespace SaveScumAgent.Archiver
     public class ArchivingEventArgs :
         EventArgs
     {
-        public ArchivingEventArgs(string directory, string file, byte percentDone = 0,
-            List<string> changedFileList = null)
+        public ArchivingEventArgs(string directory, string file, byte percentDone = 0)
         {
-            ChangedFileList = changedFileList;
             CompressedDirectory = directory;
             ArchiveFile = file;
             PercentDone = percentDone;
@@ -24,13 +22,15 @@ namespace SaveScumAgent.Archiver
     public class ArchivingInterruptedEventArgs :
         EventArgs
     {
-        public ArchivingInterruptedEventArgs(string file, bool fileDeleted, Exception e = null)
+        public ArchivingInterruptedEventArgs(string file, bool fileDeleted, EventArgs e = null)
         {
             ArchiveFile = file;
             FileDeleted = fileDeleted;
+            InnerException = e;
         }
 
         public string ArchiveFile { get; }
         public bool FileDeleted { get; }
+        public EventArgs InnerException { get; private set; }
     }
 }

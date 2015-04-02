@@ -86,11 +86,13 @@
   <ItemGroup>
     <Compile Include="ArchiveFormatAttribute.cs" />
     <Compile Include="ArchivingEventArgs.cs" />
+    <Compile Include="Formats\IZipFile.cs" />
+    <Compile Include="Formats\ZipFileWrapper.cs" />
     <Compile Include="SevenZipDllAssemblyLoader.cs" />
     <None Include="GitWrapper.cs.borked" />
     <Compile Include="GitArchiver.cs" />
-    <Compile Include="Formats\IArchiver.cs" />
-    <Compile Include="ISevenZipCompressor.cs" />
+    <Compile Include="Formats\ArchiverBase.cs" />
+    <Compile Include="Formats\ISevenZipCompressor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Formats\SevenZipArchiver.cs" />
     <Compile Include="SevenZipCompressorWrapper.cs" />

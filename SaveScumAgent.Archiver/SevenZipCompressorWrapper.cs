@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using SaveScumAgent.Archiver.Formats;
 using SevenZip;
 
 namespace SaveScumAgent.Archiver
@@ -8,8 +9,6 @@ namespace SaveScumAgent.Archiver
     public class SevenZipCompressorWrapper : ISevenZipCompressor
     {
         private SevenZipCompressor _compressor;
-
-
 
         public SevenZipCompressorWrapper()
         {
@@ -79,6 +78,11 @@ namespace SaveScumAgent.Archiver
         protected virtual void OnCompressionFinished(object sender, EventArgs eventArgs)
         {
             CompressionFinished?.Invoke(this, eventArgs);
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

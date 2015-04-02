@@ -7,7 +7,7 @@ using SaveScumAgent.UtilityClasses;
 
 namespace SaveScumAgent.DirectoryWatcher
 {
-    public class DirectoryWatcher : IDisposable, IDirectoryWatcher
+    public class DirectoryWatcher : IDirectoryWatcher
     {
         private readonly ITaskScheduler _backupDelayTimer;
         private readonly List<FilesystemChangeRecord> _changedFilesList = new List<FilesystemChangeRecord>();

@@ -1,9 +1,9 @@
 ﻿using System;
 using SevenZip;
 
-namespace SaveScumAgent.Archiver
+namespace SaveScumAgent.Archiver.Formats
 {
-    public interface ISevenZipCompressor
+    public interface ISevenZipCompressor : IDisposable
     {
         CompressionLevel CompressionLevel { get; set; }
         OutArchiveFormat ArchiveFormat { get; set; }

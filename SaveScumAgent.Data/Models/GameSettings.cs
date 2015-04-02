@@ -8,7 +8,7 @@ namespace SaveScumAgent.Data.Models
 {
     public class GameSettings
     {
-        public ArchiveFormats Format { get; set; }
+        public ArchiveFormat Format { get; set; }
 
         public virtual Game Game { get; set; }
     }

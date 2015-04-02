@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using Ionic.Zip;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SaveScumAgent.Archiver.Formats;
 using SaveScumAgent.UtilityClasses;
@@ -13,7 +14,7 @@ namespace SaveScumAgent.Archiver.Tests
     [TestClass]
     public class ZipArchiverTest
     {
-        private MockSevenZipCompressor _compressor;
+        private MockZipFile _compressor;
         private ZipArchiver _subject;
 
         /// <summary>
@@ -39,7 +40,7 @@ namespace SaveScumAgent.Archiver.Tests
         [TestInitialize]
         public void Initialize()
         {
-            _compressor = new MockSevenZipCompressor();
+            _compressor = new MockZipFile();
             _subject = new ZipArchiver()
             {
                 ArchivesLocation = @"c:\archives",
@@ -65,10 +66,6 @@ namespace SaveScumAgent.Archiver.Tests
         [TestMethod]
         public void DefaultConstructorWorks()
         {
-            var t = ArchiveFormats.Zip.GetAttributeOfType<ArchiveFormatAttribute>();
-            var instance = (IArchiver)Activator.CreateInstance(t.FormatType);
-            TestContext.WriteLine(instance.ArchiveIdentifier);
-
             _subject = new ZipArchiver();
             Assert.IsNotNull(_subject);
         }
@@ -76,7 +73,7 @@ namespace SaveScumAgent.Archiver.Tests
         [TestMethod]
         public void ZipArchiver_CreatesZipFilename()
         {
-            _subject.StartArchiving();
+            _subject.StartArchiving(new MockZipFile());
             Assert.IsTrue(_subject.ArchiveIdentifier.EndsWith(".zip"));
             TestContext.WriteLine(_subject.ArchiveIdentifier);
         }
@@ -86,7 +83,7 @@ namespace SaveScumAgent.Archiver.Tests
         {
             var fired = false;
             _subject.ArchivingDone += (sender, args) => { fired = true; };
-            _subject.StartArchiving();
+            _subject.StartArchiving(new MockZipFile());
             _compressor.OnCompressionFinished();
             Assert.IsTrue(fired);
         }
@@ -96,15 +93,13 @@ namespace SaveScumAgent.Archiver.Tests
         {
             var fired = false;
             _subject.ArchiveProgress += (sender, args) => { fired = true; };
-            _subject.StartArchiving();
-            _compressor.OnCompressing(new ProgressEventArgs(0, 0));
+            _subject.StartArchiving(new MockZipFile());
             Assert.IsTrue(fired);
         }
 
         [TestMethod]
-        public void ZipArchiver_RecievesProgressEventFromSevenZip()
+        public void ZipArchiver_Integration_RecievesProgressEventFromZip()
         {
-            var fired = false;
             var mre = new ManualResetEvent(false);
             _subject = new ZipArchiver { ArchivesLocation = "C:\\temp", DirectoryToArchive = "C:\\Temporary"};
             _subject.ArchiveProgress += (sender, args) =>
@@ -125,7 +120,7 @@ namespace SaveScumAgent.Archiver.Tests
                 ArchivesLocation = @"c:\savegames\archives",
                 DirectoryToArchive = @"c:\savegames"
             };
-            _subject.StartArchiving();
+            _subject.StartArchiving(new MockZipFile());
         }
     }
 }

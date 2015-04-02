@@ -45,7 +45,7 @@ namespace SaveScumAgent.UtilityClasses
         ///     http://james.newtonking.com/archive/2008/03/29/formatwith-2-0-string-formatting-with-named-variables
         /// </summary>
         /// <param name="format"></param>
-        /// <param name="source"></param>
+        /// <param name="source">"{CurrentTime} - {ProcessName}".FormatWith(new { CurrentTime = DateTime.Now, ProcessName = p.ProcessName });</param>
         /// <returns></returns>
         public static string FormatWith(this string format, object source)
 
