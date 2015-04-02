@@ -1,6 +1,6 @@
 ﻿using System;
-using System.IO.Compression;
-using System.Security.Policy;
+using Ionic;
+using Ionic.Zip;
 using SaveScumAgent.UtilityClasses;
 
 
@@ -8,15 +8,13 @@ namespace SaveScumAgent.Archiver.Formats
 {
     public class ZipArchiver : IArchiver
     {
+        private ZipFile _zipFile;
+        private readonly string _archiveIdentifier;
 
-        public ZipArchiver()
-        {
-
-        }
 
         public string ArchiveIdentifier
         {
-            get { throw new NotImplementedException(); }
+            get { return _archiveIdentifier; }
         }
 
         public bool Archiving
