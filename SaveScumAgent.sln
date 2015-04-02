@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveScumAgent.Archiver.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveScumAgent.UtilityClasses", "SaveScumAgent.UtilityClasses\SaveScumAgent.UtilityClasses.csproj", "{D7FB382A-2E38-42E6-AC35-58234071FA7F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveScumAgent.Data", "SaveScumAgent.Data\SaveScumAgent.Data.csproj", "{168DEABD-82A7-4FFD-9DB9-4C0F1A423FDC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -139,6 +141,18 @@ Global
 		{D7FB382A-2E38-42E6-AC35-58234071FA7F}.Release|x64.Build.0 = Release|Any CPU
 		{D7FB382A-2E38-42E6-AC35-58234071FA7F}.Release|x86.ActiveCfg = Release|Any CPU
 		{D7FB382A-2E38-42E6-AC35-58234071FA7F}.Release|x86.Build.0 = Release|Any CPU
+		{168DEABD-82A7-4FFD-9DB9-4C0F1A423FDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{168DEABD-82A7-4FFD-9DB9-4C0F1A423FDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{168DEABD-82A7-4FFD-9DB9-4C0F1A423FDC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{168DEABD-82A7-4FFD-9DB9-4C0F1A423FDC}.Debug|x64.Build.0 = Debug|Any CPU
+		{168DEABD-82A7-4FFD-9DB9-4C0F1A423FDC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{168DEABD-82A7-4FFD-9DB9-4C0F1A423FDC}.Debug|x86.Build.0 = Debug|Any CPU
+		{168DEABD-82A7-4FFD-9DB9-4C0F1A423FDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{168DEABD-82A7-4FFD-9DB9-4C0F1A423FDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{168DEABD-82A7-4FFD-9DB9-4C0F1A423FDC}.Release|x64.ActiveCfg = Release|Any CPU
+		{168DEABD-82A7-4FFD-9DB9-4C0F1A423FDC}.Release|x64.Build.0 = Release|Any CPU
+		{168DEABD-82A7-4FFD-9DB9-4C0F1A423FDC}.Release|x86.ActiveCfg = Release|Any CPU
+		{168DEABD-82A7-4FFD-9DB9-4C0F1A423FDC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
