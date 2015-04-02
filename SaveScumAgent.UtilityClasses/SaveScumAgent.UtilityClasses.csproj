@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="PathString.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpecialFolders.cs" />
     <Compile Include="Utils.cs" />
   </ItemGroup>
   <Choose>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Web.UI;
 
@@ -17,15 +16,6 @@ namespace SaveScumAgent.UtilityClasses
         public static bool IsBlank(this string value)
         {
             return String.IsNullOrEmpty(value);
-        }
-
-        /// <summary>
-        ///     Get the list of all emdedded resources in the assembly.
-        /// </summary>
-        /// <returns>An array of fully qualified resource names</returns>
-        public static string[] GetEmbeddedResourceNames()
-        {
-            return Assembly.GetExecutingAssembly().GetManifestResourceNames();
         }
 
         public static string GenerateBackupFilename(string foldername = "", string extension = ".zip")
