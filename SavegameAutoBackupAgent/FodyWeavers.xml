@@ -1,5 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Weavers>
-	<Costura/>
+  <Costura>
+    <Costura IncludeDebugSymbols='false' />
+    <ExcludeAssemblies>
+      7z
+      7z.dll
+    </ExcludeAssemblies>
+    <Target
+    AfterTargets="AfterBuild;NonWinFodyTarget"
+    Name="CleanReferenceCopyLocalPaths" >
+      <Delete Files="@(ReferenceCopyLocalPaths->'$(OutDir)%(DestinationSubDirectory)%(Filename)%(Extension)')" />
+    </Target>
+  </Costura>
   
 </Weavers>

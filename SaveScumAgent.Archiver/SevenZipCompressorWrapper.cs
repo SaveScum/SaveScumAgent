@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using SevenZip;
 
 namespace SaveScumAgent.Archiver
@@ -8,14 +9,18 @@ namespace SaveScumAgent.Archiver
     {
         private readonly SevenZipCompressor _compressor;
 
+
+
         public SevenZipCompressorWrapper()
         {
+            SevenZipDllAssemblyLoader.Instance.Load();
             _compressor = new SevenZipCompressor
             {
                 CompressionMethod = CompressionMethod.Default,
                 CompressionMode = CompressionMode.Create,
                 DirectoryStructure = false,
-                PreserveDirectoryRoot = true
+                PreserveDirectoryRoot = true,
+                FastCompression = false
             };
             _compressor.Compressing += OnCompressing;
             _compressor.CompressionFinished += OnCompressionFinished;
@@ -62,8 +67,6 @@ namespace SaveScumAgent.Archiver
 
         public void BeginCompressDirectory(string directory, string archiveName)
         {
-            if (!Directory.Exists(directory))
-                throw new ArgumentException(String.Format("{0} must exist", directory), "directory");
            _compressor.BeginCompressDirectory(directory, archiveName);
 
         }

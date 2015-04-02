@@ -1,4 +1,10 @@
-﻿namespace SaveScumAgent
+﻿using System;
+using System.Configuration;
+using System.IO;
+using SaveScumAgent.Archiver;
+using SevenZip;
+
+namespace SaveScumAgent
 {
     /// <summary>
     ///     Interaction logic for MainWindow.xaml
@@ -8,6 +14,7 @@
         public MainWindow()
         {
             InitializeComponent();
+            SevenZipDllAssemblyLoader.Instance.Load();
         }
     }
 }

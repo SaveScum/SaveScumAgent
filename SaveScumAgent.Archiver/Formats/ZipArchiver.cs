@@ -1,4 +1,5 @@
 ﻿using System;
+using SaveScumAgent.UtilityClasses;
 using SevenZip;
 
 namespace SaveScumAgent.Archiver.Formats
@@ -10,14 +11,14 @@ namespace SaveScumAgent.Archiver.Formats
 
         public ZipArchiver() : this(new SevenZipCompressorWrapper())
         {
-            Compressor.ArchiveFormat = ArchiveFormat;
-            Compressor.Compressing += OnCompressing;
-            Compressor.CompressionFinished += OnCompressionFinished;
         }
 
         public ZipArchiver(ISevenZipCompressor compressor)
         {
             Compressor = compressor;
+            Compressor.ArchiveFormat = ArchiveFormat;
+            Compressor.Compressing += OnCompressing;
+            Compressor.CompressionFinished += OnCompressionFinished;
         }
 
         protected virtual string Extension => ".zip";

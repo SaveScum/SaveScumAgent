@@ -7,6 +7,10 @@ namespace SaveScumAgent
 {
     public class GitWrapper
     {
+        public GitWrapper()
+        {
+        }
+
         private static readonly PullOptions ForcedPullOptions = new PullOptions
         {
             MergeOptions = new MergeOptions

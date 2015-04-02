@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace SaveScumAgent
+namespace SaveScumAgent.UtilityClasses
 {
     public class PathString
     {

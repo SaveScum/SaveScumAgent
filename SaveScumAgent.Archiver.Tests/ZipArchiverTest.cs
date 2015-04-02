@@ -2,6 +2,7 @@
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SaveScumAgent.Archiver.Formats;
+using SevenZip;
 
 namespace SaveScumAgent.Archiver.Tests
 {
@@ -75,7 +76,27 @@ namespace SaveScumAgent.Archiver.Tests
         }
 
         [TestMethod]
-        public void ZipArchiver_HandlesErrorsGracefully()
+        public void ZipArchiver_RasesCompleteEvent()
+        {
+            var fired = false;
+            _subject.ArchivingDone += (sender, args) => { fired = true; };
+            _subject.StartArchiving();
+            _compressor.OnCompressionFinished();
+            Assert.IsTrue(fired);
+        }
+
+        [TestMethod]
+        public void ZipArchiver_RasesInProgressEvent()
+        {
+            var fired = false;
+            _subject.ArchiveProgress += (sender, args) => { fired = true; };
+            _subject.StartArchiving();
+            _compressor.OnCompressing(new ProgressEventArgs(0, 0));
+            Assert.IsTrue(fired);
+        }
+
+        [TestMethod]
+        public void ZipArchiver_RecievesProgressEventFromSevenZip()
         {
             var fired = false;
             var mre = new ManualResetEvent(false);
@@ -83,15 +104,10 @@ namespace SaveScumAgent.Archiver.Tests
             _subject.ArchiveProgress += (sender, args) =>
             {
                 TestContext.WriteLine(args.ArchiveFile);
-            };
-
-            _subject.ArchivingDone += (sender, args) =>
-            {
-                TestContext.WriteLine(args.ArchiveFile);
                 mre.Set();
             };
             _subject.StartArchiving();
-            Assert.IsFalse(mre.WaitOne());
+            Assert.IsTrue(mre.WaitOne(10000));
         }
 
         [TestMethod]

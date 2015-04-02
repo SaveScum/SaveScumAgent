@@ -2,7 +2,7 @@
 using System.IO;
 using System.Reflection;
 
-namespace SaveScumAgent
+namespace SaveScumAgent.UtilityClasses
 {
     public static class Utils
     {

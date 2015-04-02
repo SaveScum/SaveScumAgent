@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Abstractions;
 using SaveScumAgent.TaskScheduler;
+using SaveScumAgent.UtilityClasses;
 
 namespace SaveScumAgent.DirectoryWatcher
 {

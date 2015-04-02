@@ -4,6 +4,7 @@ using Microsoft.Pex.Framework;
 using Microsoft.Pex.Framework.Generated;
 using Microsoft.Pex.Framework.Validation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SaveScumAgent.UtilityClasses;
 
 // <copyright file="PathStringTest.cs">Copyright ©  2015</copyright>
 

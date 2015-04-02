@@ -49,5 +49,14 @@ namespace SaveScumAgent.Properties {
                 return ((string)(this["ApplicationName"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SaveScumAgent.Resources.7z.dll")]
+        public string SevenZipDllResource {
+            get {
+                return ((string)(this["SevenZipDllResource"]));
+            }
+        }
     }
 }
