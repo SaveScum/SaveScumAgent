@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using SaveScumAgent.UtilityClasses;
 using SevenZip;
 
@@ -32,7 +33,7 @@ namespace SaveScumAgent.Archiver.Formats
             _abortArchiving = true;
         }
 
-        public override void StartArchiving()
+        public override void StartArchivingAsync()
         {
             if (ArchivesLocation.IsFolderSubfolderOf(DirectoryToArchive))
                 throw new InvalidOperationException("Archive cannot be saved to directory to be archived");
@@ -40,6 +41,7 @@ namespace SaveScumAgent.Archiver.Formats
             ArchiveIdentifier = Utils.GenerateBackupFilename(ArchivesLocation, Extension);
             _abortArchiving = false;
             Compressor.BeginCompressDirectory(DirectoryToArchive, ArchiveIdentifier);
+            SevenZipCompressor s = new SevenZipCompressor();
             IsArchiving = true;
         }
 

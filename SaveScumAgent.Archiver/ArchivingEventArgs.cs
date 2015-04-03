@@ -22,8 +22,11 @@ namespace SaveScumAgent.Archiver
     public class ArchivingInterruptedEventArgs :
         EventArgs
     {
-        public ArchivingInterruptedEventArgs(string file, bool fileDeleted, EventArgs e = null)
+        public bool Aborted { get; }
+
+        public ArchivingInterruptedEventArgs(string file, bool fileDeleted, EventArgs e = null, bool aborted = false)
         {
+            Aborted = aborted;
             ArchiveFile = file;
             FileDeleted = fileDeleted;
             InnerException = e;

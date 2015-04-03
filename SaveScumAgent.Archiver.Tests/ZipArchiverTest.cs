@@ -73,7 +73,7 @@ namespace SaveScumAgent.Archiver.Tests
         [TestMethod]
         public void ZipArchiver_CreatesZipFilename()
         {
-            _subject.StartArchiving(new MockZipFile());
+            _subject.StartArchivingAsync(new MockZipFile());
             Assert.IsTrue(_subject.ArchiveIdentifier.EndsWith(".zip"));
             TestContext.WriteLine(_subject.ArchiveIdentifier);
         }
@@ -83,7 +83,7 @@ namespace SaveScumAgent.Archiver.Tests
         {
             var fired = false;
             _subject.ArchivingDone += (sender, args) => { fired = true; };
-            _subject.StartArchiving(new MockZipFile());
+            _subject.StartArchivingAsync(_compressor);
             _compressor.OnCompressionFinished();
             Assert.IsTrue(fired);
         }
@@ -93,7 +93,8 @@ namespace SaveScumAgent.Archiver.Tests
         {
             var fired = false;
             _subject.ArchiveProgress += (sender, args) => { fired = true; };
-            _subject.StartArchiving(new MockZipFile());
+            _subject.StartArchivingAsync(_compressor);
+            _compressor.OnSaveWriteEntry();
             Assert.IsTrue(fired);
         }
 
@@ -104,11 +105,39 @@ namespace SaveScumAgent.Archiver.Tests
             _subject = new ZipArchiver { ArchivesLocation = "C:\\temp", DirectoryToArchive = "C:\\Temporary"};
             _subject.ArchiveProgress += (sender, args) =>
             {
-                TestContext.WriteLine(args.ArchiveFile);
+                TestContext.WriteLine(args.ToString());
                 mre.Set();
             };
-            _subject.StartArchiving();
+            _subject.StartArchivingAsync();
             Assert.IsTrue(mre.WaitOne(10000));
+        }
+
+        [TestMethod]
+        public void ZipArchiver_Integration_AbortsGracefully()
+        {
+            var mre = new ManualResetEventSlim(false);
+            _subject = new ZipArchiver { ArchivesLocation = "C:\\temp", DirectoryToArchive = "C:\\Temporary" };
+            _subject.ArchiveProgress += (sender, args) =>
+            {
+                _subject.Abort();
+            };
+            _subject.ArchivingError += (sender, args) =>
+            {
+                mre.Set();
+                Assert.IsFalse(_subject.IsArchiving);
+                Assert.IsTrue(args.Aborted);
+            };
+            _subject.StartArchivingAsync();
+            Assert.IsTrue(mre.Wait(10000));
+        }
+
+        [TestMethod]
+        public void ZipArchiver_CanSendAbortSignal()
+        {
+            _subject.StartArchivingAsync(_compressor);
+            _subject.Abort();
+            _compressor.OnSaveStarted();
+            Assert.IsTrue(_compressor.Aborted);
         }
 
         [TestMethod]
@@ -120,7 +149,7 @@ namespace SaveScumAgent.Archiver.Tests
                 ArchivesLocation = @"c:\savegames\archives",
                 DirectoryToArchive = @"c:\savegames"
             };
-            _subject.StartArchiving(new MockZipFile());
+            _subject.StartArchivingAsync(new MockZipFile());
         }
     }
 }

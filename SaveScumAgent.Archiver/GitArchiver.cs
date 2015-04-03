@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using SaveScumAgent.Archiver.Formats;
 using SaveScumAgent.UtilityClasses;
 
@@ -11,7 +12,7 @@ namespace SaveScumAgent.Archiver
             throw new NotImplementedException();
         }
 
-        public override void StartArchiving()
+        public override void StartArchivingAsync()
         {
             throw new NotImplementedException();
         }

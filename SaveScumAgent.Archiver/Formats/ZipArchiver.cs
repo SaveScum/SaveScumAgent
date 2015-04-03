@@ -13,62 +13,86 @@ namespace SaveScumAgent.Archiver.Formats
         private IZipFile _zipFile;
         private bool _abort;
 
+        private readonly object _lock = new object();
+
 
         public override void Abort()
         {
             _abort = true;
         }
 
-        public override void StartArchiving()
+        public override void StartArchivingAsync()
         {
-            StartArchiving(new ZipFileWrapper());
+            StartArchivingAsync(new ZipFileWrapper());
         }
 
-        public async void StartArchiving(IZipFile zf)
+        public void StartArchivingAsync(IZipFile zf)
         {
 
-            ArchiveIdentifier = Utils.GenerateBackupFilename(ArchivesLocation);
-            _zipFile = zf;
-            _zipFile.AddDirectory(DirectoryToArchive);
-            _zipFile.SaveProgress += OnSaveProgress;
-            _zipFile.ZipError += OnZipError;
-            await Task.Run(() =>
+            if (ArchivesLocation.IsFolderSubfolderOf(DirectoryToArchive))
             {
-                _zipFile.Save(ArchiveIdentifier);
-            });
+                throw new InvalidOperationException(string.Format("{0} cannot be a subdirectory of {1}",
+                    ArchivesLocation, DirectoryToArchive));
+            }
+
+            if (IsArchiving)
+                throw new InvalidOperationException("Already archiving");
+
+            lock (_lock)
+            {
+                _abort = false;
+                IsArchiving = true;
+                ArchiveIdentifier = Utils.GenerateBackupFilename(ArchivesLocation);
+                _zipFile = zf;
+                _zipFile.AddDirectory(DirectoryToArchive);
+                _zipFile.SaveProgress += OnSaveProgress;
+                _zipFile.ZipError += OnZipError;
+                Task
+                    .Factory
+                    .StartNew(() =>
+                    {
+                        _zipFile.Save(ArchiveIdentifier);
+                        IsArchiving = false;
+                        _zipFile.Dispose();
+                        if (_abort)
+                        {
+                            OnArchivingError(new ArchivingInterruptedEventArgs(ArchiveIdentifier,
+                                File.Exists(ArchiveIdentifier), new EventArgs(), true));
+                        }
+                        else
+                        {
+                            OnArchivingDone(new ArchivingEventArgs(DirectoryToArchive, ArchiveIdentifier));
+                        }
+
+                    });
+            }
         }
 
         private void OnZipError(object sender, ZipErrorEventArgs e)
         {
-            bool deleted = false;
-            try
-            {
-                if (File.Exists(ArchiveIdentifier))
-                    File.Delete(ArchiveIdentifier);
-                deleted = true;
-            }
-            finally
-            {
-                _zipFile.Dispose();
-                OnArchivingError(new ArchivingInterruptedEventArgs(ArchiveIdentifier, deleted, e));
-            }
+            _zipFile.Dispose();
+            IsArchiving = false;
+            OnArchivingError(new ArchivingInterruptedEventArgs(ArchiveIdentifier, File.Exists(ArchiveIdentifier), e));
         }
 
 
         private void OnSaveProgress(object sender, SaveProgressEventArgs e)
         {
+            e.Cancel = e.Cancel || _abort;
             switch (e.EventType)
             {
+                case ZipProgressEventType.Saving_Started:
+                    OnArchiveProgress(this, new ArchivingEventArgs(DirectoryToArchive, ArchiveIdentifier));
+                    break;
                 case ZipProgressEventType.Saving_Completed:
                     _zipFile.Dispose();
                     OnArchivingDone(new ArchivingEventArgs(DirectoryToArchive, ArchiveIdentifier, 100));
                     break;
                 case ZipProgressEventType.Saving_AfterWriteEntry:
                 case ZipProgressEventType.Saving_BeforeWriteEntry:
-                    e.Cancel = _abort;
+                    OnArchiveProgress(this, new ArchivingEventArgs(DirectoryToArchive, ArchiveIdentifier));
                     break;
             }
-            throw new NotImplementedException();
         }
     }
 }

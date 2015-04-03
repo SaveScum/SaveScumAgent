@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using SaveScumAgent.UtilityClasses;
 
 namespace SaveScumAgent.Archiver.Formats
@@ -16,7 +17,7 @@ namespace SaveScumAgent.Archiver.Formats
         public bool IsArchiving { get; protected set; }
 
         public abstract void Abort();
-        public abstract void StartArchiving();
+        public abstract void StartArchivingAsync();
 
         public event EventHandler<ArchivingEventArgs> ArchiveProgress;
         public event EventHandler<ArchivingEventArgs> ArchivingDone;
@@ -33,11 +34,13 @@ namespace SaveScumAgent.Archiver.Formats
 
         protected virtual void OnArchivingDone(ArchivingEventArgs e)
         {
+            IsArchiving = false;
             ArchivingDone?.Invoke(this, e);
         }
 
         protected virtual void OnArchivingError(ArchivingInterruptedEventArgs e)
         {
+            IsArchiving = false;
             ArchivingError?.Invoke(this, e);
         }
 

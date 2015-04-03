@@ -11,22 +11,21 @@ namespace SaveScumAgent.Archiver.Tests
     public class MockZipFile : IZipFile
     {
         private string _archiveName;
+        public bool Aborted { get; private set; }
         
         private SaveProgressEventArgs NewSaveProgressEventArgs(ZipProgressEventType eventType)
         {
-            var obj = (SaveProgressEventArgs) typeof (SaveProgressEventArgs).GetConstructor(
-                BindingFlags.NonPublic | BindingFlags.Instance,
-                null, Type.EmptyTypes, null).Invoke(new object[] {_archiveName, eventType });
-
+            var bf = BindingFlags.NonPublic | BindingFlags.Instance;
+            var types = new[] {typeof(string), typeof(ZipProgressEventType) };
+            var obj = (SaveProgressEventArgs) typeof (SaveProgressEventArgs).GetConstructor(bf,
+                null, types, null).Invoke(new object[] {_archiveName, eventType });
             return obj;
         }
         private ZipErrorEventArgs NewZipErrorEventArgs(ZipEntry entry, Exception e)
-        {
-            var obj = (ZipErrorEventArgs)typeof(ZipErrorEventArgs).GetConstructor(
+        {var obj = (ZipErrorEventArgs)typeof(ZipErrorEventArgs).GetConstructor(
                   BindingFlags.NonPublic | BindingFlags.Instance,
                   null, Type.EmptyTypes, null).Invoke(new object[] { _archiveName, entry, e });
             obj.ArchiveName = _archiveName;
-
             return obj;
         }
 
@@ -54,17 +53,24 @@ namespace SaveScumAgent.Archiver.Tests
 
         public void OnSaveStarted()
         {
-            SaveProgress?.Invoke(this, NewSaveProgressEventArgs(ZipProgressEventType.Saving_Started));
+            var e = NewSaveProgressEventArgs(ZipProgressEventType.Saving_Started);
+            SaveProgress?.Invoke(this, e);
+            Aborted = Aborted || (e.Cancel);
+
         }
 
         public void OnSaveCompleted()
         {
-            SaveProgress?.Invoke(this, NewSaveProgressEventArgs(ZipProgressEventType.Saving_Completed));
+            var e = NewSaveProgressEventArgs(ZipProgressEventType.Saving_Completed);
+            SaveProgress?.Invoke(this, e);
+            Aborted = Aborted || (e.Cancel);
         }
 
         public void OnSaveWriteEntry()
         {
-            SaveProgress?.Invoke(this, NewSaveProgressEventArgs(ZipProgressEventType.Saving_AfterWriteEntry));
+            var e = NewSaveProgressEventArgs(ZipProgressEventType.Saving_AfterWriteEntry);
+            SaveProgress?.Invoke(this, e);
+            Aborted = Aborted || (e.Cancel);
         }
 
         public void OnZipErrorSaving(ZipEntry entry, Exception exc)
