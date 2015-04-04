@@ -29,14 +29,7 @@ namespace SaveScumAgent.Archiver.Formats
         public void StartArchivingAsync(IZipFile zf)
         {
 
-            if (ArchivesLocation.IsFolderSubfolderOf(DirectoryToArchive))
-            {
-                throw new InvalidOperationException(string.Format("{0} cannot be a subdirectory of {1}",
-                    ArchivesLocation, DirectoryToArchive));
-            }
-
-            if (IsArchiving)
-                throw new InvalidOperationException("Already archiving");
+            SanityCheck();
 
             lock (_lock)
             {
@@ -47,25 +40,32 @@ namespace SaveScumAgent.Archiver.Formats
                 _zipFile.AddDirectory(DirectoryToArchive);
                 _zipFile.SaveProgress += OnSaveProgress;
                 _zipFile.ZipError += OnZipError;
-                Task
-                    .Factory
-                    .StartNew(() =>
-                    {
-                        _zipFile.Save(ArchiveIdentifier);
-                        IsArchiving = false;
-                        _zipFile.Dispose();
-                        if (_abort)
-                        {
-                            OnArchivingError(new ArchivingInterruptedEventArgs(ArchiveIdentifier,
-                                File.Exists(ArchiveIdentifier), new EventArgs(), true));
-                        }
-                        else
-                        {
-                            OnArchivingDone(new ArchivingEventArgs(DirectoryToArchive, ArchiveIdentifier));
-                        }
-
-                    });
+                Task.Factory.StartNew(Archive);
             }
+        }
+
+        private void SanityCheck()
+        {
+            if (ArchivesLocation.IsFolderSubfolderOf(DirectoryToArchive))
+            {
+                throw new InvalidOperationException(string.Format("{0} cannot be a subdirectory of {1}",
+                    ArchivesLocation, DirectoryToArchive));
+            }
+
+            if (IsArchiving)
+                throw new InvalidOperationException("Already archiving");
+        }
+
+        private void Archive()
+        {
+            _zipFile.Save(ArchiveIdentifier);
+            IsArchiving = false;
+            _zipFile.Dispose();
+            if (_abort)
+                OnArchivingError(new ArchivingInterruptedEventArgs(ArchiveIdentifier,
+                    File.Exists(ArchiveIdentifier), new EventArgs(), true));
+            else
+                OnArchivingDone(new ArchivingEventArgs(DirectoryToArchive, ArchiveIdentifier));
         }
 
         private void OnZipError(object sender, ZipErrorEventArgs e)

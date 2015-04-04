@@ -16,6 +16,9 @@ namespace SaveScumAgent.Archiver.Tests
     {
         private MockZipFile _compressor;
         private ZipArchiver _subject;
+        private const string GameTitle = "A terrible game";
+        private const string ArchivesPath = @"c:\archives\";
+        private const string GameArchivePath = ArchivesPath + GameTitle + "\\";
 
         /// <summary>
         ///     Gets or sets the test context which provides
@@ -43,9 +46,9 @@ namespace SaveScumAgent.Archiver.Tests
             _compressor = new MockZipFile();
             _subject = new ZipArchiver()
             {
-                ArchivesLocation = @"c:\archives",
+                ArchivesLocation = GameArchivePath,
                 DirectoryToArchive = @"c:\savegames",
-                GameTitle = "A terrible game"
+                GameTitle = GameTitle
             };
         }
 
@@ -130,6 +133,32 @@ namespace SaveScumAgent.Archiver.Tests
             _subject.StartArchivingAsync();
             Assert.IsTrue(mre.Wait(10000));
         }
+
+        [TestMethod]
+        public void ZipArchiver_Disposes()
+        {
+            _subject.StartArchivingAsync(_compressor);
+            _subject.Abort();
+            _compressor.OnSaveStarted();
+            Assert.IsTrue(_compressor.Aborted);
+        }
+
+        [TestMethod]
+        public void ZipArchiver_CreatesZipInAppropriateFolder()
+        {
+            var mre = new ManualResetEventSlim(false);
+            var b = false;
+            _subject.ArchiveProgress += (sender, args) =>
+            {
+                b = _compressor.ArchiveName.IsFolderSubfolderOf(GameArchivePath);
+                mre.Set();
+            };
+            _subject.StartArchivingAsync(_compressor);
+            mre.Wait();
+            Assert.IsTrue(b);
+        }
+
+
 
         [TestMethod]
         public void ZipArchiver_CanSendAbortSignal()

@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Runtime.Remoting;
 using Ionic.Zip;
 using SaveScumAgent.Archiver.Formats;
+using SaveScumAgent.UtilityClasses;
 using SevenZip;
 
 namespace SaveScumAgent.Archiver.Tests
@@ -12,7 +13,9 @@ namespace SaveScumAgent.Archiver.Tests
     {
         private string _archiveName;
         public bool Aborted { get; private set; }
-        
+
+        public PathString ArchiveName => _archiveName;
+
         private SaveProgressEventArgs NewSaveProgressEventArgs(ZipProgressEventType eventType)
         {
             var bf = BindingFlags.NonPublic | BindingFlags.Instance;
@@ -86,6 +89,7 @@ namespace SaveScumAgent.Archiver.Tests
         public void Save(string fileName)
         {
             _archiveName = fileName;
+            Save();
         }
 
         public event EventHandler<SaveProgressEventArgs> SaveProgress;
