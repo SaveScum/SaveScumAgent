@@ -60,6 +60,22 @@ namespace SaveScumAgent.Tests
         }
 
         [TestMethod]
+        [PexGeneratedBy(typeof(PathStringTest))]
+        public void IsFolderSubfolderOf_ReturnsFalseWhenPossibleParentIsChild()
+        {
+            var s0 = new PathString(@"c:\parent_path\some.junk");
+            Assert.IsFalse(s0.IsFolderSubfolderOf(@"c:\parent_path\some.junk\child"));
+        }
+
+        [TestMethod]
+        [PexGeneratedBy(typeof(PathStringTest))]
+        public void IsFolderSubfolderOf_ReturnsFalseWhenPossibleParentIsSibling()
+        {
+            var s0 = new PathString(@"c:\parent_path\some.junk");
+            Assert.IsFalse(s0.IsFolderSubfolderOf(@"c:\parent_path\other.junk"));
+        }
+
+        [TestMethod]
         [PexGeneratedBy(typeof (PathStringTest))]
         public void IsFolderSubfolderOf_ReturnsTrueWhenPossibleParentPathIsSlashedParent()
         {

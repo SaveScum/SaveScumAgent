@@ -67,6 +67,12 @@ namespace SaveScumAgent.UtilityClasses
             return Uri.TryCreate(this, UriKind.Absolute, out result);
         }
 
+        public override string ToString()
+        {
+            return _value;
+        }
+
+
         public static implicit operator string(PathString d)
         {
             return d._value;
