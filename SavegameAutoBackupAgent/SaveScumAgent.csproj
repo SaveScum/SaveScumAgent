@@ -132,12 +132,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ArchiveEntry.cs" />
-    <Compile Include="Game.cs" />
+    <Compile Include="Models\ArchiveEntry.cs" />
+    <Compile Include="Models\Game.cs" />
     <Compile Include="GameRecord.xaml.cs">
       <DependentUpon>GameRecord.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GameSettings.cs" />
+    <Compile Include="Models\GameSettings.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -146,8 +146,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GitWrapper.cs" />
-    <Compile Include="SaveScumContext.cs" />
-    <Compile Include="SaveScumDBInitializer.cs" />
+    <Compile Include="Models\SaveScumContext.cs" />
+    <Compile Include="Models\SaveScumDBInitializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -206,9 +206,7 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DatabaseTools\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
