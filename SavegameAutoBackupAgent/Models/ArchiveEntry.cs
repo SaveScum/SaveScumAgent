@@ -1,4 +1,4 @@
-﻿namespace SaveScumAgent
+﻿namespace SaveScumAgent.Models
 {
     public class ArchiveEntry
     {

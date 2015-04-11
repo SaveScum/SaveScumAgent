@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.IO;
 using SaveScumAgent.Archiver;
+using SaveScumAgent.Models;
 
 namespace SaveScumAgent
 {

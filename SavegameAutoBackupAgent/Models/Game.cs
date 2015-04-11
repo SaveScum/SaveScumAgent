@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SaveScumAgent
+namespace SaveScumAgent.Models
 {
     public class Game
     {

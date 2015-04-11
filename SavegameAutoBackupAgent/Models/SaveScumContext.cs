@@ -1,6 +1,6 @@
 using System.Data.Entity;
 
-namespace SaveScumAgent
+namespace SaveScumAgent.Models
 {
     public class SaveScumContext : DbContext
     {

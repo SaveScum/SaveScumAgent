@@ -1,7 +1,7 @@
 ﻿using SaveScumAgent.Archiver.Formats;
 using SaveScumAgent.UtilityClasses;
 
-namespace SaveScumAgent
+namespace SaveScumAgent.Models
 {
     public class GameSettings
     {

@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using SaveScumAgent.Archiver.Formats;
 
-namespace SaveScumAgent
+namespace SaveScumAgent.Models
 {
     class SaveScumDbInitializer : DropCreateDatabaseAlways<SaveScumContext>
     {
