@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web.UI;
 
@@ -40,64 +41,22 @@ namespace SaveScumAgent.UtilityClasses
             return (attributes.Length > 0) ? (T) attributes[0] : null;
         }
 
-        /// <summary>
-        ///     Courtesy of James Newton-King
-        ///     http://james.newtonking.com/archive/2008/03/29/formatwith-2-0-string-formatting-with-named-variables
-        /// </summary>
-        /// <param name="format"></param>
-        /// <param name="source">"{CurrentTime} - {ProcessName}".FormatWith(new { CurrentTime = DateTime.Now, ProcessName = p.ProcessName });</param>
-        /// <returns></returns>
-        public static string FormatWith(this string format, object source)
-
+        public static void Times(this int count, Action action)
         {
-            return FormatWith(format, null, source);
+            for (var i = 0; i < count; i++)
+            {
+                action();
+            }
         }
 
-        /// <summary>
-        ///     Courtesy of James Newton-King
-        ///     http://james.newtonking.com/archive/2008/03/29/formatwith-2-0-string-formatting-with-named-variables
-        /// </summary>
-        /// <param name="format"></param>
-        /// <param name="provider"></param>
-        /// <param name="source"></param>
-        /// <returns></returns>
-        public static string FormatWith(this string format, IFormatProvider provider, object source)
-
+        public static string FormatWith(this string format, Dictionary<string, string> valuesDictionary)
         {
-            if (format == null)
-
-                throw new ArgumentNullException("format");
-
-
-            var r = new Regex(@"(?<start>\{)+(?<property>[\w\.\[\]]+)(?<format>:[^}]+)?(?<end>\})+",
-                RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
-
-
-            var values = new List<object>();
-
-            var rewrittenFormat = r.Replace(format, delegate(Match m)
-
-            {
-                var startGroup = m.Groups["start"];
-
-                var propertyGroup = m.Groups["property"];
-
-                var formatGroup = m.Groups["format"];
-
-                var endGroup = m.Groups["end"];
-
-
-                values.Add((propertyGroup.Value == "0")
-                    ? source
-                    : DataBinder.Eval(source, propertyGroup.Value));
-
-
-                return new string('{', startGroup.Captures.Count) + (values.Count - 1) + formatGroup.Value
-                       + new string('}', endGroup.Captures.Count);
-            });
-
-
-            return string.Format(provider, rewrittenFormat, values.ToArray());
+            const string pattern = @"\{[a-zA-Z]+?\}";
+            var matches = Regex.Matches(format, pattern).Cast<Match>()
+                .Select(x => x.Value.ToUpper().Trim("{}".ToCharArray()))
+                .Distinct()
+                .Where(x => valuesDictionary.ContainsKey(x.Trim("{}".ToCharArray())));
+            return matches.Aggregate(format, (current, key) => Regex.Replace(current, "\\{" + key + "\\}", valuesDictionary[key], RegexOptions.IgnoreCase));
         }
     }
 }

@@ -3,7 +3,7 @@ using SaveScumAgent.Archiver.Formats;
 
 namespace SaveScumAgent.Models
 {
-    class SaveScumDbInitializer : DropCreateDatabaseAlways<SaveScumContext>
+    public class SaveScumDbInitializer : DropCreateDatabaseAlways<SaveScumContext>
     {
         protected override void Seed(SaveScumContext context)
         {
@@ -11,10 +11,11 @@ namespace SaveScumAgent.Models
             {
                 Default = true,
                 Format = ArchiveFormat.Zip,
-                SavePathString = "{APPDATA}\\SaveScum\\Archives"
+                SaveLocation = "{APPDATA}\\SaveScum\\Archives"
             };
 
             context.GameSettings.Add(defaultSettings);
+            //context.SaveChanges();
             base.Seed(context);
         }
     }

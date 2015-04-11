@@ -1,18 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Environment;
+using System.Linq;
 
 namespace SaveScumAgent.UtilityClasses
 {
     /// <summary>
-    /// For handling, parsing, and tokenizing environment variable special folders & strings.
+    ///     For handling, parsing, and tokenizing environment variable special folders & strings.
     /// </summary>
-    public class SpecialFolders
+    public class SpecialFolderHelper
     {
-        public PathString Path { get; set; }
+        private static Dictionary<string, string> _dictionary;
 
-        public static readonly IList<SpecialFolder> SupportedFolders = new ReadOnlyCollection<SpecialFolder>
-            (new List<SpecialFolder>
+        public static readonly IList<SpecialFolder> SupportedFolders = new ReadOnlyCollection<SpecialFolder>(
+            new List<SpecialFolder>
             {
                 SpecialFolder.ApplicationData,
                 SpecialFolder.CommonApplicationData,
@@ -39,16 +41,22 @@ namespace SaveScumAgent.UtilityClasses
                 SpecialFolder.CommonDocuments
             });
 
-        public SpecialFolders(PathString path)
+        public SpecialFolderHelper(PathString path)
         {
             Path = path;
         }
 
-        public SpecialFolders(string path) : this((PathString) path)
+        public SpecialFolderHelper(string path) : this((PathString) path)
         {
-            
         }
-        
 
+        public PathString Path { get; set; }
+
+        public static object FormatWithProvider
+            => new {CurrentTime = DateTime.Now, ProcessName = "Something", APPDATA = "nothing"};
+
+        public static Dictionary<string, string> PathsDictionary => _dictionary ?? (_dictionary = SupportedFolders
+            .Distinct()
+            .ToDictionary(f => f.ToString().ToUpper(), GetFolderPath));
     }
 }
