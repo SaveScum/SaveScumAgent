@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FolderWatcherAgent.cs" />
+    <Compile Include="FormatWithTests.cs" />
     <Compile Include="PathStringTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\PexAssemblyInfo.cs" />
