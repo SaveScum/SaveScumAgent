@@ -13,7 +13,11 @@ namespace SaveScumAgent
         public MainWindow()
         {
             InitializeComponent();
-            SevenZipDllAssemblyLoader.Instance.Load();
+            using (var db = new SaveScumContext())
+            {
+                //
+            }
+
         }
     }
 }

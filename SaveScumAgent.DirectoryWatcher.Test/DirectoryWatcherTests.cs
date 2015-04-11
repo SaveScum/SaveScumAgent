@@ -113,6 +113,7 @@ namespace SaveScumAgent.DirectoryWatcher.Test
             _directoryWatcher.DirectoryChangeDetected += (sender, args) => { fired = true; };
             _mockedFileSystemWatcher.RaiseChangeEvent(ThrowawayFileSystemEventArgs());
             Assert.IsFalse(_scheduler.IsWaiting);
+            Assert.IsFalse(fired);
         }
 
         /// <summary>

@@ -79,6 +79,10 @@
       <HintPath>..\packages\SevenZipSharp.0.64\lib\SevenZipSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -93,6 +97,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ArchiverBaseTest.cs" />
     <Compile Include="MockSevenZipCompressor.cs" />
     <Compile Include="MockZipFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -102,10 +107,6 @@
     <ProjectReference Include="..\SaveScumAgent.Archiver\SaveScumAgent.Archiver.csproj">
       <Project>{6521F35B-DEA2-4B2E-BEE4-E51CEEB0CBD7}</Project>
       <Name>SaveScumAgent.Archiver</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SaveScumAgent.Data\SaveScumAgent.Data.csproj">
-      <Project>{168deabd-82a7-4ffd-9db9-4c0f1a423fdc}</Project>
-      <Name>SaveScumAgent.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\SaveScumAgent.UtilityClasses\SaveScumAgent.UtilityClasses.csproj">
       <Project>{d7fb382a-2e38-42e6-ac35-58234071fa7f}</Project>
@@ -143,6 +144,13 @@
   </Choose>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    if not exist "$(TargetDir)x86" md "$(TargetDir)x86"
+    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\x86\*.*" "$(TargetDir)x86"
+    if not exist "$(TargetDir)amd64" md "$(TargetDir)amd64"
+    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\amd64\*.*" "$(TargetDir)amd64"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

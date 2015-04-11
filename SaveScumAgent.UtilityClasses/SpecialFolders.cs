@@ -7,8 +7,10 @@ namespace SaveScumAgent.UtilityClasses
     /// <summary>
     /// For handling, parsing, and tokenizing environment variable special folders & strings.
     /// </summary>
-    internal class SpecialFolders
+    public class SpecialFolders
     {
+        public PathString Path { get; set; }
+
         public static readonly IList<SpecialFolder> SupportedFolders = new ReadOnlyCollection<SpecialFolder>
             (new List<SpecialFolder>
             {
@@ -36,5 +38,17 @@ namespace SaveScumAgent.UtilityClasses
                 SpecialFolder.CommonProgramFilesX86,
                 SpecialFolder.CommonDocuments
             });
+
+        public SpecialFolders(PathString path)
+        {
+            Path = path;
+        }
+
+        public SpecialFolders(string path) : this((PathString) path)
+        {
+            
+        }
+        
+
     }
 }
