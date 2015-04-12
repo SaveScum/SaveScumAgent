@@ -16,7 +16,6 @@ namespace SaveScumAgent.Tests
     public class SpecialFolderHelperTests
     {
         private string _desktopPath = GetFolderPath(SpecialFolder.DesktopDirectory);
-        private string _windowsPath = GetFolderPath(SpecialFolder.Windows);
 
         public SpecialFolderHelperTests()
         {

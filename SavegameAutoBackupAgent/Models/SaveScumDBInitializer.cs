@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using Microsoft.SqlServer.Server;
 using SaveScumAgent.Archiver.Formats;
 
 namespace SaveScumAgent.Models
@@ -7,11 +8,10 @@ namespace SaveScumAgent.Models
     {
         protected override void Seed(SaveScumContext context)
         {
-            var defaultSettings = new GameSettings
+            var defaultSettings = new DefaultSettings()
             {
-                Default = true,
-                Format = ArchiveFormat.Zip,
-                SaveLocation = "{APPDATA}\\SaveScum\\Archives"
+                //Format = ArchiveFormat.Zip,
+                SaveLocation = Properties.Settings.Default.SaveScumAppArchives
             };
 
             context.GameSettings.Add(defaultSettings);

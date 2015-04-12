@@ -118,10 +118,13 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml">
@@ -136,13 +139,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="SaveScumInitializer.cs" />
+    <Compile Include="AppConfig.cs" />
+    <Compile Include="Migrations\201504120637050_Initial.cs" />
+    <Compile Include="Migrations\201504120637050_Initial.Designer.cs">
+      <DependentUpon>201504120637050_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArchiveEntry.cs" />
+    <Compile Include="Models\DefaultSettings.cs" />
     <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\GameSettings.cs" />
+    <Compile Include="Models\SaveScumContext.cs" />
+    <Compile Include="Models\SaveScumDBInitializer.cs" />
+    <Compile Include="SaveScumInitializer.cs" />
     <Compile Include="GameRecord.xaml.cs">
       <DependentUpon>GameRecord.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\GameSettings.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -151,8 +163,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GitWrapper.cs" />
-    <Compile Include="Models\SaveScumContext.cs" />
-    <Compile Include="Models\SaveScumDBInitializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -168,6 +178,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201504120637050_Initial.resx">
+      <DependentUpon>201504120637050_Initial.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -211,7 +224,6 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>

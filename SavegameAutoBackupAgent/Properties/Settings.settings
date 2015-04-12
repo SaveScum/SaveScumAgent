@@ -25,7 +25,7 @@
       <Value Profile="(Default)">{ApplicationData}\SaveScum</Value>
     </Setting>
     <Setting Name="SaveScumAppArchives" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">{ApplicationData}\SaveScum\Archives</Value>
+      <Value Profile="(Default)">{ApplicationData}\SaveScum\Archives\{GameTitle}</Value>
     </Setting>
   </Settings>
 </SettingsFile>

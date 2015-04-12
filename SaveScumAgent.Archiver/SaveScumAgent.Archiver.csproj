@@ -71,21 +71,13 @@
     <Reference Include="Ionic.Zip">
       <HintPath>..\packages\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
     </Reference>
-    <Reference Include="LibGit2Sharp">
-      <HintPath>..\packages\LibGit2Sharp.0.22.0-pre20150324065655\lib\net40\LibGit2Sharp.dll</HintPath>
-    </Reference>
     <Reference Include="SevenZipSharp">
       <HintPath>..\packages\SevenZipSharp.0.64\lib\SevenZipSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
-    </Reference>
     <Reference Include="System.IO.Compression" />
-    <Reference Include="System.IO.Compression.FileSystem" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArchiveFormatAttribute.cs" />
@@ -93,6 +85,7 @@
     <Compile Include="Formats\IZipFile.cs" />
     <Compile Include="Formats\ZipFileWrapper.cs" />
     <Compile Include="SevenZipDllAssemblyLoader.cs" />
+    <None Include="App.config" />
     <None Include="GitWrapper.cs.borked" />
     <Compile Include="GitArchiver.cs" />
     <Compile Include="Formats\ArchiverBase.cs" />

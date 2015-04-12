@@ -80,7 +80,7 @@ namespace SaveScumAgent.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{ApplicationData}\\SaveScum\\Archives")]
+        [global::System.Configuration.DefaultSettingValueAttribute("{ApplicationData}\\SaveScum\\Archives\\{GameTitle}")]
         public string SaveScumAppArchives {
             get {
                 return ((string)(this["SaveScumAppArchives"]));
