@@ -72,7 +72,6 @@ namespace SaveScumAgent.Tests
         public void FindMatchedSpecialFolders_ReturnsEmptyListForNoMatch()
         {
             var testPath = "c:\\junk_path\\test";
-            var d = SpecialFolderHelper.PathsDictionary;
             var result = SpecialFolderHelper.FindMatchedSpecialFolders(testPath);
             Assert.IsNotNull(result);
             Assert.AreEqual(0, result.Count);
@@ -93,7 +92,6 @@ namespace SaveScumAgent.Tests
         public void FindMatchedSpecialFolders_ReturnsFormattedReplacementStringForMatch()
         {
             var testPath = _desktopPath + "\\test";
-            var d = SpecialFolderHelper.PathsDictionary;
             var result = SpecialFolderHelper.FindMatchedSpecialFolders(testPath);
             Assert.IsNotNull(result);
             Assert.AreEqual(2, result.Count);
@@ -104,7 +102,6 @@ namespace SaveScumAgent.Tests
         public void FindMatchedSpecialFolders_ReturnsFormattedReplacementStringForMatchWithRelativePath()
         {
             var testPath = _desktopPath + "\\..\\test";
-            var d = SpecialFolderHelper.PathsDictionary;
             var result = SpecialFolderHelper.FindMatchedSpecialFolders(testPath);
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.Count);
@@ -115,7 +112,6 @@ namespace SaveScumAgent.Tests
         public void FindMatchedSpecialFolders_ReturnsFormattedMatchedString()
         {
             var testPath = _desktopPath + "\\test";
-            var d = SpecialFolderHelper.PathsDictionary;
             var result = SpecialFolderHelper.FindMatchedSpecialFolders(testPath, "<em>{0}</em>");
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Count > 0);
@@ -127,7 +123,6 @@ namespace SaveScumAgent.Tests
         public void FindMatchedSpecialFolders_ReturnsRawMatchedString()
         {
             var testPath = _desktopPath + "\\test";
-            var d = SpecialFolderHelper.PathsDictionary;
             var result = SpecialFolderHelper.FindMatchedSpecialFolders(testPath, "<em>{0}</em>");
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Count > 0);
