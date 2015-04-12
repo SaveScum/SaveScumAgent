@@ -61,6 +61,11 @@ namespace SaveScumAgent.UtilityClasses
                        new DirectoryInfo(possibleParentDir.WithoutTrailingSlash()));
         }
 
+        public string FullPath()
+        {
+            return IsAbsoluteUrl() ? Path.GetFullPath(_value) : null;
+        }
+
         public bool IsAbsoluteUrl()
         {
             Uri result;

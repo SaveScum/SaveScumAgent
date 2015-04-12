@@ -51,12 +51,18 @@ namespace SaveScumAgent.UtilityClasses
 
         public static string FormatWith(this string format, Dictionary<string, string> valuesDictionary)
         {
+            return FormatWith(format, valuesDictionary, "{0}");
+        }
+
+        public static string FormatWith(this string format, Dictionary<string, string> valuesDictionary, string surroundWith)
+        {
             const string pattern = @"\{[a-zA-Z]+?\}";
             var matches = Regex.Matches(format, pattern).Cast<Match>()
                 .Select(x => x.Value.ToUpper().Trim("{}".ToCharArray()))
                 .Distinct()
                 .Where(x => valuesDictionary.ContainsKey(x.Trim("{}".ToCharArray())));
-            return matches.Aggregate(format, (current, key) => Regex.Replace(current, "\\{" + key + "\\}", valuesDictionary[key], RegexOptions.IgnoreCase));
+
+            return matches.Aggregate(format, (current, key) => Regex.Replace(current, "\\{" + key + "\\}", String.Format(surroundWith, valuesDictionary[key]), RegexOptions.IgnoreCase));
         }
     }
 }
