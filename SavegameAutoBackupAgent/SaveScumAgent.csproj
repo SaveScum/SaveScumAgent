@@ -94,37 +94,17 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServerCompact">
-      <HintPath>..\packages\EntityFramework.SqlServerCompact.6.1.3\lib\net45\EntityFramework.SqlServerCompact.dll</HintPath>
-    </Reference>
     <Reference Include="LibGit2Sharp">
       <HintPath>..\packages\LibGit2Sharp.0.21.0.176\lib\net40\LibGit2Sharp.dll</HintPath>
     </Reference>
     <Reference Include="MahApps.Metro">
       <HintPath>..\packages\MahApps.Metro.1.1.2.0\lib\net45\MahApps.Metro.dll</HintPath>
     </Reference>
-    <Reference Include="MaterialDesignColors">
-      <HintPath>..\packages\MaterialDesignColors.0.0.0.0\lib\net45\MaterialDesignColors.dll</HintPath>
-    </Reference>
     <Reference Include="MaterialDesignThemes.Wpf">
       <HintPath>..\packages\MaterialDesignThemes.0.0.0.46\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml">
@@ -140,17 +120,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppConfig.cs" />
-    <Compile Include="Migrations\201504120637050_Initial.cs" />
-    <Compile Include="Migrations\201504120637050_Initial.Designer.cs">
-      <DependentUpon>201504120637050_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\ArchiveEntry.cs" />
-    <Compile Include="Models\DefaultSettings.cs" />
-    <Compile Include="Models\Game.cs" />
-    <Compile Include="Models\GameSettings.cs" />
-    <Compile Include="Models\SaveScumContext.cs" />
-    <Compile Include="Models\SaveScumDBInitializer.cs" />
     <Compile Include="SaveScumInitializer.cs" />
     <Compile Include="GameRecord.xaml.cs">
       <DependentUpon>GameRecord.xaml</DependentUpon>
@@ -178,9 +147,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201504120637050_Initial.resx">
-      <DependentUpon>201504120637050_Initial.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -237,22 +203,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SaveScumAgent.Archiver\SaveScumAgent.Archiver.csproj">
-      <Project>{6521f35b-dea2-4b2e-bee4-e51ceeb0cbd7}</Project>
-      <Name>SaveScumAgent.Archiver</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SaveScumAgent.DirectoryWatcher\SaveScumAgent.DirectoryWatcher.csproj">
-      <Project>{926e9a82-b9ad-4966-8325-be6b0f3a44df}</Project>
-      <Name>SaveScumAgent.DirectoryWatcher</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SaveScumAgent.TaskScheduler\SaveScumAgent.TaskScheduler.csproj">
-      <Project>{ec4f1f56-afa0-4024-97ce-f625ca723f9e}</Project>
-      <Name>SaveScumAgent.TaskScheduler</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SaveScumAgent.UtilityClasses\SaveScumAgent.UtilityClasses.csproj">
       <Project>{d7fb382a-2e38-42e6-ac35-58234071fa7f}</Project>
       <Name>SaveScumAgent.UtilityClasses</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SaveScum\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

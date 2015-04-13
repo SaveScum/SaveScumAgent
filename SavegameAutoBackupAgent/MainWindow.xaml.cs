@@ -4,8 +4,6 @@ using System.Environment;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using SaveScumAgent.Archiver;
-using SaveScumAgent.Models;
 
 namespace SaveScumAgent
 {
@@ -17,10 +15,10 @@ namespace SaveScumAgent
         public MainWindow()
         {
             Initialize();
-            using (var db = new SaveScumContext())
+            /*using (var db = new SaveScumContext())
             {
                 var d = db.DefaultGameSettings;
-            }
+            }*/
         }
 
         private void Initialize()
