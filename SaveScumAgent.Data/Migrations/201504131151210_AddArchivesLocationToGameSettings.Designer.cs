@@ -7,13 +7,13 @@ namespace Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddGlobalSettings : IMigrationMetadata
+    public sealed partial class AddArchivesLocationToGameSettings : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddGlobalSettings));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddArchivesLocationToGameSettings));
         
         string IMigrationMetadata.Id
         {
-            get { return "201504131006037_AddGlobalSettings"; }
+            get { return "201504131151210_AddArchivesLocationToGameSettings"; }
         }
         
         string IMigrationMetadata.Source

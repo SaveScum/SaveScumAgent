@@ -7,13 +7,13 @@ namespace Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class SeedDefaultSettings : IMigrationMetadata
+    public sealed partial class SetArchivesMaxLength : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SeedDefaultSettings));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(SetArchivesMaxLength));
         
         string IMigrationMetadata.Id
         {
-            get { return "201504130926560_SeedDefaultSettings"; }
+            get { return "201504131149342_SetArchivesMaxLength"; }
         }
         
         string IMigrationMetadata.Source

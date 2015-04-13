@@ -61,16 +61,6 @@ namespace SaveScumAgent.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source={APPDATA}\\SaveScum\\metadata.sdf")]
-        public string SaveScumContext {
-            get {
-                return ((string)(this["SaveScumContext"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("{ApplicationData}\\SaveScum")]
         public string SaveScumAppDataDirectory {
             get {

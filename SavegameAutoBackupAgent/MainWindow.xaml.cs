@@ -5,6 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Data.Models;
+using SaveScumAgent.Properties;
+using SaveScumAgent.UtilityClasses;
 
 namespace SaveScumAgent
 {
@@ -16,7 +18,7 @@ namespace SaveScumAgent
         public MainWindow()
         {
             Initialize();
-           using (var db = new SaveScumContext())
+            using (var db = new SaveScumContext())
             {
                 //var d = db.DefaultSettings;
             }
@@ -24,11 +26,12 @@ namespace SaveScumAgent
 
         private void Initialize()
         {
-            AppDomain.CurrentDomain.SetData("DataDirectory", Path.Combine(GetFolderPath(SpecialFolder.ApplicationData), "SaveScum"));
+            AppDomain.CurrentDomain.SetData("DataDirectory",
+                Settings.Default.SaveScumAppDataDirectory.FormatWith(SpecialFolderHelper.PathsDictionary));
             SaveScumInitializer.SetupDataDirectory();
             InitializeComponent();
         }
 
-        
+
     }
 }

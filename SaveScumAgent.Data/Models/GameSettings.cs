@@ -13,15 +13,20 @@ namespace Data.Models
 
         public ArchiveFormat? Format { get; set; }
 
-        public string  SaveLocation { get; set; } 
+        [MaxLength(260)]
+        public string ArchivesLocation { get; set; }
+
+
+        [MaxLength(260)]
+        public string SaveDirectoryLocation { get; set; }
 
         public int? ArchiveTriggerDelay { get; set; }
 
         [NotMapped]
-        public string SaveLocationPathString => new PathString(SaveLocation);
+        public string ArchivesLocationPathString => new PathString(ArchivesLocation);
 
         [NotMapped]
-        public string FormattedSaveLocationPathString => new PathString(SaveLocation.FormatWith(SpecialFolderHelper.PathsDictionary));
+        public string FormattedArchivesLocationPathString => new PathString(ArchivesLocation.FormatWith(SpecialFolderHelper.PathsDictionary));
 
     }
 }

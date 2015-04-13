@@ -12,6 +12,9 @@ namespace Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        CreatedAt = c.DateTime(nullable: false),
+                        Identifier = c.String(nullable: false, maxLength: 4000),
+                        Format = c.Int(nullable: false),
                         Game_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
@@ -23,10 +26,11 @@ namespace Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        FormatId = c.Int(nullable: false),
-                        Format = c.Int(nullable: false),
-                        SaveLocation = c.String(maxLength: 4000),
+                        Format = c.Int(),
+                        ArchivesLocation = c.String(maxLength: 4000),
                         ArchiveTriggerDelay = c.Int(),
+                        IsDefault = c.Boolean(),
+                        IsGlobal = c.Boolean(),
                         Discriminator = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id);
@@ -38,6 +42,7 @@ namespace Data.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         GameSettingsId = c.Int(),
                         Title = c.String(nullable: false, maxLength: 50),
+                        FilesafeTitle = c.String(maxLength: 50),
                     })
                 .PrimaryKey(t => t.Id);
             

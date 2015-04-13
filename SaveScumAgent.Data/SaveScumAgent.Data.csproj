@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -55,37 +56,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201504130910063_Initial.cs" />
-    <Compile Include="Migrations\201504130910063_Initial.Designer.cs">
-      <DependentUpon>201504130910063_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201504131147430_Initial.cs" />
+    <Compile Include="Migrations\201504131147430_Initial.Designer.cs">
+      <DependentUpon>201504131147430_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201504130910588_AddIndexToGameTitle.cs" />
-    <Compile Include="Migrations\201504130910588_AddIndexToGameTitle.Designer.cs">
-      <DependentUpon>201504130910588_AddIndexToGameTitle.cs</DependentUpon>
+    <Compile Include="Migrations\201504131149342_SetArchivesMaxLength.cs" />
+    <Compile Include="Migrations\201504131149342_SetArchivesMaxLength.Designer.cs">
+      <DependentUpon>201504131149342_SetArchivesMaxLength.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201504130919321_AddFilesafeTitle.cs" />
-    <Compile Include="Migrations\201504130919321_AddFilesafeTitle.Designer.cs">
-      <DependentUpon>201504130919321_AddFilesafeTitle.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504130926560_SeedDefaultSettings.cs" />
-    <Compile Include="Migrations\201504130926560_SeedDefaultSettings.Designer.cs">
-      <DependentUpon>201504130926560_SeedDefaultSettings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504130938412_RemoveFormatIdFromGameSettings.cs" />
-    <Compile Include="Migrations\201504130938412_RemoveFormatIdFromGameSettings.Designer.cs">
-      <DependentUpon>201504130938412_RemoveFormatIdFromGameSettings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504130957266_AddCreatedAtAndFormatToArchiveEntry.cs" />
-    <Compile Include="Migrations\201504130957266_AddCreatedAtAndFormatToArchiveEntry.Designer.cs">
-      <DependentUpon>201504130957266_AddCreatedAtAndFormatToArchiveEntry.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504131006037_AddGlobalSettings.cs" />
-    <Compile Include="Migrations\201504131006037_AddGlobalSettings.Designer.cs">
-      <DependentUpon>201504131006037_AddGlobalSettings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504131012439_MakeFormatNullableForGlobalSettings.cs" />
-    <Compile Include="Migrations\201504131012439_MakeFormatNullableForGlobalSettings.Designer.cs">
-      <DependentUpon>201504131012439_MakeFormatNullableForGlobalSettings.cs</DependentUpon>
+    <Compile Include="Migrations\201504131151210_AddArchivesLocationToGameSettings.cs" />
+    <Compile Include="Migrations\201504131151210_AddArchivesLocationToGameSettings.Designer.cs">
+      <DependentUpon>201504131151210_AddArchivesLocationToGameSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArchiveEntry.cs" />
@@ -115,29 +96,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504130910063_Initial.resx">
-      <DependentUpon>201504130910063_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504131147430_Initial.resx">
+      <DependentUpon>201504131147430_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504130910588_AddIndexToGameTitle.resx">
-      <DependentUpon>201504130910588_AddIndexToGameTitle.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504131149342_SetArchivesMaxLength.resx">
+      <DependentUpon>201504131149342_SetArchivesMaxLength.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504130919321_AddFilesafeTitle.resx">
-      <DependentUpon>201504130919321_AddFilesafeTitle.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504130926560_SeedDefaultSettings.resx">
-      <DependentUpon>201504130926560_SeedDefaultSettings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504130938412_RemoveFormatIdFromGameSettings.resx">
-      <DependentUpon>201504130938412_RemoveFormatIdFromGameSettings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504130957266_AddCreatedAtAndFormatToArchiveEntry.resx">
-      <DependentUpon>201504130957266_AddCreatedAtAndFormatToArchiveEntry.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504131006037_AddGlobalSettings.resx">
-      <DependentUpon>201504131006037_AddGlobalSettings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504131012439_MakeFormatNullableForGlobalSettings.resx">
-      <DependentUpon>201504131012439_MakeFormatNullableForGlobalSettings.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504131151210_AddArchivesLocationToGameSettings.resx">
+      <DependentUpon>201504131151210_AddArchivesLocationToGameSettings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

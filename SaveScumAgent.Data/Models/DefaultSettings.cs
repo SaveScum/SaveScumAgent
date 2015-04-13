@@ -13,7 +13,5 @@ namespace Data.Models
         {
             IsDefault = true;
         }
-
-        //TODO: Flesh this out a lot more. Needs to have <Default> and <Current global>
     }
 }

@@ -1,4 +1,5 @@
 using System.Data.Entity;
+using Configuration = Data.Migrations.Configuration;
 
 namespace Data.Models
 {
@@ -10,7 +11,7 @@ namespace Data.Models
 
         public SaveScumContext(string sConnectionString) : base(sConnectionString)
         {
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<SaveScumContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<SaveScumContext, Configuration>());
         }
 
         public DbSet<Game> Games { get; set; }
@@ -18,6 +19,5 @@ namespace Data.Models
         public DbSet<GameSettings> GameSettings { get; set; }
         public DbSet<DefaultSettings> DefaultSettings { get; set; }
         public DbSet<GlobalSettings> GlobalSettings { get; set; }
-
     }
 }
