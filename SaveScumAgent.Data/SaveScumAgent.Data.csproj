@@ -55,26 +55,90 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Models.edmx</DependentUpon>
+    <Compile Include="Migrations\201504130910063_Initial.cs" />
+    <Compile Include="Migrations\201504130910063_Initial.Designer.cs">
+      <DependentUpon>201504130910063_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504130910588_AddIndexToGameTitle.cs" />
+    <Compile Include="Migrations\201504130910588_AddIndexToGameTitle.Designer.cs">
+      <DependentUpon>201504130910588_AddIndexToGameTitle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504130919321_AddFilesafeTitle.cs" />
+    <Compile Include="Migrations\201504130919321_AddFilesafeTitle.Designer.cs">
+      <DependentUpon>201504130919321_AddFilesafeTitle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504130926560_SeedDefaultSettings.cs" />
+    <Compile Include="Migrations\201504130926560_SeedDefaultSettings.Designer.cs">
+      <DependentUpon>201504130926560_SeedDefaultSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504130938412_RemoveFormatIdFromGameSettings.cs" />
+    <Compile Include="Migrations\201504130938412_RemoveFormatIdFromGameSettings.Designer.cs">
+      <DependentUpon>201504130938412_RemoveFormatIdFromGameSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504130957266_AddCreatedAtAndFormatToArchiveEntry.cs" />
+    <Compile Include="Migrations\201504130957266_AddCreatedAtAndFormatToArchiveEntry.Designer.cs">
+      <DependentUpon>201504130957266_AddCreatedAtAndFormatToArchiveEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504131006037_AddGlobalSettings.cs" />
+    <Compile Include="Migrations\201504131006037_AddGlobalSettings.Designer.cs">
+      <DependentUpon>201504131006037_AddGlobalSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504131012439_MakeFormatNullableForGlobalSettings.cs" />
+    <Compile Include="Migrations\201504131012439_MakeFormatNullableForGlobalSettings.Designer.cs">
+      <DependentUpon>201504131012439_MakeFormatNullableForGlobalSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ArchiveEntry.cs" />
+    <Compile Include="Models\DefaultSettings.cs" />
+    <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\GameSettings.cs" />
+    <Compile Include="Models\GlobalSettings.cs" />
+    <Compile Include="Models\SaveScumContext.cs" />
+    <Compile Include="Models\SaveScumDBInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="Models.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Models.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Models.edmx.diagram">
-      <DependentUpon>Models.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SaveScumAgent.Archiver\SaveScumAgent.Archiver.csproj">
+      <Project>{6521f35b-dea2-4b2e-bee4-e51ceeb0cbd7}</Project>
+      <Name>SaveScumAgent.Archiver</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SaveScumAgent.UtilityClasses\SaveScumAgent.UtilityClasses.csproj">
+      <Project>{d7fb382a-2e38-42e6-ac35-58234071fa7f}</Project>
+      <Name>SaveScumAgent.UtilityClasses</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201504130910063_Initial.resx">
+      <DependentUpon>201504130910063_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504130910588_AddIndexToGameTitle.resx">
+      <DependentUpon>201504130910588_AddIndexToGameTitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504130919321_AddFilesafeTitle.resx">
+      <DependentUpon>201504130919321_AddFilesafeTitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504130926560_SeedDefaultSettings.resx">
+      <DependentUpon>201504130926560_SeedDefaultSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504130938412_RemoveFormatIdFromGameSettings.resx">
+      <DependentUpon>201504130938412_RemoveFormatIdFromGameSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504130957266_AddCreatedAtAndFormatToArchiveEntry.resx">
+      <DependentUpon>201504130957266_AddCreatedAtAndFormatToArchiveEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504131006037_AddGlobalSettings.resx">
+      <DependentUpon>201504131006037_AddGlobalSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504131012439_MakeFormatNullableForGlobalSettings.resx">
+      <DependentUpon>201504131012439_MakeFormatNullableForGlobalSettings.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
