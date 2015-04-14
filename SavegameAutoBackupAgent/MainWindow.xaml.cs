@@ -21,6 +21,7 @@ namespace SaveScumAgent
             using (var db = new SaveScumContext())
             {
                 var d = db.DefaultSettings;
+                
             }
         }
 

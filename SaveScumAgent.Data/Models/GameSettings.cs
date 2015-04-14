@@ -22,11 +22,5 @@ namespace Data.Models
 
         public int? ArchiveTriggerDelay { get; set; }
 
-        [NotMapped]
-        public string ArchivesLocationPathString => new PathString(ArchivesLocation);
-
-        [NotMapped]
-        public string FormattedArchivesLocationPathString => new PathString(ArchivesLocation.FormatWith(SpecialFolderHelper.PathsDictionary));
-
     }
 }
