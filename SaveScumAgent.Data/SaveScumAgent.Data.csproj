@@ -68,6 +68,14 @@
     <Compile Include="Migrations\201504131151210_AddArchivesLocationToGameSettings.Designer.cs">
       <DependentUpon>201504131151210_AddArchivesLocationToGameSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504132225472_AddUniqueConstraintToFilesafeTitle.cs" />
+    <Compile Include="Migrations\201504132225472_AddUniqueConstraintToFilesafeTitle.Designer.cs">
+      <DependentUpon>201504132225472_AddUniqueConstraintToFilesafeTitle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504140359435_AddSaveDirectoryLocationToGame.cs" />
+    <Compile Include="Migrations\201504140359435_AddSaveDirectoryLocationToGame.Designer.cs">
+      <DependentUpon>201504140359435_AddSaveDirectoryLocationToGame.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArchiveEntry.cs" />
     <Compile Include="Models\DefaultSettings.cs" />
@@ -75,7 +83,6 @@
     <Compile Include="Models\GameSettings.cs" />
     <Compile Include="Models\GlobalSettings.cs" />
     <Compile Include="Models\SaveScumContext.cs" />
-    <Compile Include="Models\SaveScumDBInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -104,6 +111,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504131151210_AddArchivesLocationToGameSettings.resx">
       <DependentUpon>201504131151210_AddArchivesLocationToGameSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504132225472_AddUniqueConstraintToFilesafeTitle.resx">
+      <DependentUpon>201504132225472_AddUniqueConstraintToFilesafeTitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504140359435_AddSaveDirectoryLocationToGame.resx">
+      <DependentUpon>201504140359435_AddSaveDirectoryLocationToGame.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

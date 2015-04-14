@@ -14,6 +14,8 @@ namespace Data.Models
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<SaveScumContext, Configuration>());
         }
 
+        //public SaveScumContext(int something) : base()
+
         public DbSet<Game> Games { get; set; }
         public DbSet<ArchiveEntry> ArchiveEntries { get; set; }
         public DbSet<GameSettings> GameSettings { get; set; }

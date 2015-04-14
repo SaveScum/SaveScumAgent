@@ -8,14 +8,14 @@ namespace Data.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Data.Models.SaveScumContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<SaveScumContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(Data.Models.SaveScumContext context)
+        protected override void Seed(SaveScumContext context)
         {
             context.DefaultSettings.AddOrUpdate(x => x.IsDefault,
                 new DefaultSettings

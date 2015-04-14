@@ -20,7 +20,7 @@ namespace SaveScumAgent
             Initialize();
             using (var db = new SaveScumContext())
             {
-                //var d = db.DefaultSettings;
+                var d = db.DefaultSettings;
             }
         }
 
@@ -31,7 +31,5 @@ namespace SaveScumAgent
             SaveScumInitializer.SetupDataDirectory();
             InitializeComponent();
         }
-
-
     }
 }
