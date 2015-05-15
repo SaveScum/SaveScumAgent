@@ -160,7 +160,6 @@ namespace SaveScumAgent.DirectoryWatcher.Test
             _scheduler.OnElapsed();
         }
 
-
         [TestMethod]
         public void DirectoryWatcher_RaisesErrorOnFilesystemWatcherError()
         {
@@ -189,7 +188,6 @@ namespace SaveScumAgent.DirectoryWatcher.Test
             Assert.AreEqual(raised, 2);
         }
 
-
         [TestMethod]
         public void DirectoryWatcher_StartsScheduledTask()
         {
@@ -209,12 +207,10 @@ namespace SaveScumAgent.DirectoryWatcher.Test
             Assert.IsFalse(_scheduler.IsWaiting);
         }
 
-
         private FileSystemEventArgs ThrowawayFileSystemEventArgs()
         {
             return new FileSystemEventArgs(GetRandomChangeType(), BaseDir, GetFakeFilename());
         }
-
 
         private WatcherChangeTypes GetRandomChangeType()
         {

@@ -60,7 +60,7 @@ namespace SaveScumAgent.TaskScheduler.Tests
         }
 
         [TestMethod]
-        public void DefaultConstructorWorks()
+        public void DefaultConstructorWorks_TimedTest()
         {
             var mre = new ManualResetEvent(false);
             _scheduler = new TaskScheduler(100);
