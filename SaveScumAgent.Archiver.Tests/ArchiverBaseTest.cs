@@ -1,43 +1,30 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SaveScumAgent.Archiver.Formats;
 
 namespace SaveScumAgent.Archiver.Tests
 {
     /// <summary>
-    /// Summary description for ArchiverBaseTest
+    ///     Summary description for ArchiverBaseTest
     /// </summary>
     [TestClass]
     public class ArchiverBaseTest
     {
-        public ArchiverBaseTest()
-        {
-            //
-            // TODO: Add constructor logic here
-            //
-        }
-
-        private TestContext _testContextInstance;
-
         /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext
+        ///     Gets or sets the test context which provides
+        ///     information about and functionality for the current test run.
+        /// </summary>
+        public TestContext TestContext { get; set; }
+
+        [TestMethod]
+        public void FromFormatEnum_ReturnsBaseInstanceFromType()
         {
-            get
-            {
-                return _testContextInstance;
-            }
-            set
-            {
-                _testContextInstance = value;
-            }
+            var obj = ArchiverBase.FromFormatEnum(ArchiveFormat.Zip);
+
+            Assert.AreEqual(obj.GetType(), typeof (ZipArchiver));
         }
 
         #region Additional test attributes
+
         //
         // You can use the following additional attributes as you write your tests:
         //
@@ -57,14 +44,7 @@ namespace SaveScumAgent.Archiver.Tests
         // [TestCleanup()]
         // public void MyTestCleanup() { }
         //
+
         #endregion
-
-        [TestMethod]
-        public void FromFormatEnum_ReturnsBaseInstanceFromType()
-        {
-            var obj = ArchiverBase.FromFormatEnum(ArchiveFormat.Zip);
-
-            Assert.AreEqual(obj.GetType(), typeof(ZipArchiver));
-        }
     }
 }

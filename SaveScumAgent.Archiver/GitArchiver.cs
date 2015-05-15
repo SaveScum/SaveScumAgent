@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Threading.Tasks;
 using SaveScumAgent.Archiver.Formats;
-using SaveScumAgent.UtilityClasses;
 
 namespace SaveScumAgent.Archiver
 {
@@ -22,5 +20,4 @@ namespace SaveScumAgent.Archiver
             throw new NotImplementedException();
         }
     }
-
 }

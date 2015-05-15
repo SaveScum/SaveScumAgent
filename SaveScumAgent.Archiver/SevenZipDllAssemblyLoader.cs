@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Configuration;
-using System.Diagnostics;
 using System.IO;
 using SevenZip;
 
@@ -16,7 +15,6 @@ namespace SaveScumAgent.Archiver
 
         public static SevenZipDllAssemblyLoader Instance => _instance ?? (_instance = new SevenZipDllAssemblyLoader());
         public LibraryFeature CurrentLibraryFeatures { get; private set; }
-
         public void Load() => Load(Location());
 
         public void Load(string path)

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web.UI;
 
 namespace SaveScumAgent.UtilityClasses
 {
@@ -16,13 +15,13 @@ namespace SaveScumAgent.UtilityClasses
         /// <returns></returns>
         public static bool IsBlank(this string value)
         {
-            return String.IsNullOrEmpty(value);
+            return string.IsNullOrEmpty(value);
         }
 
         public static string GenerateBackupFilename(string foldername = "", string extension = ".zip")
         {
             extension = "{0}" + extension;
-            var dateString = String.Format(extension, DateTime.Now.ToFileTimeUtc());
+            var dateString = string.Format(extension, DateTime.Now.ToFileTimeUtc());
             var outputFilename = Path.Combine(foldername, dateString);
             return outputFilename;
         }
@@ -54,7 +53,8 @@ namespace SaveScumAgent.UtilityClasses
             return FormatWith(format, valuesDictionary, "{0}");
         }
 
-        public static string FormatWith(this string format, Dictionary<string, string> valuesDictionary, string surroundWith)
+        public static string FormatWith(this string format, Dictionary<string, string> valuesDictionary,
+            string surroundWith)
         {
             const string pattern = @"\{[a-zA-Z]+?\}";
             var matches = Regex.Matches(format, pattern).Cast<Match>()
@@ -62,7 +62,10 @@ namespace SaveScumAgent.UtilityClasses
                 .Distinct()
                 .Where(x => valuesDictionary.ContainsKey(x.Trim("{}".ToCharArray())));
 
-            return matches.Aggregate(format, (current, key) => Regex.Replace(current, "\\{" + key + "\\}", String.Format(surroundWith, valuesDictionary[key]), RegexOptions.IgnoreCase));
+            return matches.Aggregate(format,
+                (current, key) =>
+                    Regex.Replace(current, "\\{" + key + "\\}", string.Format(surroundWith, valuesDictionary[key]),
+                        RegexOptions.IgnoreCase));
         }
     }
 }

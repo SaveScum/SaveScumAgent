@@ -65,14 +65,12 @@ namespace SaveScumAgent.Tests
             Assert.AreEqual("c:\\appdata\\junk", resultString);
         }
 
-
         [TestMethod]
         public void FormatWith_ReplacesTagInDictionary_WithSurround()
         {
             var resultString = "{appdata}\\junk".FormatWith(substitutionDictionary, "<em>{0}</em>");
             Assert.AreEqual("<em>c:\\appdata</em>\\junk", resultString);
         }
-
 
         [TestMethod]
         public void FormatWith_ReplacesMultipleTagsInDictionary_WithSurround()

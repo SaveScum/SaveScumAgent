@@ -7,7 +7,7 @@ namespace SaveScumAgent.TaskScheduler
     {
         private const double _minimumInterval = 100;
         private readonly ITimer _timer;
-        private readonly Object timerLock = new object();
+        private readonly object timerLock = new object();
         private double _delayInMilliseconds;
 
         public TaskScheduler(double delayInMilliseconds) : this(delayInMilliseconds, new TimerWrapper())

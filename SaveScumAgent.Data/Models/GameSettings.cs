@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using SaveScumAgent.Archiver.Formats;
-using SaveScumAgent.UtilityClasses;
+
 //using SaveScumAgent.Archiver.Formats;
 
 namespace Data.Models
@@ -19,11 +19,9 @@ namespace Data.Models
         [MaxLength(260)]
         public string ArchivesLocation { get; set; }
 
-
         [MaxLength(260)]
         public string SaveDirectoryLocation { get; set; }
 
         public int? ArchiveTriggerDelay { get; set; }
-
     }
 }

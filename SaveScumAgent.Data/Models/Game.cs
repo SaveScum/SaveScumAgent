@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data;
 
 namespace Data.Models
 {
@@ -13,7 +12,7 @@ namespace Data.Models
         [ForeignKey("Id")]
         [Required]
         public virtual GameSettings Settings { get; set; }
-        
+
         public virtual ICollection<ArchiveEntry> ArchiveEntries { get; set; }
 
         [Required]
@@ -30,8 +29,5 @@ namespace Data.Models
 
         [MaxLength(260)]
         public string SaveDirectoryLocation { get; set; }
-
-        //TODO: Add a virtual member that will create a game-specific dictionary for path formatting
-
     }
 }

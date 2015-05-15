@@ -28,7 +28,7 @@ namespace SaveScumAgent.Tests
             var s0 = new PathString(@"c:\test");
             var s = s0.WithTrailingSlash();
 
-            var expectedString = String.Format("c:\\test{0}", Path.DirectorySeparatorChar);
+            var expectedString = string.Format("c:\\test{0}", Path.DirectorySeparatorChar);
             Assert.AreEqual(expectedString, s);
         }
 
@@ -60,7 +60,7 @@ namespace SaveScumAgent.Tests
         }
 
         [TestMethod]
-        [PexGeneratedBy(typeof(PathStringTest))]
+        [PexGeneratedBy(typeof (PathStringTest))]
         public void IsFolderSubfolderOf_ReturnsFalseWhenPossibleParentIsChild()
         {
             var s0 = new PathString(@"c:\parent_path\some.junk");
@@ -68,7 +68,7 @@ namespace SaveScumAgent.Tests
         }
 
         [TestMethod]
-        [PexGeneratedBy(typeof(PathStringTest))]
+        [PexGeneratedBy(typeof (PathStringTest))]
         public void IsFolderSubfolderOf_ReturnsFalseWhenPossibleParentIsSibling()
         {
             var s0 = new PathString(@"c:\parent_path\some.junk");

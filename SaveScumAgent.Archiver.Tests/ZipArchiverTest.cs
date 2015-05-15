@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Threading;
-using Ionic.Zip;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SaveScumAgent.Archiver.Formats;
-using SaveScumAgent.UtilityClasses;
-using SevenZip;
 
 namespace SaveScumAgent.Archiver.Tests
 {
@@ -14,11 +11,11 @@ namespace SaveScumAgent.Archiver.Tests
     [TestClass]
     public class ZipArchiverTest
     {
-        private MockZipFile _compressor;
-        private ZipArchiver _subject;
         private const string GameTitle = "A terrible game";
         private const string ArchivesPath = @"c:\archives\";
         private const string GameArchivePath = ArchivesPath + GameTitle + "\\";
+        private MockZipFile _compressor;
+        private ZipArchiver _subject;
 
         /// <summary>
         ///     Gets or sets the test context which provides
@@ -44,7 +41,7 @@ namespace SaveScumAgent.Archiver.Tests
         public void Initialize()
         {
             _compressor = new MockZipFile();
-            _subject = new ZipArchiver()
+            _subject = new ZipArchiver
             {
                 ArchivesLocation = GameArchivePath,
                 DirectoryToArchive = @"c:\savegames",
@@ -105,7 +102,7 @@ namespace SaveScumAgent.Archiver.Tests
         public void ZipArchiver_Integration_RecievesProgressEventFromZip()
         {
             var mre = new ManualResetEvent(false);
-            _subject = new ZipArchiver { ArchivesLocation = "C:\\temp", DirectoryToArchive = "C:\\Temporary"};
+            _subject = new ZipArchiver {ArchivesLocation = "C:\\temp", DirectoryToArchive = "C:\\Temporary"};
             _subject.ArchiveProgress += (sender, args) =>
             {
                 TestContext.WriteLine(args.ToString());
@@ -119,11 +116,8 @@ namespace SaveScumAgent.Archiver.Tests
         public void ZipArchiver_Integration_AbortsGracefully()
         {
             var mre = new ManualResetEventSlim(false);
-            _subject = new ZipArchiver { ArchivesLocation = "C:\\temp", DirectoryToArchive = "C:\\Temporary" };
-            _subject.ArchiveProgress += (sender, args) =>
-            {
-                _subject.Abort();
-            };
+            _subject = new ZipArchiver {ArchivesLocation = "C:\\temp", DirectoryToArchive = "C:\\Temporary"};
+            _subject.ArchiveProgress += (sender, args) => { _subject.Abort(); };
             _subject.ArchivingError += (sender, args) =>
             {
                 mre.Set();
@@ -158,8 +152,6 @@ namespace SaveScumAgent.Archiver.Tests
             Assert.IsTrue(b);
         }
 
-
-
         [TestMethod]
         public void ZipArchiver_CanSendAbortSignal()
         {
@@ -173,7 +165,7 @@ namespace SaveScumAgent.Archiver.Tests
         [ExpectedException(typeof (InvalidOperationException))]
         public void ZipArchiver_FailsWhenArchiveIsSavedToDirectoryToBeArchived()
         {
-            _subject = new ZipArchiver()
+            _subject = new ZipArchiver
             {
                 ArchivesLocation = @"c:\savegames\archives",
                 DirectoryToArchive = @"c:\savegames"

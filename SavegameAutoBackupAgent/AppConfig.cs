@@ -7,12 +7,12 @@ namespace SaveScumAgent
 {
     public abstract class AppConfig : IDisposable
     {
+        public abstract void Dispose();
+
         public static AppConfig Change(string path)
         {
             return new ChangeAppConfig(path);
         }
-
-        public abstract void Dispose();
 
         private class ChangeAppConfig : AppConfig
         {
@@ -42,17 +42,17 @@ namespace SaveScumAgent
 
             private static void ResetConfigMechanism()
             {
-                var fieldInfo = typeof(ConfigurationManager)
+                var fieldInfo = typeof (ConfigurationManager)
                     .GetField("s_initState", BindingFlags.NonPublic |
                                              BindingFlags.Static);
                 fieldInfo?.SetValue(null, 0);
 
-                var field = typeof(ConfigurationManager)
+                var field = typeof (ConfigurationManager)
                     .GetField("s_configSystem", BindingFlags.NonPublic |
                                                 BindingFlags.Static);
                 field?.SetValue(null, null);
 
-                var info = typeof(ConfigurationManager)
+                var info = typeof (ConfigurationManager)
                     .Assembly.GetTypes().First(x => x.FullName ==
                                                     "System.Configuration.ClientConfigPaths")
                     .GetField("s_current", BindingFlags.NonPublic |

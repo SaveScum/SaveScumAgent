@@ -1,5 +1,5 @@
 using System.Data.Entity;
-using Configuration = Data.Migrations.Configuration;
+using Data.Migrations;
 
 namespace Data.Models
 {

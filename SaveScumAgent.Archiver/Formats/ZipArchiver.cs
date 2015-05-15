@@ -1,20 +1,16 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
-using Ionic;
 using Ionic.Zip;
 using SaveScumAgent.UtilityClasses;
-
 
 namespace SaveScumAgent.Archiver.Formats
 {
     public class ZipArchiver : ArchiverBase
     {
-        private IZipFile _zipFile;
-        private bool _abort;
-
         private readonly object _lock = new object();
-
+        private bool _abort;
+        private IZipFile _zipFile;
 
         public override void Abort()
         {
@@ -28,7 +24,6 @@ namespace SaveScumAgent.Archiver.Formats
 
         public void StartArchivingAsync(IZipFile zf)
         {
-
             SanityCheck();
 
             lock (_lock)
@@ -74,7 +69,6 @@ namespace SaveScumAgent.Archiver.Formats
             IsArchiving = false;
             OnArchivingError(new ArchivingInterruptedEventArgs(ArchiveIdentifier, File.Exists(ArchiveIdentifier), e));
         }
-
 
         private void OnSaveProgress(object sender, SaveProgressEventArgs e)
         {

@@ -28,7 +28,7 @@ namespace SaveScumAgent
         private static void EnsureConfigFileExists(string dataDir)
         {
             if (_appConfigFilename == null)
-                _appConfigFilename = String.Format(AppConfigFileTemplate, dataDir);
+                _appConfigFilename = string.Format(AppConfigFileTemplate, dataDir);
 
             if (!File.Exists(_appConfigFilename))
                 CreateAppConfig(_appConfigFilename);

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
 namespace SaveScumAgent.UtilityClasses
@@ -14,7 +13,8 @@ namespace SaveScumAgent.UtilityClasses
     {
         private static Dictionary<string, string> _dictionary;
 
-        public static readonly IList<Environment.SpecialFolder> SupportedFolders = new ReadOnlyCollection<Environment.SpecialFolder>(
+        public static readonly IList<Environment.SpecialFolder> SupportedFolders = new ReadOnlyCollection
+            <Environment.SpecialFolder>(
             new List<Environment.SpecialFolder>
             {
                 Environment.SpecialFolder.ApplicationData,
@@ -38,14 +38,12 @@ namespace SaveScumAgent.UtilityClasses
                 Environment.SpecialFolder.CommonDocuments
             });
 
-        
         public static object FormatWithProvider
             => new {CurrentTime = DateTime.Now, ProcessName = "Something", APPDATA = "nothing"};
 
         public static Dictionary<string, string> PathsDictionary => _dictionary ?? (_dictionary = SupportedFolders
             .Distinct()
             .ToDictionary(f => f.ToString().ToUpper(), Environment.GetFolderPath));
-
 
         public static List<SpecialFolderTag> FindMatchedSpecialFolders(PathString subject)
         {
@@ -56,25 +54,36 @@ namespace SaveScumAgent.UtilityClasses
         {
             if (!subject.IsAbsoluteUrl())
                 throw new ArgumentException("Must be an absolute path", subject);
-            return PathsDictionary.Where(f => subject.IsFolderSubfolderOf(f.Value)).OrderByDescending(f => f.Value.Length).Select(f => new SpecialFolderTag()
-            {
-                Start = subject.FullPath().ToLower().IndexOf(f.Value.ToLower(), StringComparison.Ordinal),
-                End = subject.FullPath().ToLower().IndexOf(f.Value.ToLower(), StringComparison.Ordinal) + f.Value.Length,
-                Tag = f.Key,
-                ReplacedString = Regex.Replace(subject.FullPath(), Regex.Escape(f.Value), String.Format(surroundWith, String.Format("{{{0}}}", f.Key)), RegexOptions.IgnoreCase),
-                RawReplacedString = Regex.Replace(subject.FullPath(), Regex.Escape(f.Value), String.Format("{{{0}}}", f.Key), RegexOptions.IgnoreCase),
-                MatchedString = Regex.Replace(subject.FullPath(), Regex.Escape(f.Value), String.Format(surroundWith, f.Value), RegexOptions.IgnoreCase)
-            }).ToList();
+            return
+                PathsDictionary.Where(f => subject.IsFolderSubfolderOf(f.Value))
+                    .OrderByDescending(f => f.Value.Length)
+                    .Select(f => new SpecialFolderTag
+                    {
+                        Start = subject.FullPath().ToLower().IndexOf(f.Value.ToLower(), StringComparison.Ordinal),
+                        End =
+                            subject.FullPath().ToLower().IndexOf(f.Value.ToLower(), StringComparison.Ordinal) +
+                            f.Value.Length,
+                        Tag = f.Key,
+                        ReplacedString =
+                            Regex.Replace(subject.FullPath(), Regex.Escape(f.Value),
+                                string.Format(surroundWith, $"{{{f.Key}}}"), RegexOptions.IgnoreCase),
+                        RawReplacedString =
+                            Regex.Replace(subject.FullPath(), Regex.Escape(f.Value), $"{{{f.Key}}}",
+                                RegexOptions.IgnoreCase),
+                        MatchedString =
+                            Regex.Replace(subject.FullPath(), Regex.Escape(f.Value),
+                                string.Format(surroundWith, f.Value), RegexOptions.IgnoreCase)
+                    }).ToList();
         }
     }
 
     public struct SpecialFolderTag
     {
-        public string MatchedString;
-        public int Start;
         public int End;
-        public string ReplacedString;
-        public string Tag;
+        public string MatchedString;
         public string RawReplacedString;
+        public string ReplacedString;
+        public int Start;
+        public string Tag;
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using SaveScumAgent.UtilityClasses;
 using SevenZip;
 
@@ -8,7 +7,6 @@ namespace SaveScumAgent.Archiver.Formats
     public class SevenZipArchiver : ArchiverBase
     {
         private const string Extension = ".7z";
-
         private bool _abortArchiving;
         internal ISevenZipCompressor Compressor;
 
@@ -23,7 +21,6 @@ namespace SaveScumAgent.Archiver.Formats
             Compressor.Compressing += OnCompressing;
             Compressor.CompressionFinished += OnCompressionFinished;
         }
-
 
         public CompressionMethod CompressionMethod { get; set; } = CompressionMethod.Default;
         public CompressionLevel CompressionLevel { get; set; } = CompressionLevel.Normal;
@@ -41,7 +38,7 @@ namespace SaveScumAgent.Archiver.Formats
             ArchiveIdentifier = Utils.GenerateBackupFilename(ArchivesLocation, Extension);
             _abortArchiving = false;
             Compressor.BeginCompressDirectory(DirectoryToArchive, ArchiveIdentifier);
-            SevenZipCompressor s = new SevenZipCompressor();
+            var s = new SevenZipCompressor();
             IsArchiving = true;
         }
 
@@ -64,6 +61,4 @@ namespace SaveScumAgent.Archiver.Formats
             }
         }
     }
-
-
 }

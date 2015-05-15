@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Reflection;
 using SaveScumAgent.Archiver.Formats;
 using SevenZip;
 
@@ -8,7 +6,7 @@ namespace SaveScumAgent.Archiver
 {
     public class SevenZipCompressorWrapper : ISevenZipCompressor
     {
-        private SevenZipCompressor _compressor;
+        private readonly SevenZipCompressor _compressor;
 
         public SevenZipCompressorWrapper()
         {
@@ -66,8 +64,12 @@ namespace SaveScumAgent.Archiver
 
         public void BeginCompressDirectory(string directory, string archiveName)
         {
-           _compressor.BeginCompressDirectory(directory, archiveName);
+            _compressor.BeginCompressDirectory(directory, archiveName);
+        }
 
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
 
         protected virtual void OnCompressing(object sender, ProgressEventArgs progressEventArgs)
@@ -78,11 +80,6 @@ namespace SaveScumAgent.Archiver
         protected virtual void OnCompressionFinished(object sender, EventArgs eventArgs)
         {
             CompressionFinished?.Invoke(this, eventArgs);
-        }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -77,7 +77,6 @@ namespace SaveScumAgent.UtilityClasses
             return _value;
         }
 
-
         public static implicit operator string(PathString d)
         {
             return d._value;

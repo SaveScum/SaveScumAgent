@@ -17,7 +17,11 @@ namespace SaveScumAgent.Archiver.Tests
 
         public void BeginCompressDirectory(string directory, string archiveName)
         {
-            
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
 
         public virtual void OnCompressing(ProgressEventArgs e)
@@ -28,11 +32,6 @@ namespace SaveScumAgent.Archiver.Tests
         public virtual void OnCompressionFinished()
         {
             CompressionFinished?.Invoke(this, EventArgs.Empty);
-        }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
         }
     }
 }
