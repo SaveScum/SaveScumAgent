@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using SaveScumAgent.Archiver.Formats;
 
 namespace Data.Models
@@ -26,6 +27,8 @@ namespace Data.Models
 
         [Required]
         public ArchiveFormat Format { get; set; }
+
+        public virtual Game Game { get; set; }
 
     }
 }

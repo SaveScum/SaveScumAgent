@@ -22,27 +22,31 @@ namespace Data.Migrations
                 .Index(t => t.Game_Id);
             
             CreateTable(
+                "dbo.Games",
+                c => new
+                    {
+                        Id = c.Int(nullable: false),
+                        Title = c.String(nullable: false, maxLength: 50),
+                        FilesafeTitle = c.String(nullable: false, maxLength: 50),
+                        SaveDirectoryLocation = c.String(maxLength: 260),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.GameSettings", t => t.Id)
+                .Index(t => t.Id)
+                .Index(t => t.Title, unique: true)
+                .Index(t => t.FilesafeTitle, unique: true);
+            
+            CreateTable(
                 "dbo.GameSettings",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Format = c.Int(),
-                        ArchivesLocation = c.String(maxLength: 4000),
+                        ArchivesLocation = c.String(maxLength: 260),
+                        SaveDirectoryLocation = c.String(maxLength: 260),
                         ArchiveTriggerDelay = c.Int(),
-                        IsDefault = c.Boolean(),
                         IsGlobal = c.Boolean(),
                         Discriminator = c.String(nullable: false, maxLength: 128),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.Games",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        GameSettingsId = c.Int(),
-                        Title = c.String(nullable: false, maxLength: 50),
-                        FilesafeTitle = c.String(maxLength: 50),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -50,10 +54,14 @@ namespace Data.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.Games", "Id", "dbo.GameSettings");
             DropForeignKey("dbo.ArchiveEntries", "Game_Id", "dbo.Games");
+            DropIndex("dbo.Games", new[] { "FilesafeTitle" });
+            DropIndex("dbo.Games", new[] { "Title" });
+            DropIndex("dbo.Games", new[] { "Id" });
             DropIndex("dbo.ArchiveEntries", new[] { "Game_Id" });
-            DropTable("dbo.Games");
             DropTable("dbo.GameSettings");
+            DropTable("dbo.Games");
             DropTable("dbo.ArchiveEntries");
         }
     }

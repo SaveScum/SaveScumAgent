@@ -5,7 +5,7 @@ namespace Data.Models
 {
     public class SaveScumContext : DbContext
     {
-        public SaveScumContext() : this("name=SaveScumContext")
+        public SaveScumContext() : this("SaveScumContext")
         {
         }
 
@@ -19,7 +19,6 @@ namespace Data.Models
         public DbSet<Game> Games { get; set; }
         public DbSet<ArchiveEntry> ArchiveEntries { get; set; }
         public DbSet<GameSettings> GameSettings { get; set; }
-        public DbSet<DefaultSettings> DefaultSettings { get; set; }
         public DbSet<GlobalSettings> GlobalSettings { get; set; }
     }
 }

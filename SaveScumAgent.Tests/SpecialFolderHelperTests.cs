@@ -2,7 +2,6 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Environment;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SaveScumAgent.UtilityClasses;
@@ -15,7 +14,7 @@ namespace SaveScumAgent.Tests
     [TestClass]
     public class SpecialFolderHelperTests
     {
-        private string _desktopPath = GetFolderPath(SpecialFolder.DesktopDirectory);
+        private string _desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
 
         public SpecialFolderHelperTests()
         {
@@ -101,6 +100,7 @@ namespace SaveScumAgent.Tests
         public void FindMatchedSpecialFolders_ReturnsFormattedReplacementStringForMatchWithRelativePath()
         {
             var testPath = _desktopPath + "\\..\\test";
+            TestContext.WriteLine(testPath);
             var result = SpecialFolderHelper.FindMatchedSpecialFolders(testPath);
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.Count);

@@ -10,9 +10,8 @@ namespace Data.Models
         [Key]
         public int Id { get; set; }
 
-
-        public int? GameSettingsId { get; set; }
-
+        [ForeignKey("Id")]
+        [Required]
         public virtual GameSettings Settings { get; set; }
         
         public virtual ICollection<ArchiveEntry> ArchiveEntries { get; set; }

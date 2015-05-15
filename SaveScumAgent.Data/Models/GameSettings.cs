@@ -13,6 +13,9 @@ namespace Data.Models
 
         public ArchiveFormat? Format { get; set; }
 
+        [ForeignKey("Id")]
+        public virtual Game Game { get; set; }
+
         [MaxLength(260)]
         public string ArchivesLocation { get; set; }
 

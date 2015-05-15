@@ -59,29 +59,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201504131147430_Initial.cs" />
-    <Compile Include="Migrations\201504131147430_Initial.Designer.cs">
-      <DependentUpon>201504131147430_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504131149342_SetArchivesMaxLength.cs" />
-    <Compile Include="Migrations\201504131149342_SetArchivesMaxLength.Designer.cs">
-      <DependentUpon>201504131149342_SetArchivesMaxLength.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504131151210_AddArchivesLocationToGameSettings.cs" />
-    <Compile Include="Migrations\201504131151210_AddArchivesLocationToGameSettings.Designer.cs">
-      <DependentUpon>201504131151210_AddArchivesLocationToGameSettings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504132225472_AddUniqueConstraintToFilesafeTitle.cs" />
-    <Compile Include="Migrations\201504132225472_AddUniqueConstraintToFilesafeTitle.Designer.cs">
-      <DependentUpon>201504132225472_AddUniqueConstraintToFilesafeTitle.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504140359435_AddSaveDirectoryLocationToGame.cs" />
-    <Compile Include="Migrations\201504140359435_AddSaveDirectoryLocationToGame.Designer.cs">
-      <DependentUpon>201504140359435_AddSaveDirectoryLocationToGame.cs</DependentUpon>
+    <Compile Include="Migrations\201504160123129_Initial.cs" />
+    <Compile Include="Migrations\201504160123129_Initial.Designer.cs">
+      <DependentUpon>201504160123129_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ArchiveEntry.cs" />
-    <Compile Include="Models\DefaultSettings.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GameSettings.cs" />
     <Compile Include="Models\GlobalSettings.cs" />
@@ -106,20 +89,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504131147430_Initial.resx">
-      <DependentUpon>201504131147430_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504131149342_SetArchivesMaxLength.resx">
-      <DependentUpon>201504131149342_SetArchivesMaxLength.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504131151210_AddArchivesLocationToGameSettings.resx">
-      <DependentUpon>201504131151210_AddArchivesLocationToGameSettings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504132225472_AddUniqueConstraintToFilesafeTitle.resx">
-      <DependentUpon>201504132225472_AddUniqueConstraintToFilesafeTitle.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504140359435_AddSaveDirectoryLocationToGame.resx">
-      <DependentUpon>201504140359435_AddSaveDirectoryLocationToGame.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504160123129_Initial.resx">
+      <DependentUpon>201504160123129_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

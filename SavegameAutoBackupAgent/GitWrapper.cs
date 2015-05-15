@@ -1,4 +1,4 @@
-﻿using System.Environment;
+﻿using System;
 using System.IO;
 using LibGit2Sharp;
 using SaveScumAgent.Properties;
@@ -24,7 +24,7 @@ namespace SaveScumAgent
         {
             get
             {
-                var appDataPath = GetFolderPath(SpecialFolder.ApplicationData);
+                var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 
                 var specificFolder = Path.Combine(appDataPath, Settings.Default.ApplicationName);
 

@@ -71,9 +71,27 @@ namespace SaveScumAgent.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("{ApplicationData}\\SaveScum\\Archives\\{GameTitle}")]
-        public string SaveScumAppArchives {
+        public string DefaultArchiveLocation {
             get {
-                return ((string)(this["SaveScumAppArchives"]));
+                return ((string)(this["DefaultArchiveLocation"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Zip")]
+        public global::SaveScumAgent.Archiver.Formats.ArchiveFormat DefaultFormat {
+            get {
+                return ((global::SaveScumAgent.Archiver.Formats.ArchiveFormat)(this["DefaultFormat"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5000")]
+        public int DefaultArchiveTriggerDelay {
+            get {
+                return ((int)(this["DefaultArchiveTriggerDelay"]));
             }
         }
     }

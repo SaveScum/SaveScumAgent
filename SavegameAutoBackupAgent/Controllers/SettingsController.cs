@@ -11,17 +11,17 @@ namespace SaveScumAgent.Controllers
 {
     internal class SettingsController
     {
-        private static GameSettings _globalSettings;
+        private static GameSettings _fallbackSettings;
 
-        private static GameSettings GlobalSettings
+        private static GameSettings FallbackSettings
         {
             get
             {
                 using (var db = new SaveScumContext())
                 {
-                    _globalSettings = db.DefaultSettings.First();
+                    _fallbackSettings = db.GlobalSettings.First();
                 }
-                return _globalSettings;
+                return _fallbackSettings;
             }
         }
 

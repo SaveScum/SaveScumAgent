@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Environment;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
@@ -15,28 +14,28 @@ namespace SaveScumAgent.UtilityClasses
     {
         private static Dictionary<string, string> _dictionary;
 
-        public static readonly IList<SpecialFolder> SupportedFolders = new ReadOnlyCollection<SpecialFolder>(
-            new List<SpecialFolder>
+        public static readonly IList<Environment.SpecialFolder> SupportedFolders = new ReadOnlyCollection<Environment.SpecialFolder>(
+            new List<Environment.SpecialFolder>
             {
-                SpecialFolder.ApplicationData,
-                SpecialFolder.CommonApplicationData,
-                SpecialFolder.CommonDesktopDirectory,
-                SpecialFolder.Programs,
-                SpecialFolder.MyDocuments,
-                SpecialFolder.Personal,
-                SpecialFolder.MyMusic,
-                SpecialFolder.MyVideos,
-                SpecialFolder.DesktopDirectory,
-                SpecialFolder.LocalApplicationData,
-                SpecialFolder.Windows,
-                SpecialFolder.System,
-                SpecialFolder.ProgramFiles,
-                SpecialFolder.UserProfile,
-                SpecialFolder.SystemX86,
-                SpecialFolder.ProgramFilesX86,
-                SpecialFolder.CommonProgramFiles,
-                SpecialFolder.CommonProgramFilesX86,
-                SpecialFolder.CommonDocuments
+                Environment.SpecialFolder.ApplicationData,
+                Environment.SpecialFolder.CommonApplicationData,
+                Environment.SpecialFolder.CommonDesktopDirectory,
+                Environment.SpecialFolder.Programs,
+                Environment.SpecialFolder.MyDocuments,
+                Environment.SpecialFolder.Personal,
+                Environment.SpecialFolder.MyMusic,
+                Environment.SpecialFolder.MyVideos,
+                Environment.SpecialFolder.DesktopDirectory,
+                Environment.SpecialFolder.LocalApplicationData,
+                Environment.SpecialFolder.Windows,
+                Environment.SpecialFolder.System,
+                Environment.SpecialFolder.ProgramFiles,
+                Environment.SpecialFolder.UserProfile,
+                Environment.SpecialFolder.SystemX86,
+                Environment.SpecialFolder.ProgramFilesX86,
+                Environment.SpecialFolder.CommonProgramFiles,
+                Environment.SpecialFolder.CommonProgramFilesX86,
+                Environment.SpecialFolder.CommonDocuments
             });
 
         
@@ -45,7 +44,7 @@ namespace SaveScumAgent.UtilityClasses
 
         public static Dictionary<string, string> PathsDictionary => _dictionary ?? (_dictionary = SupportedFolders
             .Distinct()
-            .ToDictionary(f => f.ToString().ToUpper(), GetFolderPath));
+            .ToDictionary(f => f.ToString().ToUpper(), Environment.GetFolderPath));
 
 
         public static List<SpecialFolderTag> FindMatchedSpecialFolders(PathString subject)

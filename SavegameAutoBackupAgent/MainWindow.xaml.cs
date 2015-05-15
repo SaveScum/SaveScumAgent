@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Configuration;
-using System.Environment;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -20,8 +18,7 @@ namespace SaveScumAgent
             Initialize();
             using (var db = new SaveScumContext())
             {
-                var d = db.DefaultSettings;
-                
+                var d = db.GlobalSettings.First();
             }
         }
 
