@@ -27,5 +27,10 @@ namespace SaveScumAgent
             SaveScumInitializer.SetupDataDirectory();
             InitializeComponent();
         }
+
+        private void BtnNewGame_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
     }
 }

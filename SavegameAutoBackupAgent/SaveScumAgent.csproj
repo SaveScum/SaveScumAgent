@@ -106,6 +106,10 @@
     <Reference Include="FluentMigrator">
       <HintPath>..\packages\FluentMigrator.1.5.0.0\lib\40\FluentMigrator.dll</HintPath>
     </Reference>
+    <Reference Include="FontAwesome.WPF, Version=5.0.0.33484, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.WPF.5.0.0-alpha\lib\FontAwesome.WPF.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="LibGit2Sharp">
       <HintPath>..\packages\LibGit2Sharp.0.21.0.176\lib\net40\LibGit2Sharp.dll</HintPath>
     </Reference>
