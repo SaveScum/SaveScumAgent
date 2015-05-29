@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using SaveScumAgent.Archiver.Formats;
 
 namespace Data.Models
@@ -28,5 +29,21 @@ namespace Data.Models
         public ArchiveFormat Format { get; set; }
 
         public virtual Game Game { get; set; }
+
+        /// <summary>
+        /// Popularity score is an exponential decay value.
+        /// x = age in days
+        /// e = Euler's number
+        /// score = e ^ (-x/7)
+        /// </summary>
+        [NotMapped]
+        public double PopularityScore
+        {
+            get
+            {
+                var age = DateTime.UtcNow.Subtract(CreatedAt);
+                return Math.Pow(Math.E, ((-1 * age.TotalDays) / 7));                
+            }
+        }        
     }
 }
