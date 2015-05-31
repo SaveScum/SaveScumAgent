@@ -3,9 +3,10 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="SaveScumAgent.MainWindow"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:fa="http://schemas.fontawesome.io/icons/"
-                      Title="Material Design in XAML" Height="480" Width="621.853"
+                      xmlns:local="clr-namespace:SaveScumAgent" mc:Ignorable="d" x:Class="SaveScumAgent.MainWindow"
+                      Title="Material Design in XAML" Height="480" Width="640"
                       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
                       Background="{DynamicResource MaterialDesignPaper}"
                       FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
@@ -27,27 +28,43 @@
                 <ResourceDictionary
                     Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <ControlTemplate x:Key="GameListViewTemplate" TargetType="{x:Type ListView}">
+                <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                    <ScrollViewer Padding="{TemplateBinding Padding}" Style="{DynamicResource MetroGridViewScrollViewerStyle}">
+                        <ItemsPresenter/>
+                    </ScrollViewer>
+                </Border>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsGrouping" Value="True">
+                        <Setter Property="ScrollViewer.CanContentScroll" Value="False"/>
+                    </Trigger>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource GrayBrush9}"/>
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
         </ResourceDictionary>
     </Controls:MetroWindow.Resources>
     <Grid >
         <StackPanel Margin="10" Orientation="Horizontal">
-            <DockPanel Width="100" LastChildFill="True">
+            <DockPanel Width="100" LastChildFill="True" >
                 <StackPanel d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" DockPanel.Dock="Bottom" Margin="8" >
-                    <Button x:Name="BtnNewGame" Style="{StaticResource MaterialDesignFloatingActionButton}" HorizontalAlignment="Left" AllowDrop="True" Click="BtnNewGame_Click">
+                    <Button  Style="{StaticResource MaterialDesignFloatingActionDarkButton}" HorizontalAlignment="Left" AllowDrop="True">
                         <Canvas Width="24" Height="24">
-                            <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" Fill="White" />
+                            <Path Data="{DynamicResource MaterialDesignIcons.Plus}" Fill="White" />
                         </Canvas>
                     </Button>
                 </StackPanel>
-                <ListView x:Name="GamesListView" d:LayoutOverrides="TopPosition, BottomPosition"  DockPanel.Dock="Top" >
+                <ListView Background="{DynamicResource MaterialDesignPaper}" x:Name="GamesListView" d:LayoutOverrides="TopPosition, BottomPosition"  DockPanel.Dock="Top" Template="{DynamicResource GameListViewTemplate}" >
                     <ListView.BindingGroup>
                         <BindingGroup/>
                     </ListView.BindingGroup>
                 </ListView>
             </DockPanel>
-            <StackPanel>
+            <StackPanel Background="{DynamicResource MaterialDesignPaper}">
                 <DataGrid x:Name="dataGrid"/>
             </StackPanel>
+            <local:AccordionButtons Height="Auto"/>
         </StackPanel>
     </Grid>
 </Controls:MetroWindow>

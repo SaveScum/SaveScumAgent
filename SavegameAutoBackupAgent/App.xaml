@@ -28,20 +28,20 @@
                     <!-- include your primary palette -->
                     <ResourceDictionary.MergedDictionaries>
                         <ResourceDictionary
-                            Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Indigo.xaml" />
+                            Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Orange.xaml" />
                     </ResourceDictionary.MergedDictionaries>
                     <!-- 
                             include three hues from the primary palette (and the associated forecolours).  
                             Do not rename, keep in sequence; light to dark. 
                         -->
-                    <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="{StaticResource Primary100}" />
+                    <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="{StaticResource Primary200}" />
                     <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush"
-                                     Color="{StaticResource Primary100Foreground}" />
-                    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="{StaticResource Primary500}" />
-                    <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="{StaticResource Primary500Foreground}" />
-                    <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="{StaticResource Primary700}" />
+                                     Color="{StaticResource Primary200Foreground}" />
+                    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="{StaticResource Primary400}" />
+                    <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="{StaticResource Primary400Foreground}" />
+                    <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="{StaticResource Primary800}" />
                     <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush"
-                                     Color="{StaticResource Primary700Foreground}" />
+                                     Color="{StaticResource Primary800Foreground}" />
 
                     <!-- MAHAPPS BRUSHES -->
                     <SolidColorBrush x:Key="HighlightBrush" Color="{StaticResource Primary700}" options:Freeze="True" />
@@ -77,14 +77,16 @@
                     <!-- include your secondary pallette -->
                     <ResourceDictionary.MergedDictionaries>
                         <ResourceDictionary
-                            Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.DeepOrange.xaml" />
+                            Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Blue.xaml" />
                     </ResourceDictionary.MergedDictionaries>
 
                     <!-- include a single secondary accent color (and the associated forecolour) -->
-                    <SolidColorBrush x:Key="SecondaryAccentBrush" Color="{StaticResource Accent700}" />
+                    <SolidColorBrush x:Key="SecondaryAccentBrush" Color="{StaticResource Accent200}" />
                     <SolidColorBrush x:Key="SecondaryAccentForegroundBrush"
                                      Color="{StaticResource Accent700Foreground}" />
                 </ResourceDictionary>
+                <ResourceDictionary Source="MaterialDesignIcons.xaml"/>
+                <ResourceDictionary Source="MaterialDesignButtonExtensions.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
