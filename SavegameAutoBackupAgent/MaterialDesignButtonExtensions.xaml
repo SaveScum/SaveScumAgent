@@ -50,8 +50,8 @@
     </Style>
     
     <Style x:Key="MaterialDesignLargeActionToggleButton" TargetType="{x:Type ToggleButton}">
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
-        <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryAccentForegroundBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
         <Setter Property="Width" Value="40"/>
         <Setter Property="Height" Value="40"/>
         <Setter Property="FontSize" Value="18"/>
@@ -75,24 +75,24 @@
                                     <Storyboard>
                                         <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="UncheckedEllipse">
                                             <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
-                                            <LinearDoubleKeyFrame Value="32" KeyTime="0:0:0.2" />
+                                            <LinearDoubleKeyFrame Value="40" KeyTime="0:0:0.2" />
                                         </DoubleAnimationUsingKeyFrames>
                                         <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckedEllipse">
                                             <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
-                                            <LinearDoubleKeyFrame Value="32" KeyTime="0:0:0.2" />
+                                            <LinearDoubleKeyFrame Value="40" KeyTime="0:0:0.2" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckMark">
+                                        <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CloseButton">
                                             <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
                                             <LinearDoubleKeyFrame Value="24" KeyTime="0:0:0.2" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Height)" Storyboard.TargetName="CheckMark">
+                                        <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Height)" Storyboard.TargetName="CloseButton">
                                             <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
                                             <LinearDoubleKeyFrame Value="24" KeyTime="0:0:0.2" />
                                         </DoubleAnimationUsingKeyFrames>
                                         <DoubleAnimationUsingKeyFrames Duration="0:0:0.025" Storyboard.TargetProperty="(Control.Opacity)" Storyboard.TargetName="contentPresenter">
                                             <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.025" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="CheckMark">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="CloseButton">
                                             <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{x:Static Visibility.Visible}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -101,23 +101,23 @@
                                     <Storyboard>
                                         <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckedEllipse">
                                             <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
-                                            <LinearDoubleKeyFrame Value="32" KeyTime="0:0:0.2" />
+                                            <LinearDoubleKeyFrame Value="40" KeyTime="0:0:0.2" />
                                         </DoubleAnimationUsingKeyFrames>
                                         <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="UncheckedEllipse">
                                             <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
-                                            <LinearDoubleKeyFrame Value="32" KeyTime="0:0:0.2" />
+                                            <LinearDoubleKeyFrame Value="40" KeyTime="0:0:0.2" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Duration="0:0:0.1" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CheckMark">
+                                        <DoubleAnimationUsingKeyFrames Duration="0:0:0.1" Storyboard.TargetProperty="(Control.Width)" Storyboard.TargetName="CloseButton">
                                             <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Duration="0:0:0.1" Storyboard.TargetProperty="(Control.Height)" Storyboard.TargetName="CheckMark">
+                                        <DoubleAnimationUsingKeyFrames Duration="0:0:0.1" Storyboard.TargetProperty="(Control.Height)" Storyboard.TargetName="CloseButton">
                                             <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
                                         </DoubleAnimationUsingKeyFrames>
                                         <DoubleAnimationUsingKeyFrames Duration="0:0:0.2" Storyboard.TargetProperty="(Control.Opacity)" Storyboard.TargetName="contentPresenter">
                                             <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.1" />
                                             <LinearDoubleKeyFrame Value="1" KeyTime="0:0:0.2" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="CheckMark">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.Visibility)" Storyboard.TargetName="CloseButton">
                                             <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{x:Static Visibility.Hidden}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -130,11 +130,11 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Ellipse Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" x:Name="UncheckedEllipse" Opacity=".54" />
-                        <Ellipse Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" x:Name="CheckedEllipse" />
+                        <Ellipse Fill="{DynamicResource SecondaryAccentBrush}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" x:Name="CheckedEllipse" />
                         <Wpf:VisualFeedbackContentControl ClipToBounds="True" Clip="{Binding RenderedGeometry, ElementName=GeometryEllipse}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Focusable="False" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        <Viewbox Width="24" Height="24" x:Name="CheckMark" Visibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Viewbox Width="24" Height="24" x:Name="CloseButton" Visibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Canvas Width="24" Height="24">
-                                <Path Data="{DynamicResource MaterialDesignIcons.Close}" Fill="{DynamicResource PrimaryHueMidForegroundBrush}" />
+                                <Path Data="{DynamicResource MaterialDesignIcons.Close}" Fill="{DynamicResource SecondaryAccentForegroundBrush}" />
                             </Canvas>
                         </Viewbox>
                         <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Column="1" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />

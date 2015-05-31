@@ -6,10 +6,10 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:fa="http://schemas.fontawesome.io/icons/"
                       xmlns:local="clr-namespace:SaveScumAgent" mc:Ignorable="d" x:Class="SaveScumAgent.MainWindow"
-                      Title="Material Design in XAML" Height="480" Width="640"
+                      Title="SaveScum" Height="480" Width="640"
                       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
                       Background="{DynamicResource MaterialDesignPaper}"
-                      FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
+                      FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto" TitleForeground="{DynamicResource PrimaryHueDarkForegroundBrush}">
 
 
     <Controls:MetroWindow.Resources>

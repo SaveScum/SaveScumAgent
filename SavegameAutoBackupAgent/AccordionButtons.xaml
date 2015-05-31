@@ -10,25 +10,21 @@
     <UserControl.Resources>
         <Thickness x:Key="ButtonMargins">16,16,0,0</Thickness>
     </UserControl.Resources>
-    <UniformGrid HorizontalAlignment="Right" VerticalAlignment="Top" FlowDirection="RightToLeft" Columns="4">
+    <UniformGrid HorizontalAlignment="Right" VerticalAlignment="Top" FlowDirection="RightToLeft" Columns="3
+                 ">
         <ToggleButton Style="{DynamicResource MaterialDesignLargeActionToggleButton}" HorizontalAlignment="Left" AllowDrop="True" Margin="{DynamicResource ButtonMargins}" >
             <Canvas Width="24" Height="24" FlowDirection="LeftToRight">
-                <Path Data="{DynamicResource MaterialDesignIcons.Pencil}" Fill="{DynamicResource PrimaryHueDarkBrush}" />
+                <Path Data="{DynamicResource MaterialDesignIcons.Pencil}" Fill="{DynamicResource SecondaryAccentForegroundBrush}" />
             </Canvas>
         </ToggleButton>
         <Button Style="{DynamicResource MaterialDesignRoundFlatButton}" HorizontalAlignment="Left" AllowDrop="True" Margin="{DynamicResource ButtonMargins}" >
             <Canvas Width="24" Height="24" FlowDirection="LeftToRight">
-                <Path Data="{DynamicResource MaterialDesignIcons.Check}" Fill="{DynamicResource PrimaryHueDarkBrush}" />
+                <Path Data="{DynamicResource MaterialDesignIcons.Check}" Fill="{DynamicResource SecondaryAccentBrush}" />
             </Canvas>
         </Button>
         <Button Style="{DynamicResource MaterialDesignRoundFlatButton}" HorizontalAlignment="Left" AllowDrop="True" Margin="{DynamicResource ButtonMargins}" >
             <Canvas Width="24" Height="24" FlowDirection="LeftToRight">
-                <Path Data="{DynamicResource MaterialDesignIcons.Delete}" Fill="{DynamicResource PrimaryHueDarkBrush}" />
-            </Canvas>
-        </Button>
-        <Button Style="{DynamicResource MaterialDesignRoundFlatButton}" HorizontalAlignment="Left" AllowDrop="True" Margin="{DynamicResource ButtonMargins}" >
-            <Canvas Width="24" Height="24" FlowDirection="LeftToRight">
-                <Path Data="{DynamicResource MaterialDesignIcons.Pencil}" Fill="{DynamicResource PrimaryHueDarkBrush}" />
+                <Path Data="{DynamicResource MaterialDesignIcons.Delete}" Fill="{DynamicResource SecondaryAccentBrush}" />
             </Canvas>
         </Button>
     </UniformGrid>
